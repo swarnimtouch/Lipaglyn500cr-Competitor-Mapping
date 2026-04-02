@@ -70,18 +70,13 @@
             margin-bottom: 32px;
         }
 
-        .logo-icon {
-            width: 64px;
-            height: 64px;
-            background: var(--gradient-primary);
-            border-radius: 16px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: #ffffff;
+        /* Naye logo ke liye width aur height set ki gayi hai */
+        .logo .brand-logo {
+            max-width: 100%;
+            height: 65px; /* Size ko jarurat ke hisab se adjust kar sakte hain */
+            width: auto;
+            object-fit: contain;
             margin-bottom: 16px;
-            box-shadow: 0 8px 20px rgba(179, 86, 159, 0.25);
         }
 
         h1 {
@@ -233,11 +228,9 @@
 
 <div class="card">
     <div class="logo">
-        <div class="logo-icon">
-            <i class="fas fa-user-shield"></i>
-        </div>
+        <img src="{{ URL::asset('assets/logo.png') }}" alt="Lipaglyn Logo" class="brand-logo">
         <h1>Employee Portal</h1>
-        <p class="subtitle">Enter your credentials to login</p>
+        {{-- <p class="subtitle">Enter your credentials to login</p> --}}
     </div>
 
     {{-- Server-side Error Message --}}
