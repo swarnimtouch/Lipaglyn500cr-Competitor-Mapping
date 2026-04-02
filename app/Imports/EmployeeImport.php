@@ -1,6 +1,4 @@
 <?php
-
-namespace App\Imports;
 namespace App\Imports;
 
 use App\Models\Employee;
@@ -11,20 +9,24 @@ class EmployeeImport implements ToModel
 {
     public function model(array $row)
     {
-        // Skip header row (optional)
-        if ($row[0] == 'name') {
+        // ✅ Skip header
+        if (trim($row[0]) == 'EMPLOYEE CODE') {
             return null;
         }
 
-        return new Employee([
-            'name'         => $row[0],
-            'hq'           => $row[1],
-            'type'         => $row[2],
-            'employee_id'  => $row[3],
-            'chair_id'     => $row[4],
+        return Employee::updateOrCreate(
+            ['employee_id' => trim($row[0])],
+            [
+                'name'   => trim($row[1]),
+                'zone'   => !empty($row[2]) ? trim($row[2]) : null,
+                'region' => !empty($row[3]) ? trim($row[3]) : null,
+                'hq'     => !empty($row[5]) ? trim($row[5]) : null,
 
-            // ✅ Password auto (employee_id ya default)
-            'password'     => Hash::make($row[3] ?? '123456'),
-        ]);
+                'type'   => 'MR', // default
+                'chair_id' => null,
+
+                'password' => Hash::make('Lipaglyn500cr'),
+            ]
+        );
     }
 }

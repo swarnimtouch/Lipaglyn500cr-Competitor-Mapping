@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('zone');
+            $table->string('region');
             $table->string('hq');
             $table->string('type');
             $table->string('status')->default('active');

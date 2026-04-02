@@ -133,7 +133,6 @@ class AdminController extends Controller
                         'name'        => $e->name,
                         'employee_id' => $e->employee_id ?? '—',
                         'hq'          => $e->hq,
-                        'type'        => $e->type,
                         'status'      => $toggleSwitch,
                         'action'      => '
                 <div class="action-btns" style="display:flex;align-items:center;gap:8px;">

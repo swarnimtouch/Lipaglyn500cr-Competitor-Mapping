@@ -44,7 +44,6 @@
                                 <th>Name</th>
                                 <th>Emp ID</th>
                                 <th>HQ</th>
-                                <th>Type</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -218,7 +217,6 @@
                     { data: 'name' },
                     { data: 'employee_id' },
                     { data: 'hq' },
-                    { data: 'type' },
                     { data: 'status', orderable: false },
                     { data: 'action', orderable: false, searchable: false }
                 ]
