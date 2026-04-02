@@ -411,14 +411,12 @@ class AdminController extends Controller
             )
             ->groupBy('employees.zone', 'employees.region');
         // Zone filter
-        if ($request->has('zone') && is_array($request->zone)) {
-            $zones_selected = array_filter($request->zone, fn($z) => $z !== 'all');
-            if (!empty($zones_selected)) {
-                $query->whereIn('employees.zone', $zones_selected);
-            }
-        }
+       // Zone filter (Single Selection)
+if ($request->has('zone') && $request->zone !== 'all' && $request->zone !== '') {
+    $query->where('employees.zone', $request->zone);
+}
 
-        $regions = $query->get();
+$regions = $query->get();
 
         $totals = [
             'region_count'                       => $regions->count(),
@@ -495,22 +493,17 @@ class AdminController extends Controller
             ->groupBy('employees.zone', 'employees.region');
 
         // Zone filter
-        if ($request->has('zone') && is_array($request->zone)) {
-            $zones_selected = array_filter($request->zone, fn($z) => $z !== 'all');
-            if (!empty($zones_selected)) {
-                $query->whereIn('employees.zone', $zones_selected);
-            }
-        }
+        // Zone filter (Single Selection)
+if ($request->has('zone') && $request->zone !== 'all' && $request->zone !== '') {
+    $query->where('employees.zone', $request->zone);
+}
 
         $regions = $query->get();
 
         $zoneSuffix = '';
-        if ($request->has('zone') && is_array($request->zone)) {
-            $filtered = array_filter($request->zone, fn($z) => $z !== 'all');
-            if (!empty($filtered)) {
-                $zoneSuffix = '_' . implode('_', $filtered);
-            }
-        }
+if ($request->has('zone') && $request->zone !== 'all' && $request->zone !== '') {
+    $zoneSuffix = '_' . $request->zone; // Sirf ek single zone ka naam append hoga
+}
 
         $filename = 'region_report' . $zoneSuffix . '_' . date('Y-m-d') . '.csv';
 
