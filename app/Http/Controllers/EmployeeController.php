@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Imports\EmployeeImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Hash;
+use App\Imports\DoctorImport;
 
 class EmployeeController extends Controller
 {
@@ -130,5 +131,15 @@ class EmployeeController extends Controller
         Excel::import(new EmployeeImport, $request->file('file'));
 
         return back()->with('success', 'Employees Imported Successfully!');
+    }
+    public function doctorImport(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        Excel::queueImport(new DoctorImport, $request->file('file'));
+
+        return back()->with('success', 'Doctors Imported Successfully!');
     }
 }

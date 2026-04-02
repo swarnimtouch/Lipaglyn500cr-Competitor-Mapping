@@ -108,7 +108,7 @@
                     @foreach($regions as $key => $region)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $region->hq }}</td>
+                            <td>{{ $region->region  }}</td>
                             <td>{{ $region->user_count }}</td>
                             <td>{{ $region->active_user_count }}</td>
                             <td>{{ number_format($region->total_avg_lipaglyn, 2) }}</td>

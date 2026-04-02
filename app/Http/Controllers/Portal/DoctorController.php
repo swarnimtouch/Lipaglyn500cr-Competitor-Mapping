@@ -185,7 +185,7 @@ class DoctorController extends Controller
         $doctor->bilypsa_rx_per_month  = $request->bilypsa_rx_per_month;
         $doctor->linvas_rx_per_month   = $request->linvas_rx_per_month;
         $doctor->vorxar_rx_per_month   = $request->vorxar_rx_per_month;
-
+        $doctor->is_active = 1;
 
     }
 }
