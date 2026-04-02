@@ -575,24 +575,10 @@
             </a>
         </div>
 
-        <div class="nav-label">Account</div>
-
-        <div class="nav-item">
-            <a href="{{ route('portal.doctors.export') }}">
-                <span class="nav-icon"><i class="fas fa-file-excel"></i></span>
-                Export Excel
-            </a>
-        </div>
+        
     </nav>
 
-    <div class="sidebar-footer">
-    <form method="POST" action="{{ route('employee.logout') }}" style="margin:0; width: 100%;">
-        @csrf
-        <button type="submit" class="logout-btn" title="Logout">
-            <i class="fas fa-sign-out-alt"></i> Logout
-        </button>
-    </form>
-</div>
+    
 </div>
 
 {{-- Sidebar overlay (mobile) --}}
