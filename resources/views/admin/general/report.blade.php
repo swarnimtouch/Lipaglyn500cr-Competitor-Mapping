@@ -148,9 +148,19 @@
 
         /* Responsive Wrapper - Pehle wali zarurat nahi rahi flex column ke wajah se, par mobile view safety ke liye rakha hai */
         @media (max-width: 768px) {
-            .btn-filter, .btn-clear, .export-btn { flex: 1; justify-content: center; }
-            .d-flex.mb-3 { flex-direction: column; align-items: flex-start !important; gap: 15px; }
-            .export-btn { width: 100%; }
+            /* Row 1 ko column me todna */
+            .top-row { flex-direction: column !important; align-items: flex-start !important; }
+            
+            /* Export button ko 2nd line par lana aur full width karna */
+            .export-btn { width: 100%; justify-content: center; margin-top: 15px; margin-bottom: 10px !important}
+
+            /* Row 2 (Form) ko column me todna */
+            #zoneForm { flex-direction: column !important; align-items: stretch !important; }
+            
+            /* Dropdown aur buttons ki inline margins reset karna aur unhe stack karna */
+            .select2-container-wrap { max-width: 100% !important; margin-right: 0 !important; width: 100%; margin-bottom: 12px; }
+            .btn-filter { width: 100%; margin-right: 0 !important; justify-content: center; margin-bottom: 12px; }
+            .btn-clear { width: 100%; justify-content: center; }
         }
     </style>
 @endsection
@@ -160,7 +170,7 @@
     <div class="card">
         <div class="card-header d-flex flex-column gap-3" style="padding: 20px 24px;">
             
-            <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="top-row d-flex justify-content-between align-items-center w-100">
                 <div style="font-size: 18px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
                     <i class="fas fa-chart-line" style="color: var(--color-a);"></i> Region wise Report
                 </div>

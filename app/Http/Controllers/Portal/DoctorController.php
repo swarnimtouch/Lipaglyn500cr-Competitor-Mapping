@@ -85,11 +85,7 @@ class DoctorController extends Controller
                 'everage_lipaglyn_pr_month' => $d->everage_lipaglyn_pr_month ?? $d->avg_lipaglyn_pr_month,
                 'action' => '
                 <button onclick="openEditModal('.$d->id.')" class="btn btn-sm btn-warning">Edit</button>
-                <form action="'.route('portal.doctors.destroy', $d->id).'" method="POST" style="display:inline;"
-                    onsubmit="return confirm(\'Delete this doctor?\')">
-                    '.csrf_field().'
-                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                </form>
+                
             '
             ];
         });
