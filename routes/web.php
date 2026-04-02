@@ -47,7 +47,8 @@ Route::prefix('portal')->name('portal.')->group(function () {
         Route::get('/create',         [DoctorController::class, 'create'])->name('create');
         Route::post('/store',         [DoctorController::class, 'store'])->name('store');
         Route::get('/{id}/edit',      [DoctorController::class, 'edit'])->name('edit');
-        Route::post('/{id}/update',   [DoctorController::class, 'update'])->name('update');
+        Route::post('/{id}/update', [DoctorController::class, 'update'])
+            ->name('update');
         Route::post('/{id}/delete',   [DoctorController::class, 'destroy'])->name('destroy');
         Route::get('/{id}/edit-data', [DoctorController::class, 'editData'])->name('editData');
     });

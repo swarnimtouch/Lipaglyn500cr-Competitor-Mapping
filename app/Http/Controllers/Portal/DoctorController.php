@@ -72,23 +72,23 @@ class DoctorController extends Controller
         $length = $request->input('length', 10);
         $doctors = $query->skip($start)->take($length)->get();
 
-        $data = $doctors->map(function ($d) {
+        $data = $doctors->map(function ($d, $index) use ($request) {
             return [
-                'id'                        => $d->id,
+                'index'                     => $request->start + $index + 1, // ✅ SR NO
+                'id'                        => $d->id, // hidden use
                 'name'                      => $d->name,
                 'msl_code'                  => $d->msl_code,
                 'specialization'            => $d->specialization,
                 'lipaglyn_rx_br_type'       => $d->lipaglyn_rx_br_type,
                 'everage_lipaglyn_pr_month' => $d->everage_lipaglyn_pr_month ?? $d->avg_lipaglyn_pr_month,
-                'action'                    => '
-                    <button onclick="openEditModal(' . $d->id . ')" class="btn btn-sm btn-warning">Edit</button>
-                    <form action="/portal/doctors/' . $d->id . '" method="POST" style="display:inline;"
-                        onsubmit="return confirm(\'Delete this doctor?\')">
-                        ' . csrf_field() . '
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                    </form>
-                ',
+                'action' => '
+            <button onclick="openEditModal('.$d->id.')" class="btn btn-sm btn-warning">Edit</button>
+            <form action="'.route('portal.doctors.destroy', $d->id).'" method="POST" style="display:inline;"
+                onsubmit="return confirm(\'Delete this doctor?\')">
+                '.csrf_field().'
+                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+            </form>
+        '
             ];
         });
 

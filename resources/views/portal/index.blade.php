@@ -20,106 +20,106 @@
         .select2-container { width: 100% !important; }
         .select2-container--default .select2-selection--multiple,
         .select2-container--default .select2-selection--single {
-            border-radius: 8px !important; 
-            border: 1px solid var(--border) !important; 
-            min-height: 44px; 
-            display: flex; 
-            align-items: center; 
+            border-radius: 8px !important;
+            border: 1px solid var(--border) !important;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
             transition: all 0.3s ease;
         }
         .select2-container--default.select2-container--focus .select2-selection--multiple,
-        .select2-container--default.select2-container--focus .select2-selection--single { 
-            border-color: var(--color-a) !important; 
-            box-shadow: 0 0 0 4px rgba(0, 158, 163, 0.1) !important; 
+        .select2-container--default.select2-container--focus .select2-selection--single {
+            border-color: var(--color-a) !important;
+            box-shadow: 0 0 0 4px rgba(0, 158, 163, 0.1) !important;
         }
         .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
-            color: #ffffff !important; 
-            background: var(--gradient-primary) !important; 
-            border: none; 
+            color: #ffffff !important;
+            background: var(--gradient-primary) !important;
+            border: none;
             border-radius: 6px;
             margin: 0.2rem 0.4rem 0.2rem 0 !important;
             padding: 4px 8px;
         }
         .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove { color: #ffffff !important; margin-right: 5px; border-right: 1px solid rgba(255,255,255,0.3); padding-right: 5px; }
-        
+
         /* ── Modal Premium Design ── */
         .modal { z-index: 1050 !important; }
         .modal-backdrop { z-index: 1040 !important; }
         .modal-dialog { max-width: 800px; }
-        .modal-content { 
-            border-radius: 16px; 
-            border: none; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2); 
-            overflow: hidden; 
+        .modal-content {
+            border-radius: 16px;
+            border: none;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
         }
-        .modal-header { 
-            background: var(--gradient-primary); 
-            color: #fff; 
-            border-bottom: none; 
-            padding: 20px 24px; 
+        .modal-header {
+            background: var(--gradient-primary);
+            color: #fff;
+            border-bottom: none;
+            padding: 20px 24px;
         }
         .modal-title { font-weight: 700; font-size: 20px; letter-spacing: 0.3px; }
         .modal-header .close { color: #fff; opacity: 0.8; text-shadow: none; font-size: 28px; transition: opacity 0.3s; margin: -1rem -1rem -1rem auto; padding: 1rem; }
         .modal-header .close:hover { opacity: 1; }
-        
+
         .modal-body { padding: 30px; background-color: var(--card-bg); }
         .modal-body .row { margin-bottom: 18px; }
         label.col-form-label { font-weight: 600; color: var(--text); padding-top: 0.5rem; font-size: 14.5px; }
-        
+
         /* ── Modern Form Inputs ── */
-        .form-control { 
-            border-radius: 8px; 
-            border: 1px solid var(--border); 
-            font-size: 14.5px; 
-            padding: 10px 14px; 
-            height: auto; 
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            font-size: 14.5px;
+            padding: 10px 14px;
+            height: auto;
             background: var(--input-bg);
-            transition: all 0.3s ease; 
+            transition: all 0.3s ease;
         }
-        .form-control:focus { 
-            border-color: var(--color-a); 
-            box-shadow: 0 0 0 4px rgba(0, 158, 163, 0.1); 
-            background: #fff; 
+        .form-control:focus {
+            border-color: var(--color-a);
+            box-shadow: 0 0 0 4px rgba(0, 158, 163, 0.1);
+            background: #fff;
         }
-        
+
         /* ── Custom Radio Buttons ── */
-        .form-check-input { 
-            accent-color: var(--color-a); 
-            width: 18px; 
-            height: 18px; 
-            margin-top: 2px; 
-            cursor: pointer; 
+        .form-check-input {
+            accent-color: var(--color-a);
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            cursor: pointer;
         }
-        .form-check-label { 
-            cursor: pointer; 
-            font-weight: 600; 
-            font-size: 14.5px; 
-            padding-left: 6px; 
-            color: var(--text); 
+        .form-check-label {
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14.5px;
+            padding-left: 6px;
+            color: var(--text);
         }
 
         /* ── Modal Buttons ── */
-        .wd-sl-modalbtn { 
-            display: flex; 
-            justify-content: flex-end; 
-            gap: 12px; 
-            margin-top: 10px; 
-            padding-top: 24px; 
-            border-top: 1px solid var(--border); 
+        .wd-sl-modalbtn {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 10px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
         }
-        .btn-outline-secondary { 
-            color: var(--text-muted); 
-            border: 2px solid var(--border); 
-            font-weight: 600; 
-            border-radius: 8px; 
-            padding: 10px 24px; 
+        .btn-outline-secondary {
+            color: var(--text-muted);
+            border: 2px solid var(--border);
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 10px 24px;
             background: transparent;
             transition: all 0.3s ease;
         }
-        .btn-outline-secondary:hover { 
-            background: #f1f5f9; 
-            color: var(--text); 
-            border-color: #cbd5e1; 
+        .btn-outline-secondary:hover {
+            background: #f1f5f9;
+            color: var(--text);
+            border-color: #cbd5e1;
         }
 
         @media (max-width: 768px) {
@@ -157,7 +157,7 @@
         }
         .ref-card-title.teal { color: var(--color-a); }
         .ref-card-title.purple { color: var(--color-b); }
-        
+
         .ref-list {
             list-style: none;
             padding: 0;
@@ -224,7 +224,11 @@
 
     <div class="row">
         <div class="col-12">
-
+            @if(session('success'))
+                <div style="background:#d4edda;color:#155724;padding:10px;border-radius:5px;margin-bottom:15px;">
+                    {{ session('success') }}
+                </div>
+            @endif
             {{-- Speciality Reference Table (Premium UI) --}}
             <div class="row mb-4">
                 <div class="col-md-6 mb-3 mb-md-0">
@@ -675,14 +679,20 @@
         function openEditModal(id) {
             resetForm();
             $('#modalTitle').text('Edit Doctor');
-            $.get('/portal/doctors/' + id + '/edit-data', function (data) {
+
+            let editUrl = "{{ route('portal.doctors.editData', ':id') }}";
+            editUrl = editUrl.replace(':id', id);
+
+            $.get(editUrl, function (data) {
                 fillForm(data);
-                $('#doctor_form').attr('action', '/portal/doctors/' + id);
-                $('#method_field').html('<input type="hidden" name="_method" value="PUT">');
-                $('#doctorModal').modal({ backdrop: true, keyboard: true });
+
+                let updateUrl = "{{ route('portal.doctors.update', ':id') }}";
+                updateUrl = updateUrl.replace(':id', id);
+
+                $('#doctor_form').attr('action', updateUrl);
+                $('#method_field').html(''); // ❌ PUT hata diya
+
                 $('#doctorModal').modal('show');
-            }).fail(function () {
-                alert('Failed to load doctor data. Please try again.');
             });
         }
 
@@ -828,18 +838,18 @@
                             if(text === 'edit' || $(this).find('.fa-edit').length > 0) {
                                 $(this).html('<i class="fas fa-edit"></i>')
                                        // Purani sabhi possible classes (jaise btn-warning yellow ke liye) hata denge
-                                       .removeClass('btn btn-sm btn-primary btn-info btn-warning') 
+                                       .removeClass('btn btn-sm btn-primary btn-info btn-warning')
                                        .addClass('btn-icon btn-edit')
                                        .attr('title', 'Edit');
                             }
                         });
-                        
+
                         // Delete button ko icon me convert karna
                         $('#listResults tbody tr td:last-child').find('button, a').each(function() {
                             var text = $(this).text().trim().toLowerCase();
                             if(text === 'delete' || $(this).find('.fa-trash').length > 0 || $(this).find('.fa-trash-alt').length > 0) {
                                 $(this).html('<i class="fas fa-trash-alt"></i>')
-                                       .removeClass('btn btn-sm btn-danger btn-warning') 
+                                       .removeClass('btn btn-sm btn-danger btn-warning')
                                        .addClass('btn-icon btn-delete')
                                        .attr('title', 'Delete');
                             }
