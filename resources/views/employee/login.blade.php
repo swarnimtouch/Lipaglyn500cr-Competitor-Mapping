@@ -162,6 +162,31 @@
             gap: 6px;
         }
 
+        /* ── Password Toggle UI ── */
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 45px; /* Icon ke liye input me right side space */
+        }
+
+        .toggle-password-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 16px;
+            transition: color 0.3s ease;
+            z-index: 10;
+        }
+
+        .toggle-password-icon:hover {
+            color: var(--color-a); /* Hover karne par Teal color aayega */
+        }
+
         button[type="submit"] {
             width: 100%;
             background: var(--gradient-primary);
@@ -233,7 +258,7 @@
                 id="employee_id"
                 name="employee_id"
                 value="{{ old('employee_id') }}"
-                placeholder="e.g. EMP-1001"
+                placeholder="Enter employee id"
                 class="{{ $errors->has('employee_id') ? 'is-invalid' : '' }}"
                 autocomplete="username"
             >
@@ -247,13 +272,16 @@
 
         <div class="form-group">
             <label for="password">Password</label>
-            <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="••••••••"
-                autocomplete="current-password"
-            >
+            <div class="password-wrapper">
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter password"
+                    autocomplete="current-password"
+                >
+                <i class="fas fa-eye-slash toggle-password-icon" id="togglePassword"></i>
+            </div>
         </div>
 
         <button type="submit">
@@ -261,9 +289,9 @@
         </button>
     </form>
 
-    <div class="footer">
+    {{-- <div class="footer">
         <i class="fas fa-headset"></i> Having trouble? Contact Admin.
-    </div>
+    </div> --}}
 </div>
 
 {{-- jQuery & jQuery Validation Plugins --}}
@@ -306,11 +334,34 @@
                 $(element).removeClass("is-invalid");
             },
             
-            // Custom HTML for the error message to match the design (adds the icon)
+            // Custom HTML for the error message to match the design
             errorPlacement: function(error, element) {
                 var icon = $('<i>').addClass('fas fa-info-circle').css('margin-right', '6px');
                 error.prepend(icon);
-                error.insertAfter(element);
+                
+                // Agar input password-wrapper ke andar hai, toh error wrapper ke baad dikhao
+                if (element.parent().hasClass('password-wrapper')) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
+
+        // ── Password Hide/Show Logic ──
+        $('#togglePassword').on('click', function() {
+            var passwordInput = $('#password');
+            var icon = $(this);
+
+            // Agar password hide hai, toh text (show) karo aur icon change karo
+            if (passwordInput.attr('type') === 'password') {
+                passwordInput.attr('type', 'text');
+                icon.removeClass('fa-eye-slash').addClass('fa-eye');
+            } 
+            // Agar show hai, toh wapas password (hide) karo aur icon slash karo
+            else {
+                passwordInput.attr('type', 'password');
+                icon.removeClass('fa-eye').addClass('fa-eye-slash');
             }
         });
     });

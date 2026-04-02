@@ -11,34 +11,211 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
 
     <style>
-        label.error { display: block; margin-top: 4px; color: #d9534f; font-size: 13px; font-weight: 500; }
-        .form-validation-error { border-color: #d9534f !important; }
+        /* ── Form Error & Validation ── */
+        label.error { display: flex; align-items: center; gap: 6px; margin-top: 6px; color: #ef4444; font-size: 13px; font-weight: 500; }
+        label.error::before { content: '\f05a'; font-family: 'Font Awesome 6 Free'; font-weight: 900; }
+        .form-validation-error { border-color: #ef4444 !important; box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1) !important; }
+
+        /* ── Select2 Customization to match Premium Theme ── */
         .select2-container { width: 100% !important; }
-        .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
-            color: #ffffff !important; background: #A11A20 !important; border: 1px solid #ebedf2;
-            margin: 0.4rem 0.4rem 0.1rem 0 !important;
+        .select2-container--default .select2-selection--multiple,
+        .select2-container--default .select2-selection--single {
+            border-radius: 8px !important; 
+            border: 1px solid var(--border) !important; 
+            min-height: 44px; 
+            display: flex; 
+            align-items: center; 
+            transition: all 0.3s ease;
         }
-        .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove { color: #ffffff !important; }
-        .btn.btn-outline-secondary { color: #A11A20 !important; border-color: #A11A20 !important; }
-        .select2-search--inline { padding: 5px !important; }
-        .select2-selection__rendered { padding: 5px !important; }
-        .select2-container--default .select2-selection--single,
-        .select2-container--default .select2-selection--multiple { line-height: 1 !important; }
-        .modal-body { padding: 1rem; background-color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .row { margin-bottom: 1rem; }
-        label.col-form-label { font-weight: 600; color: #333; padding-top: 0.5rem; }
-        .form-control { border-radius: 4px; border: 1px solid #ced4da; font-size: 14px; padding: 0.5rem 0.75rem; transition: border-color 0.3s, box-shadow 0.3s; }
-        .form-control:focus { border-color: #A11A20; box-shadow: 0 0 0 0.2rem rgba(161,26,32,.2); outline: none; }
-        .wd-sl-modalbtn { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
-        .btn { padding: 0.5rem 1.2rem; font-size: 14px; border-radius: 4px; cursor: pointer; }
-        .modal-dialog { max-width: 750px; }
-        /* Fix modal backdrop z-index issue */
+        .select2-container--default.select2-container--focus .select2-selection--multiple,
+        .select2-container--default.select2-container--focus .select2-selection--single { 
+            border-color: var(--color-a) !important; 
+            box-shadow: 0 0 0 4px rgba(0, 158, 163, 0.1) !important; 
+        }
+        .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
+            color: #ffffff !important; 
+            background: var(--gradient-primary) !important; 
+            border: none; 
+            border-radius: 6px;
+            margin: 0.2rem 0.4rem 0.2rem 0 !important;
+            padding: 4px 8px;
+        }
+        .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove { color: #ffffff !important; margin-right: 5px; border-right: 1px solid rgba(255,255,255,0.3); padding-right: 5px; }
+        
+        /* ── Modal Premium Design ── */
         .modal { z-index: 1050 !important; }
         .modal-backdrop { z-index: 1040 !important; }
+        .modal-dialog { max-width: 800px; }
+        .modal-content { 
+            border-radius: 16px; 
+            border: none; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2); 
+            overflow: hidden; 
+        }
+        .modal-header { 
+            background: var(--gradient-primary); 
+            color: #fff; 
+            border-bottom: none; 
+            padding: 20px 24px; 
+        }
+        .modal-title { font-weight: 700; font-size: 20px; letter-spacing: 0.3px; }
+        .modal-header .close { color: #fff; opacity: 0.8; text-shadow: none; font-size: 28px; transition: opacity 0.3s; margin: -1rem -1rem -1rem auto; padding: 1rem; }
+        .modal-header .close:hover { opacity: 1; }
+        
+        .modal-body { padding: 30px; background-color: var(--card-bg); }
+        .modal-body .row { margin-bottom: 18px; }
+        label.col-form-label { font-weight: 600; color: var(--text); padding-top: 0.5rem; font-size: 14.5px; }
+        
+        /* ── Modern Form Inputs ── */
+        .form-control { 
+            border-radius: 8px; 
+            border: 1px solid var(--border); 
+            font-size: 14.5px; 
+            padding: 10px 14px; 
+            height: auto; 
+            background: var(--input-bg);
+            transition: all 0.3s ease; 
+        }
+        .form-control:focus { 
+            border-color: var(--color-a); 
+            box-shadow: 0 0 0 4px rgba(0, 158, 163, 0.1); 
+            background: #fff; 
+        }
+        
+        /* ── Custom Radio Buttons ── */
+        .form-check-input { 
+            accent-color: var(--color-a); 
+            width: 18px; 
+            height: 18px; 
+            margin-top: 2px; 
+            cursor: pointer; 
+        }
+        .form-check-label { 
+            cursor: pointer; 
+            font-weight: 600; 
+            font-size: 14.5px; 
+            padding-left: 6px; 
+            color: var(--text); 
+        }
+
+        /* ── Modal Buttons ── */
+        .wd-sl-modalbtn { 
+            display: flex; 
+            justify-content: flex-end; 
+            gap: 12px; 
+            margin-top: 10px; 
+            padding-top: 24px; 
+            border-top: 1px solid var(--border); 
+        }
+        .btn-outline-secondary { 
+            color: var(--text-muted); 
+            border: 2px solid var(--border); 
+            font-weight: 600; 
+            border-radius: 8px; 
+            padding: 10px 24px; 
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-secondary:hover { 
+            background: #f1f5f9; 
+            color: var(--text); 
+            border-color: #cbd5e1; 
+        }
+
         @media (max-width: 768px) {
             .col-md-2, .col-md-10 { flex: 0 0 100%; max-width: 100%; margin-bottom: 5px; }
             .wd-sl-modalbtn { flex-direction: column; align-items: stretch; }
-            .btn { width: 100%; }
+            .btn { width: 100%; margin-bottom: 8px; }
+        }
+
+        /* ── Premium Cards for Speciality & Tag as ── */
+        .ref-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--color-a); /* Teal color */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .ref-card.ref-purple {
+            border-top-color: var(--color-b); /* Purple color */
+        }
+        .ref-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .ref-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .ref-card-title.teal { color: var(--color-a); }
+        .ref-card-title.purple { color: var(--color-b); }
+        
+        .ref-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .ref-list li {
+            position: relative;
+            padding-left: 26px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text);
+            font-weight: 500;
+        }
+        .ref-list li::before {
+            content: '\f0da'; /* FontAwesome angle-right icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+        .ref-card:not(.ref-purple) .ref-list li::before { color: var(--color-a); }
+        .ref-card.ref-purple .ref-list li::before { color: var(--color-b); }
+
+        /* ── Action Icon Buttons (Edit/Delete) ── */
+        .btn-icon {
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: none;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            margin: 0 4px;
+            text-decoration: none !important;
+            cursor: pointer;
+        }
+        .btn-edit {
+            background: rgba(0, 158, 163, 0.1);
+            color: var(--color-a) !important;
+        }
+        .btn-edit:hover {
+            background: var(--color-a);
+            color: #fff !important;
+            box-shadow: 0 4px 12px rgba(0, 158, 163, 0.3);
+            transform: translateY(-2px);
+        }
+        .btn-delete {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444 !important;
+        }
+        .btn-delete:hover {
+            background: #ef4444;
+            color: #fff !important;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+            transform: translateY(-2px);
         }
     </style>
 @endsection
@@ -48,32 +225,40 @@
     <div class="row">
         <div class="col-12">
 
-            {{-- Speciality Reference Table --}}
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <div class="text-center">
-                        <h3>Speciality</h3>
-                        <p>MBBS, MD, DM or DNB (Endo),</p>
-                        <p>MBBS, MD, + Certification in Diabetes,</p>
-                        <p>MBBS, MD, DM or DNB (Cardio) Performs procedures such as stenting and also consults patients,</p>
-                        <p>MBBS, MD, DM or DNB (Cardio) Consults only patients,</p>
-                        <p>MBBS, MD, DM or DNB (Nephro),</p>
-                        <p>MBBS, MD, (Medicine),</p>
-                        <p>MBBS (Only),</p>
-                        <p>Any other Apart from above</p>
+            {{-- Speciality Reference Table (Premium UI) --}}
+            <div class="row mb-4">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <div class="ref-card">
+                        <div class="ref-card-title teal">
+                            <i class="fas fa-stethoscope"></i> Speciality
+                        </div>
+                        <ul class="ref-list">
+                            <li>MBBS, MD, DM or DNB (Endo)</li>
+                            <li>MBBS, MD, + Certification in Diabetes</li>
+                            <li>MBBS, MD, DM or DNB (Cardio) Performs procedures such as stenting and also consults patients</li>
+                            <li>MBBS, MD, DM or DNB (Cardio) Consults only patients</li>
+                            <li>MBBS, MD, DM or DNB (Nephro)</li>
+                            <li>MBBS, MD, (Medicine)</li>
+                            <li>MBBS (Only)</li>
+                            <li>Any other Apart from above</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="text-center">
-                        <h3>Tag as</h3>
-                        <p>Cons. Endocrinologist,</p>
-                        <p>Cons. Diabetologist,</p>
-                        <p>Interventional Cardiologist,</p>
-                        <p>Cons. Cardiologist,</p>
-                        <p>Cons. Nephrologist,</p>
-                        <p>Cons. Physician,</p>
-                        <p>General Physician,</p>
-                        <p>Others</p>
+                    <div class="ref-card ref-purple">
+                        <div class="ref-card-title purple">
+                            <i class="fas fa-tags"></i> Tag as
+                        </div>
+                        <ul class="ref-list">
+                            <li>Cons. Endocrinologist</li>
+                            <li>Cons. Diabetologist</li>
+                            <li>Interventional Cardiologist</li>
+                            <li>Cons. Cardiologist</li>
+                            <li>Cons. Nephrologist</li>
+                            <li>Cons. Physician</li>
+                            <li>General Physician</li>
+                            <li>Others</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -632,7 +817,34 @@
                         { data: 'lipaglyn_rx_br_type',       orderable: true },
                         { data: 'everage_lipaglyn_pr_month', orderable: true },
                         { data: 'action',                    searchable: false, orderable: false }
-                    ]
+                    ],
+                    // Ye function har baar table load hone par run hoga
+                    // Ye function har baar table load hone par run hoga
+                    drawCallback: function(settings) {
+                        // Edit button ko icon me convert karna
+                        $('#listResults tbody tr td:last-child').find('button, a').each(function() {
+                            var text = $(this).text().trim().toLowerCase();
+                            // 'edit' text ya icon find karke replace karega
+                            if(text === 'edit' || $(this).find('.fa-edit').length > 0) {
+                                $(this).html('<i class="fas fa-edit"></i>')
+                                       // Purani sabhi possible classes (jaise btn-warning yellow ke liye) hata denge
+                                       .removeClass('btn btn-sm btn-primary btn-info btn-warning') 
+                                       .addClass('btn-icon btn-edit')
+                                       .attr('title', 'Edit');
+                            }
+                        });
+                        
+                        // Delete button ko icon me convert karna
+                        $('#listResults tbody tr td:last-child').find('button, a').each(function() {
+                            var text = $(this).text().trim().toLowerCase();
+                            if(text === 'delete' || $(this).find('.fa-trash').length > 0 || $(this).find('.fa-trash-alt').length > 0) {
+                                $(this).html('<i class="fas fa-trash-alt"></i>')
+                                       .removeClass('btn btn-sm btn-danger btn-warning') 
+                                       .addClass('btn-icon btn-delete')
+                                       .attr('title', 'Delete');
+                            }
+                        });
+                    }
                 });
             }
 
@@ -668,7 +880,7 @@
                     },
                     errorPlacement: function (error, element) {
                         if (element.attr('type') === 'radio') {
-                            error.insertAfter(element.closest('.col-md-8'));
+                            error.css('width', '100%').appendTo(element.closest('.col-md-8'));
                         } else {
                             error.insertAfter(element);
                         }
