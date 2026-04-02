@@ -71,14 +71,14 @@
 
        
         /* Sidebar logo container ki height thodi badhayi hai taaki logo fit ho jaye */
-.sidebar-brand {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    height: 100px; /* Logo container ko thoda aur space diya */
-    border-bottom: 1px solid rgba(255,255,255,.05);
-}
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            height: 100px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Opacity badhakar 30% (.3) kar di */
+        }
 
 /* Logo ki exact size badha di gayi hai */
 .sidebar-brand .brand-logo {

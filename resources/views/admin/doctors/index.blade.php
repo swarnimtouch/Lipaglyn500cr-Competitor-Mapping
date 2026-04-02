@@ -34,9 +34,9 @@
 
         /* ── Header Filters & Export ── */
         .export-btn {
-            background: rgba(179, 86, 159, 0.1);
-            color: var(--color-b);
-            border: 1px solid rgba(179, 86, 159, 0.2);
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.2);
             padding: 9px 18px;
             border-radius: 8px;
             font-size: 13px;
@@ -51,10 +51,10 @@
         }
 
         .export-btn:hover {
-            background: var(--color-b);
+            background: #10b981;
             color: #fff;
             text-decoration: none;
-            box-shadow: 0 4px 12px rgba(179, 86, 159, 0.3);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
             transform: translateY(-1px);
         }
 
@@ -104,10 +104,10 @@
                         <i class="fas fa-user-md" style="color: var(--color-a);"></i> All Doctors
                     </div>
 
-                    <div class="header-actions d-flex align-items-center gap-2">
+                    <div class="header-actions d-flex align-items-center">
 
-                        {{-- ✅ ZONE FILTER (from employees table) --}}
-                        <select id="zoneFilter" class="filter-select" style="width:220px;">
+                        {{-- ✅ ZONE FILTER - mr-3 class add ki gayi hai space ke liye --}}
+                        <select id="zoneFilter" class="filter-select mr-3" style="width:220px;">
                             <option value="">All Zones</option>
                             @foreach($employees->pluck('zone')->unique() as $zone)
                                 @if($zone)

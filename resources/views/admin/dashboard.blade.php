@@ -109,6 +109,14 @@
             color: var(--text-main);
             line-height: 1;
         }
+
+        /* ── Mobile Responsiveness ── */
+        @media (max-width: 767px) {
+            .stat-card {
+                max-width: 100%; /* Mobile me max-width limit hata dega */
+                flex: 1 1 100%; /* Force karega ki card puri width le */
+            }
+        }
     </style>
 @endsection
 
