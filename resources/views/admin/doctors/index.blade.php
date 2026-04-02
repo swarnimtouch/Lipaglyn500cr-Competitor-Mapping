@@ -19,17 +19,17 @@
             text-decoration: none !important;
             cursor: pointer;
         }
-        
-        .btn-delete { 
-            background: rgba(239, 68, 68, 0.1); 
-            color: #ef4444 !important; 
+
+        .btn-delete {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444 !important;
         }
-        
-        .btn-delete:hover { 
-            background: #ef4444; 
-            color: #fff !important; 
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); 
-            transform: translateY(-2px); 
+
+        .btn-delete:hover {
+            background: #ef4444;
+            color: #fff !important;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+            transform: translateY(-2px);
         }
 
         /* ── Header Filters & Export ── */
@@ -50,10 +50,10 @@
             transition: all 0.3s ease;
         }
 
-        .export-btn:hover { 
-            background: var(--color-b); 
-            color: #fff; 
-            text-decoration: none; 
+        .export-btn:hover {
+            background: var(--color-b);
+            color: #fff;
+            text-decoration: none;
             box-shadow: 0 4px 12px rgba(179, 86, 159, 0.3);
             transform: translateY(-1px);
         }
@@ -132,7 +132,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>MR Name</th>
-                                <th>MR Emp ID</th>
+                                <th>MR  ID</th>
                                 <th>Dr. Name</th>
                                 <th>Dr. UID</th>
                                 <th>Speciality</th>
@@ -215,7 +215,7 @@
                 e.preventDefault();
 
                 let zone = $('#zoneFilter').val();
-                let search = $('#doctorTable_filter input').val(); 
+                let search = $('#doctorTable_filter input').val();
 
                 let url = "{{ route('admin.export.doctors') }}";
                 let params = [];
