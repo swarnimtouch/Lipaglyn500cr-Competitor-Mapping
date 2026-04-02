@@ -122,9 +122,9 @@
         }
 
         .export-btn {
-            background: rgba(179, 86, 159, 0.1);
-            color: var(--color-b);
-            border: 1px solid rgba(179, 86, 159, 0.2);
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.2);
             padding: 10px 20px;
             border-radius: 8px;
             font-size: 13px;
@@ -139,26 +139,18 @@
             height: 42px;
         }
         .export-btn:hover { 
-            background: var(--color-b); 
+            background: #10b981; 
             color: #fff; 
             text-decoration: none; 
-            box-shadow: 0 6px 15px rgba(179, 86, 159, 0.3);
+            box-shadow: 0 6px 15px rgba(16, 185, 129, 0.3);
             transform: translateY(-1px);
         }
 
-        /* Responsive Wrapper */
-        .filter-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 12px;
-            flex: 1;
-            justify-content: flex-end;
-        }
+        /* Responsive Wrapper - Pehle wali zarurat nahi rahi flex column ke wajah se, par mobile view safety ke liye rakha hai */
         @media (max-width: 768px) {
-            .filter-wrapper { justify-content: flex-start; }
-            .filter-wrapper > div { width: 100%; max-width: 100% !important; }
             .btn-filter, .btn-clear, .export-btn { flex: 1; justify-content: center; }
+            .d-flex.mb-3 { flex-direction: column; align-items: flex-start !important; gap: 15px; }
+            .export-btn { width: 100%; }
         }
     </style>
 @endsection
@@ -166,29 +158,34 @@
 @section('content')
 
     <div class="card">
-        <div class="card-header d-flex flex-column flex-xl-row justify-content-between align-items-start align-items-xl-center gap-3" style="padding: 20px 24px;">
+        <div class="card-header d-flex flex-column gap-3" style="padding: 20px 24px;">
             
-            <div style="font-size: 18px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
-                <i class="fas fa-chart-line" style="color: var(--color-a);"></i> Region Business Report
-            </div>
-
-            <form method="GET" action="{{ route('admin.report') }}" id="zoneForm" class="filter-wrapper w-100">
-                
-                {{-- Dropdown Container --}}
-                <div style="min-width:200px; max-width:300px; flex-grow: 1;" class="select2-container-wrap">
-                    <select name="zone" id="zoneFilter" class="form-control">
-    <option value="" disabled {{ empty(request('zone')) ? 'selected' : '' }}>Select Filter</option>
-    <option value="all" {{ request('zone') == 'all' ? 'selected' : '' }}>All Zones</option>
-    
-    @foreach($zones as $zone)
-        <option value="{{ $zone }}" {{ request('zone') == $zone ? 'selected' : '' }}>
-            {{ $zone }}
-        </option>
-    @endforeach
-</select>
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <div style="font-size: 18px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-chart-line" style="color: var(--color-a);"></i> Region wise Report
                 </div>
 
-                <button type="submit" class="btn-filter">
+                <a id="exportBtn" href="{{ route('admin.report.export', ['zone' => request('zone')]) }}" class="export-btn mb-0">
+                    <i class="fas fa-file-excel"></i> Export Excel
+                </a>
+            </div>
+
+            <form method="GET" action="{{ route('admin.report') }}" id="zoneForm" class="d-flex align-items-center w-100 mb-0">
+                
+                <div style="min-width:200px; max-width:300px; margin-right: 15px;" class="select2-container-wrap">
+                    <select name="zone" id="zoneFilter" class="form-control">
+                        <option value="" disabled {{ empty(request('zone')) ? 'selected' : '' }}>Select Filter</option>
+                        <option value="all" {{ request('zone') == 'all' ? 'selected' : '' }}>All Zones</option>
+                        
+                        @foreach($zones as $zone)
+                            <option value="{{ $zone }}" {{ request('zone') == $zone ? 'selected' : '' }}>
+                                {{ $zone }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-filter" style="margin-right: 15px;">
                     <i class="fas fa-filter"></i> Apply Filter
                 </button>
 
@@ -197,12 +194,6 @@
                         <i class="fas fa-times"></i> Clear
                     </a>
                 @endif
-
-                <a id="exportBtn"
-                   href="{{ route('admin.report.export', ['zone' => request('zone')]) }}"
-                   class="export-btn">
-                    <i class="fas fa-file-excel"></i> Export Excel
-                </a>
             </form>
         </div>
 
@@ -300,38 +291,37 @@
             });
 
             // ── Select2 init ──
-            // ── Select2 init ──
-$('#zoneFilter').select2({
-    allowClear: true,
-    width: '100%',
-    placeholder: 'Select Filter',
-    dropdownAutoWidth: true
-});
+            $('#zoneFilter').select2({
+                allowClear: true,
+                width: '100%',
+                placeholder: 'Select Filter',
+                dropdownAutoWidth: true
+            });
 
-// ── Handle Select2 Changes ──
-$('#zoneFilter').on('change', function () {
-    var selected = $(this).val(); // Ab ye string hoga, array nahi
-    updateExportUrl(selected);
-});
+            // ── Handle Select2 Changes ──
+            $('#zoneFilter').on('change', function () {
+                var selected = $(this).val(); 
+                updateExportUrl(selected);
+            });
 
-// ── Export URL dynamically update karo ──
-function updateExportUrl(zone) {
-    var base = "{{ route('admin.report.export') }}";
-    
-    // Agar kuch select nahi kiya ya 'all' select kiya hai
-    if (!zone || zone === 'all') {
-        $('#exportBtn').attr('href', base);
-    } else {
-        // Single value pass karni hai
-        $('#exportBtn').attr('href', base + '?zone=' + encodeURIComponent(zone));
-    }
-}
+            // ── Export URL dynamically update karo ──
+            function updateExportUrl(zone) {
+                var base = "{{ route('admin.report.export') }}";
+                
+                // Agar kuch select nahi kiya ya 'all' select kiya hai
+                if (!zone || zone === 'all') {
+                    $('#exportBtn').attr('href', base);
+                } else {
+                    // Single value pass karni hai
+                    $('#exportBtn').attr('href', base + '?zone=' + encodeURIComponent(zone));
+                }
+            }
 
-// Page load pe export URL set karo (agar filter already laga ho)
-(function () {
-    var selected = $('#zoneFilter').val();
-    updateExportUrl(selected);
-})();
+            // Page load pe export URL set karo (agar filter already laga ho)
+            (function () {
+                var selected = $('#zoneFilter').val();
+                updateExportUrl(selected);
+            })();
         });
     </script>
 @endsection

@@ -72,7 +72,7 @@
             top: 0; left: 0;
             width: var(--sidebar-w);
             height: 100vh;
-            background: linear-gradient(135deg, #003b3d 0%, #47183e 100%);
+            background: var(--gradient-primary); /* Same premium gradient applied */
             display: flex;
             flex-direction: column;
             z-index: 1000;
@@ -86,13 +86,13 @@
             align-items: center;
             justify-content: center;
             padding: 10px 20px;
-            height: 85px; 
-            border-bottom: 1px solid rgba(255,255,255,.05);
+            height: 100px; /* Height badhai gayi */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* White solid line */
         }
 
         .sidebar-brand .brand-logo {
             max-width: 100%;
-            max-height: 60px; 
+            max-height: 80px; /* Logo ki size MR portal jitni ki */
             width: auto;
             object-fit: contain;
             transition: transform 0.3s ease;
@@ -115,7 +115,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: rgba(255,255,255,.3);
+            color: rgba(255,255,255,.7); /* Visibility badhane ke liye .7 kiya */
             padding: 12px 24px 8px;
         }
 
@@ -124,32 +124,31 @@
             align-items: center;
             gap: 14px;
             padding: 12px 24px;
-            color: rgba(255,255,255,.6);
+            color: rgba(255,255,255,.8); /* .8 kiya clear visibility ke liye */
             text-decoration: none;
             font-size: 14.5px;
             font-weight: 500;
             border-left: 4px solid transparent;
             transition: var(--transition);
         }
-
         .nav-link-item:hover,
         .nav-link-item.active {
             color: #fff;
-            background: linear-gradient(90deg, rgba(0, 158, 163, 0.15) 0%, transparent 100%);
-            border-left-color: var(--color-a);
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%); /* White transparent gradient */
+            border-left-color: #fff; /* Pure white border */
         }
 
         .nav-icon {
             width: 20px;
             text-align: center;
             font-size: 16px;
-            color: rgba(255,255,255,.4);
+            color: rgba(255,255,255,.8); /* Icon bhi brighter kiya */
             transition: color .3s ease;
         }
 
         .nav-link-item:hover .nav-icon,
         .nav-link-item.active .nav-icon {
-            color: var(--color-a);
+            color: #fff; /* White icon on hover */
         }
 
         /* ═══════════════════════════════════════════

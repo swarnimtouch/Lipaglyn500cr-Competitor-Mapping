@@ -59,8 +59,8 @@
     width: var(--sidebar-w);
     height: 100vh;
 
-    /* 🔥 Gradient (slightly darker version) */
-    background: linear-gradient(135deg, #003b3d 0%, #47183e 100%);
+    /* 🔥 Gradient (Same as Profile Icon) */
+    background: var(--gradient-primary);
 
     display: flex;
     flex-direction: column;
@@ -71,19 +71,19 @@
 
        
         /* Sidebar logo container ki height thodi badhayi hai taaki logo fit ho jaye */
-.sidebar-brand {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    height: 85px; /* Height badhai gayi hai (Pehle 65px thi) */
-    border-bottom: 1px solid rgba(255,255,255,.05);
-}
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            height: 100px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Opacity badhakar 30% (.3) kar di */
+        }
 
 /* Logo ki exact size badha di gayi hai */
 .sidebar-brand .brand-logo {
     max-width: 100%;
-    max-height: 60px; /* Size 45px se 60px kar di gayi hai */
+    max-height: 80px; /* Size 60px se badha kar 80px kar di gayi hai */
     width: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
@@ -104,7 +104,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: rgba(255,255,255,.3);
+            color: rgba(255,255,255,.7); /* 30% se badha kar 70% (.7) kar diya */
             padding: 12px 24px 8px;
         }
 
@@ -113,7 +113,7 @@
             align-items: center;
             gap: 14px;
             padding: 12px 24px;
-            color: rgba(255,255,255,.6);
+            color: rgba(255,255,255,.8); /* .6 se badha kar .8 kar diya better visibility ke liye */
             text-decoration: none;
             font-size: 14.5px;
             font-weight: 500;
@@ -124,21 +124,22 @@
         .nav-item a:hover,
         .nav-item a.active {
             color: #fff;
-            background: linear-gradient(90deg, rgba(0, 158, 163, 0.15) 0%, transparent 100%);
-            border-left-color: var(--color-a);
+            /* White color ka transparent gradient taaki teal aur purple dono jagah mast dikhe */
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
+            border-left-color: #fff; /* Border pure white kar diya taki highlight ho */
         }
 
         .nav-item a .nav-icon {
             width: 20px;
             text-align: center;
             font-size: 16px;
-            color: rgba(255,255,255,.4);
+            color: rgba(255,255,255,.8); /* .4 se badha kar .8 kar diya taaki icon clear dikhe */
             transition: color .3s ease;
         }
 
         .nav-item a:hover .nav-icon,
         .nav-item a.active .nav-icon {
-            color: var(--color-a);
+            color: #fff; /* Active hone pe icon bhi pure white chamkega */
         }
 
         .sidebar-footer {

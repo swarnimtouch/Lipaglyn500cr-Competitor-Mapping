@@ -8,7 +8,7 @@
         /* ── Premium Badges ── */
         .badge-success { background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
         .badge-danger  { background: rgba(239, 68, 68, 0.1); color: #ef4444; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
-
+        
         /* ── Form Error & Validation ── */
         label.error { display: flex; align-items: center; gap: 6px; margin-top: 6px; color: #ef4444; font-size: 13px; font-weight: 500; }
         label.error::before { content: '\f05a'; font-family: 'Font Awesome 6 Free'; font-weight: 900; }
@@ -33,40 +33,40 @@
         .modal { z-index: 1050 !important; }
         .modal-backdrop { z-index: 1040 !important; }
         .modal-dialog { max-width: 700px; }
-        .modal-content {
-            border-radius: 16px;
-            border: none;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            overflow: hidden;
+        .modal-content { 
+            border-radius: 16px; 
+            border: none; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2); 
+            overflow: hidden; 
         }
-        .modal-header {
-            background: var(--gradient-primary);
-            color: #fff;
-            border-bottom: none;
-            padding: 20px 24px;
+        .modal-header { 
+            background: var(--gradient-primary); 
+            color: #fff; 
+            border-bottom: none; 
+            padding: 20px 24px; 
         }
         .modal-title { font-weight: 700; font-size: 20px; letter-spacing: 0.3px; }
         .modal-header .close { color: #fff; opacity: 0.8; text-shadow: none; font-size: 28px; transition: opacity 0.3s; margin: -1rem -1rem -1rem auto; padding: 1rem; }
         .modal-header .close:hover { opacity: 1; }
-
+        
         .modal-body { padding: 30px; background-color: var(--card-bg); }
         .modal-body .row { margin-bottom: 18px; }
         label.col-form-label { font-weight: 600; color: var(--text); padding-top: 0.5rem; font-size: 14.5px; }
-
+        
         /* ── Modern Form Inputs ── */
-        .form-control {
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            font-size: 14.5px;
-            padding: 10px 14px;
-            height: auto;
+        .form-control { 
+            border-radius: 8px; 
+            border: 1px solid var(--border); 
+            font-size: 14.5px; 
+            padding: 10px 14px; 
+            height: auto; 
             background: var(--input-bg);
-            transition: all 0.3s ease;
+            transition: all 0.3s ease; 
         }
-        .form-control:focus {
-            border-color: var(--color-a);
-            box-shadow: 0 0 0 4px rgba(0, 158, 163, 0.1);
-            background: #fff;
+        .form-control:focus { 
+            border-color: var(--color-a); 
+            box-shadow: 0 0 0 4px rgba(0, 158, 163, 0.1); 
+            background: #fff; 
         }
 
         /* ── Buttons ── */
@@ -85,9 +85,9 @@
             gap: 6px;
             transition: all 0.3s ease;
         }
-        .btn-export:hover {
-            background: #10b981;
-            color: #fff;
+        .btn-export:hover { 
+            background: #10b981; 
+            color: #fff; 
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
             transform: translateY(-1px);
         }
@@ -106,8 +106,8 @@
             gap: 6px;
             transition: all 0.3s ease;
         }
-        .btn-add:hover {
-            color: #fff;
+        .btn-add:hover { 
+            color: #fff; 
             box-shadow: 0 4px 12px rgba(0, 158, 163, 0.3);
             transform: translateY(-1px);
         }
@@ -135,7 +135,7 @@
         }
         .btn-edit { background: rgba(0, 158, 163, 0.1); color: var(--color-a) !important; }
         .btn-edit:hover { background: var(--color-a); color: #fff !important; box-shadow: 0 4px 12px rgba(0, 158, 163, 0.3); transform: translateY(-2px); }
-
+        
         .btn-delete { background: rgba(239, 68, 68, 0.1); color: #ef4444 !important; }
         .btn-delete:hover { background: #ef4444; color: #fff !important; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); transform: translateY(-2px); }
 
@@ -158,14 +158,11 @@
                     <div style="font-size: 18px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
                         <i class="fas fa-users" style="color: var(--color-a);"></i> Manage Employees
                     </div>
-
+                    
                     <div class="header-actions" style="display: flex; gap: 10px;">
                         <a href="{{ route('admin.export.employees') }}" class="btn-export">
                             <i class="fas fa-file-excel"></i> Export Excel
                         </a>
-                        <button type="button" class="btn-add" onclick="openAddEmployee()">
-                            <i class="fas fa-plus"></i> Add Employee
-                        </button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -175,8 +172,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Zone</th>
-                                <th>Region</th>
                                 <th>Emp ID</th>
                                 <th>HQ</th>
                                 <th>Status</th>
@@ -360,9 +355,6 @@
                 columns: [
                     { data: 'id' },
                     { data: 'name' },
-
-                    { data: 'zone' },
-                    { data: 'region' },
                     { data: 'employee_id' },
                     { data: 'hq' },
                     { data: 'status', orderable: false },
@@ -379,24 +371,8 @@
                                    .attr('title', 'Delete');
                         }
                     });
-
-                    // Add Edit button dynamically since it might not be coming from backend
-                    $('#empTable tbody tr').each(function() {
-                        var id = $(this).find('td:first').text();
-                        var actionTd = $(this).find('td:last');
-                        var actionDiv = actionTd.find('.action-btns');
-
-                        // Add Edit icon button if not exists
-                        if(actionDiv.length > 0 && actionDiv.find('.btn-edit').length === 0) {
-                            var editBtn = $('<button>')
-                                .attr('type', 'button')
-                                .attr('onclick', 'openEditEmployee(' + id + ')')
-                                .attr('title', 'Edit')
-                                .addClass('btn-icon btn-edit')
-                                .html('<i class="fas fa-edit"></i>');
-                            actionDiv.prepend(editBtn);
-                        }
-                    });
+                    
+                    
                 }
             });
 

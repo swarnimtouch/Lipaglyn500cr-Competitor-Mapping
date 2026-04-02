@@ -228,8 +228,8 @@
 
 <div class="card">
     <div class="logo">
-        <img src="{{ URL::asset('assets/logo.png') }}" alt="Lipaglyn Logo" class="brand-logo">
-        <h1>Employee Portal</h1>
+        <img src="{{ URL::asset('assets/logo_2.png') }}" alt="Lipaglyn Logo" class="brand-logo">
+        {{-- <h1>Employee Portal</h1> --}}
         {{-- <p class="subtitle">Enter your credentials to login</p> --}}
     </div>
 
