@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MrAllocatedDoctors;
 use Maatwebsite\Excel\Facades\Excel; // optional — only if you have laravel-excel
+use App\Exports\DoctorsExport;
 
 class DoctorController extends Controller
 {
@@ -153,45 +154,11 @@ class DoctorController extends Controller
     // ─── Export ──────────────────────────────────────────────────────────────
     public function export()
     {
-        $doctors = MrAllocatedDoctors::where('mr_id', $this->mrId())->get();
+        return Excel::download(
+            new DoctorsExport($this->mrId()),
+            'doctors_'.date('Y-m-d').'.xlsx'
+        );
 
-        $headers = [
-            'Content-Type'        => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="doctors.csv"',
-        ];
-
-        $callback = function () use ($doctors) {
-            $handle = fopen('php://output', 'w');
-
-            // Header row
-            fputcsv($handle, [
-                'ID', 'DR UID', 'Name', 'Specialization', 'Lipaglyn Rxbr Type',
-                'Avg Lipaglyn/Month', 'Actual Speciality', 'Diabetes Patients/Day',
-                'KOL/KBL', 'Inst Dr', 'Inst Name',
-                'UDCA Rx/Month', 'Sema Rx/Month', 'Other Saro Rx/Month',
-                'Total Business Value', 'Planned Conversion Month',
-                'Incremental Lipaglyn Business', 'Created At','Bilypsa Rx/Month', 'Linvas Rx/Month', 'Vorxar Rx/Month',
-
-            ]);
-
-            foreach ($doctors as $d) {
-                fputcsv($handle, [
-                    $d->id, $d->msl_code, $d->name, $d->specialization,
-                    $d->lipaglyn_rx_br_type, $d->avg_lipaglyn_pr_month,
-                    $d->actual_speciality, $d->Diabetes_patients_day,
-                    $d->kol_kbl, $d->inst_dr, $d->govt_dropdown,
-                    $d->udca_rx_per_month, $d->sema_rx_prer_month,
-                    $d->other_saro_rm_per_month, $d->total_business_value,
-                    $d->planned_for_conversition, $d->incremental_lipaglyn_busines,
-                    $d->created_at,$d->bilypsa_rx_per_month, $d->linvas_rx_per_month, $d->vorxar_rx_per_month,
-
-                ]);
-            }
-
-            fclose($handle);
-        };
-
-        return response()->stream($callback, 200, $headers);
     }
 
     // ─── Private: fill model fields from request ──────────────────────────────

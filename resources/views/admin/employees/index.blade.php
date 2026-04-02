@@ -9,6 +9,19 @@
         .badge-danger  { background:#dc3545; color:#fff; padding:4px 8px; border-radius:4px; font-size:12px; }
         label.error    { color:#d9534f; font-size:12px; margin-top:3px; display:block; }
         .form-control:focus { border-color:#A11A20; box-shadow:0 0 0 0.2rem rgba(161,26,32,.2); }
+        .switch { position:relative; display:inline-block; width:42px; height:22px; margin:0; }
+        .switch input { opacity:0; width:0; height:0; }
+        .slider {
+            position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0;
+            background:#ccc; border-radius:22px; transition:.3s;
+        }
+        .slider:before {
+            content:""; position:absolute; height:16px; width:16px;
+            left:3px; bottom:3px; background:#fff; border-radius:50%; transition:.3s;
+        }
+        input:checked + .slider { background:#28a745; }
+        input:checked + .slider:before { transform:translateX(20px); }
+
     </style>
 @endsection
 
@@ -18,7 +31,9 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="mb-0">Employees</h4>
-                    <button class="btn btn-sm btn-primary" onclick="openAddEmployee()">+ Add Employee</button>
+                    <a href="{{ route('admin.export.employees') }}" class="btn btn-success btn-sm">
+                        Export Employees
+                    </a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -249,6 +264,20 @@
                     }
                 });
             });
+            $('a[href="{{ route('admin.export.employees') }}"]').click(function (e) {
+                e.preventDefault();
+
+                let search = $('#empTable_filter input').val(); // 🔥 search value
+
+                let url = "{{ route('admin.export.employees') }}";
+
+                if (search) {
+                    url += '?search=' + encodeURIComponent(search);
+                }
+
+                window.location.href = url;
+            });
+
         });
     </script>
 @endsection

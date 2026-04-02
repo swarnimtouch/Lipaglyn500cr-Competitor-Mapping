@@ -790,6 +790,13 @@
         </div>
 
         <div class="nav-item">
+            <a href="{{ route('admin.report') }}" class="nav-link-item {{ request()->routeIs('admin.report.*') ? 'active' : '' }}">
+                <span class="nav-icon"><i class="fas fa-users"></i></span>
+                <span>Reports</span>
+            </a>
+        </div>
+
+        <div class="nav-item">
             <a href="{{ route('admin.doctors.index') }}" class="nav-link-item {{ request()->routeIs('admin.doctors.*') ? 'active' : '' }}">
                 <span class="nav-icon"><i class="fas fa-user-md"></i></span>
                 <span>Doctors</span>
@@ -823,9 +830,12 @@
             <div class="sf-name">{{ session('admin_name', 'Administrator') }}</div>
             <div class="sf-role">Super Admin</div>
         </div>
-        <a href="{{ route('admin.logout') }}" class="sf-logout" title="Logout">
-            <i class="fas fa-sign-out-alt"></i>
-        </a>
+        <form action="{{ route('admin.logout') }}" method="POST" style="display:inline;">
+            @csrf
+            <button type="submit" class="sf-logout" title="Logout" style="border:none; background:none;">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </form>
     </div>
 
 </aside>

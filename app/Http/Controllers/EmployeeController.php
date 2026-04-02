@@ -31,7 +31,7 @@ class EmployeeController extends Controller
 
         if (!$employee || !Hash::check($request->password, $employee->password)) {
             return back()->withErrors([
-                'employee_id' => 'Employee ID ya Password galat hai.',
+                'employee_id' => 'Employee ID or Password Wrong.',
             ])->withInput();
         }
 
