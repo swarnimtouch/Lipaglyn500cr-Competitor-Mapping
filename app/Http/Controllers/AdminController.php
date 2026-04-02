@@ -374,54 +374,51 @@ class AdminController extends Controller
 
     public function Admin_report(Request $request)
     {
-        $query = DB::table('employees')
-            ->leftJoin('mr_allocated_doctors', function ($join) {
-                $join->on('employees.chair_id', '=', 'mr_allocated_doctors.mr_id')
-                    ->orOn('employees.employee_id', '=', 'mr_allocated_doctors.mr_id');
-            })
-            ->whereNull('mr_allocated_doctors.deleted_at')
-            ->select(
-                'employees.zone',
-                DB::raw("COALESCE(employees.region, 'No Region') as region"),
+        if ($r = $this->authCheck()) return $r;
 
-                DB::raw('COUNT(DISTINCT employees.id) as user_count'),
+        $zone = $request->input('zone');
 
-                // 🔥 UPDATED ACTIVE
-                DB::raw("
-            COUNT(
-                DISTINCT CASE
-                    WHEN mr_allocated_doctors.is_active = 1
-                    THEN employees.id
-                END
-            ) as active_user_count
-        "),
+        // ── Cache key based on zone ──
+        $cacheKey = 'admin_report_zone_' . ($zone && $zone !== 'all' ? $zone : 'all');
 
-                DB::raw('COUNT(CASE WHEN (IFNULL(mr_allocated_doctors.avg_lipaglyn_pr_month,0) + IFNULL(mr_allocated_doctors.udca_rx_per_month,0)) > 0 THEN 1 END) as lipaglyn_udca_count'),
+        $regions = \Illuminate\Support\Facades\Cache::remember($cacheKey, now()->addMinutes(15), function () use ($zone) {
 
-                DB::raw('SUM(IFNULL(mr_allocated_doctors.avg_lipaglyn_pr_month,0)) as total_avg_lipaglyn'),
+            $query = DB::table('employees')
+                ->leftJoin('mr_allocated_doctors', function ($join) {
+                    $join->on('employees.chair_id', '=', 'mr_allocated_doctors.mr_id')
+                        ->orOn('employees.employee_id', '=', 'mr_allocated_doctors.mr_id');
+                })
+                ->whereNull('mr_allocated_doctors.deleted_at')
+                ->select(
+                    'employees.zone',
+                    DB::raw("COALESCE(employees.region, 'No Region') as region"),
+                    DB::raw('COUNT(DISTINCT employees.id) as user_count'),
+                    DB::raw("
+                    COUNT(
+                        DISTINCT CASE
+                            WHEN mr_allocated_doctors.is_active = 1
+                            THEN employees.id
+                        END
+                    ) as active_user_count
+                "),
+                    DB::raw('COUNT(CASE WHEN (IFNULL(mr_allocated_doctors.avg_lipaglyn_pr_month,0) + IFNULL(mr_allocated_doctors.udca_rx_per_month,0)) > 0 THEN 1 END) as lipaglyn_udca_count'),
+                    DB::raw('SUM(IFNULL(mr_allocated_doctors.avg_lipaglyn_pr_month,0)) as total_avg_lipaglyn'),
+                    DB::raw('COUNT(CASE WHEN IFNULL(mr_allocated_doctors.avg_lipaglyn_pr_month,0) > 0 THEN 1 END) as avg_lipaglyn_count'),
+                    DB::raw('SUM(IFNULL(mr_allocated_doctors.Diabetes_patients_day,0)) as total_diabetes_patients'),
+                    DB::raw("COUNT(CASE WHEN mr_allocated_doctors.planned_for_conversition IS NOT NULL AND TRIM(mr_allocated_doctors.planned_for_conversition) != '' THEN 1 END) as planned_for_conversition_count"),
+                    DB::raw('SUM(IFNULL(mr_allocated_doctors.total_business_value,0)) as total_business_value_sum'),
+                    DB::raw('COUNT(CASE WHEN mr_allocated_doctors.incremental_lipaglyn_busines IS NOT NULL THEN 1 END) as incremental_lipaglyn_busines_count'),
+                    DB::raw('SUM(IFNULL(mr_allocated_doctors.incremental_lipaglyn_busines,0)) as incremental_lipaglyn_busines_sum'),
+                    DB::raw('SUM(IFNULL(mr_allocated_doctors.incremental_lipaglyn_busines,0) + IFNULL(mr_allocated_doctors.total_business_value,0)) as incremental_lipaglyn_busines_sum1')
+                )
+                ->groupBy('employees.zone', 'employees.region');
 
-                DB::raw('COUNT(CASE WHEN IFNULL(mr_allocated_doctors.avg_lipaglyn_pr_month,0) > 0 THEN 1 END) as avg_lipaglyn_count'),
+            if ($zone && $zone !== 'all') {
+                $query->where('employees.zone', $zone);
+            }
 
-                DB::raw('SUM(IFNULL(mr_allocated_doctors.Diabetes_patients_day,0)) as total_diabetes_patients'),
-
-                DB::raw("COUNT(CASE WHEN mr_allocated_doctors.planned_for_conversition IS NOT NULL AND TRIM(mr_allocated_doctors.planned_for_conversition) != '' THEN 1 END) as planned_for_conversition_count"),
-
-                DB::raw('SUM(IFNULL(mr_allocated_doctors.total_business_value,0)) as total_business_value_sum'),
-
-                DB::raw('COUNT(CASE WHEN mr_allocated_doctors.incremental_lipaglyn_busines IS NOT NULL THEN 1 END) as incremental_lipaglyn_busines_count'),
-
-                DB::raw('SUM(IFNULL(mr_allocated_doctors.incremental_lipaglyn_busines,0)) as incremental_lipaglyn_busines_sum'),
-
-                DB::raw('SUM(IFNULL(mr_allocated_doctors.incremental_lipaglyn_busines,0) + IFNULL(mr_allocated_doctors.total_business_value,0)) as incremental_lipaglyn_busines_sum1')
-            )
-            ->groupBy('employees.zone', 'employees.region');
-        // Zone filter
-       // Zone filter (Single Selection)
-if ($request->has('zone') && $request->zone !== 'all' && $request->zone !== '') {
-    $query->where('employees.zone', $request->zone);
-}
-
-$regions = $query->get();
+            return $query->get();
+        });
 
         $totals = [
             'region_count'                       => $regions->count(),
@@ -438,11 +435,15 @@ $regions = $query->get();
             'incremental_lipaglyn_busines_sum1'  => $regions->sum('incremental_lipaglyn_busines_sum1'),
         ];
 
-        $zones = DB::table('employees')
-            ->select('zone')
-            ->whereNotNull('zone')
-            ->distinct()
-            ->pluck('zone');
+        // ── Zones for dropdown (also cached) ──
+        $zones = \Illuminate\Support\Facades\Cache::remember('admin_report_zones', now()->addMinutes(30), function () {
+            return DB::table('employees')
+                ->select('zone')
+                ->whereNotNull('zone')
+                ->distinct()
+                ->orderBy('zone')
+                ->pluck('zone');
+        });
 
         return view('admin.general.report', [
             'title'      => 'Region Report',
@@ -450,6 +451,7 @@ $regions = $query->get();
             'regions'    => $regions,
             'zones'      => $zones,
             'totals'     => $totals,
+            'activeZone' => $zone,
         ]);
     }
 
