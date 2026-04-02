@@ -81,6 +81,12 @@
             box-shadow: 0 0 0 4px rgba(0, 158, 163, 0.1);
             background: #fff;
         }
+        /* ── Readonly field style ── */
+        .form-control[readonly] {
+            background: #f1f5f9 !important;
+            cursor: not-allowed;
+            opacity: 0.75;
+        }
 
         /* ── Custom Radio Buttons ── */
         .form-check-input {
@@ -135,11 +141,11 @@
             padding: 24px;
             height: 100%;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--color-a); /* Teal color */
+            border-top: 4px solid var(--color-a);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .ref-card.ref-purple {
-            border-top-color: var(--color-b); /* Purple color */
+            border-top-color: var(--color-b);
         }
         .ref-card:hover {
             transform: translateY(-5px);
@@ -172,7 +178,7 @@
             font-weight: 500;
         }
         .ref-list li::before {
-            content: '\f0da'; /* FontAwesome angle-right icon */
+            content: '\f0da';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             position: absolute;
@@ -229,6 +235,7 @@
                     {{ session('success') }}
                 </div>
             @endif
+
             {{-- Speciality Reference Table (Premium UI) --}}
             <div class="row mb-4">
                 <div class="col-md-6 mb-3 mb-md-0">
@@ -277,7 +284,7 @@
                         <table id="listResults" class="table dt-responsive mb-4 nowrap w-100">
                             <thead>
                             <tr>
-                                <th>No</th>
+                                <th>Sr No</th>
                                 <th>DR. Name</th>
                                 <th>DR. UID</th>
                                 <th>Speciality</th>
@@ -320,6 +327,7 @@
                             <div class="col-md-8">
                                 <input type="text" maxlength="11"
                                        oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                       onkeydown="return !(['-','e','+','.'].includes(event.key))"
                                        class="form-control" name="msl_code" placeholder="DR UID">
                             </div>
                         </div>
@@ -362,7 +370,9 @@
                             <div class="col-md-8">
                                 <input type="number" class="form-control" name="avg_lipaglyn_pr_month"
                                        id="avg_lipaglyn_pr_month" placeholder="Avg Lipaglyn Business/Month"
-                                       min="0" max="10" step="0.01">
+                                       min="0" max="10" step="0.01"
+                                       onkeydown="return !(['-','e','+'].includes(event.key))"
+                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
                             </div>
                         </div>
 
@@ -388,7 +398,11 @@
                         <div class="mb-3 row">
                             <label class="col-md-4 col-form-label">Diabetes Patients in a day <span class="text-danger">*</span></label>
                             <div class="col-md-8">
-                                <input type="number" class="form-control" name="Diabetes_patients_day" placeholder="Diabetes Patients in a day">
+                                <input type="number" class="form-control" name="Diabetes_patients_day"
+                                       placeholder="Diabetes Patients in a day"
+                                       min="0"
+                                       onkeydown="return !(['-','e','+'].includes(event.key))"
+                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
                             </div>
                         </div>
 
@@ -565,7 +579,10 @@
                         <div class="mb-3 row">
                             <label class="col-md-4 col-form-label">UDCA Rx/Month <span class="text-danger">*</span></label>
                             <div class="col-md-8">
-                                <input type="number" class="form-control" name="udca_rx_per_month" placeholder="UDCA Rx/Month" min="0" max="200" step="0.01">
+                                <input type="number" class="form-control" name="udca_rx_per_month"
+                                       placeholder="UDCA Rx/Month" min="0" max="200" step="0.01"
+                                       onkeydown="return !(['-','e','+'].includes(event.key))"
+                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
                             </div>
                         </div>
 
@@ -573,14 +590,21 @@
                         <div class="mb-3 row">
                             <label class="col-md-4 col-form-label">Sema Rx/Month <span class="text-danger">*</span></label>
                             <div class="col-md-8">
-                                <input type="number" class="form-control" name="sema_rx_prer_month" placeholder="Sema Rx/Month" min="0" max="200" step="0.01">
+                                <input type="number" class="form-control" name="sema_rx_prer_month"
+                                       placeholder="Sema Rx/Month" min="0" max="200" step="0.01"
+                                       onkeydown="return !(['-','e','+'].includes(event.key))"
+                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
                             </div>
                         </div>
+
+                        {{-- Bilypsa Rx/Month --}}
                         <div class="mb-3 row">
                             <label class="col-md-4 col-form-label">Bilypsa Rx/Month <span class="text-danger">*</span></label>
                             <div class="col-md-8">
                                 <input type="number" class="form-control" name="bilypsa_rx_per_month"
-                                       placeholder="Bilypsa Rx/Month" min="0" max="200" step="0.01">
+                                       placeholder="Bilypsa Rx/Month" min="0" max="200" step="0.01"
+                                       onkeydown="return !(['-','e','+'].includes(event.key))"
+                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
                             </div>
                         </div>
 
@@ -589,7 +613,9 @@
                             <label class="col-md-4 col-form-label">Linvas Rx/Month <span class="text-danger">*</span></label>
                             <div class="col-md-8">
                                 <input type="number" class="form-control" name="linvas_rx_per_month"
-                                       placeholder="Linvas Rx/Month" min="0" max="200" step="0.01">
+                                       placeholder="Linvas Rx/Month" min="0" max="200" step="0.01"
+                                       onkeydown="return !(['-','e','+'].includes(event.key))"
+                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
                             </div>
                         </div>
 
@@ -598,16 +624,20 @@
                             <label class="col-md-4 col-form-label">Vorxar Rx/Month <span class="text-danger">*</span></label>
                             <div class="col-md-8">
                                 <input type="number" class="form-control" name="vorxar_rx_per_month"
-                                       placeholder="Vorxar Rx/Month" min="0" max="200" step="0.01">
+                                       placeholder="Vorxar Rx/Month" min="0" max="200" step="0.01"
+                                       onkeydown="return !(['-','e','+'].includes(event.key))"
+                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
                             </div>
                         </div>
-
 
                         {{-- Other Saro Rx/Month --}}
                         <div class="mb-3 row">
                             <label class="col-md-4 col-form-label">Other Saro Rx/Month <span class="text-danger">*</span></label>
                             <div class="col-md-8">
-                                <input type="number" class="form-control" name="other_saro_rm_per_month" placeholder="Other Saro Rx/Month" min="0" max="200" step="0.01">
+                                <input type="number" class="form-control" name="other_saro_rm_per_month"
+                                       placeholder="Other Saro Rx/Month" min="0" max="200" step="0.01"
+                                       onkeydown="return !(['-','e','+'].includes(event.key))"
+                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
                             </div>
                         </div>
 
@@ -615,7 +645,10 @@
                         <div class="mb-3 row">
                             <label class="col-md-4 col-form-label">Total Business of above competitors in value <span class="text-danger">*</span></label>
                             <div class="col-md-8">
-                                <input type="number" class="form-control" name="total_business_value" placeholder="Total Business in value" min="0" max="10" step="0.01">
+                                <input type="number" class="form-control" name="total_business_value"
+                                       placeholder="Total Business in value" min="0" max="10" step="0.01"
+                                       onkeydown="return !(['-','e','+'].includes(event.key))"
+                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
                             </div>
                         </div>
 
@@ -639,7 +672,10 @@
                         <div class="mb-3 row">
                             <label class="col-md-4 col-form-label">Incremental Lipaglyn Business Value <span class="text-danger">*</span></label>
                             <div class="col-md-8">
-                                <input type="number" class="form-control" name="incremental_lipaglyn_busines" placeholder="Incremental Lipaglyn Business Value" min="0" max="10" step="0.01">
+                                <input type="number" class="form-control" name="incremental_lipaglyn_busines"
+                                       placeholder="Incremental Lipaglyn Business Value" min="0" max="10" step="0.01"
+                                       onkeydown="return !(['-','e','+'].includes(event.key))"
+                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
                             </div>
                         </div>
 
@@ -666,6 +702,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
 
     <script>
+
+        // ─── Readonly fields list (Edit mode only) ─────────────────────────────────
+        var readonlyOnEdit = ['msl_code', 'name', 'specialization'];
+
         // ─── Modal Open / Close ────────────────────────────────────────────────────
         function openAddModal() {
             resetForm();
@@ -690,7 +730,7 @@
                 updateUrl = updateUrl.replace(':id', id);
 
                 $('#doctor_form').attr('action', updateUrl);
-                $('#method_field').html(''); // ❌ PUT hata diya
+                $('#method_field').html('');
 
                 $('#doctorModal').modal('show');
             });
@@ -700,20 +740,23 @@
         function resetForm() {
             var $form = $('#doctor_form');
             $form[0].reset();
+
+            // ✅ Remove readonly from all fields (Add mode)
+            $.each(readonlyOnEdit, function(i, fieldName) {
+                $('[name="' + fieldName + '"]').removeAttr('readonly').css('cursor', '');
+            });
+
             $('#govt_dropdown_wrapper').hide();
             $('#new_institution_wrapper').hide();
             $('#planned_for_conversion_wrapper').hide();
 
-            // Reset selectpicker safely
             if ($.fn.selectpicker) {
                 try { $('#govt_dropdown').val('').selectpicker('refresh'); } catch(e) {}
             }
 
-            // Clear radio buttons
             $('input[name="kol_kbl"]').prop('checked', false);
             $('input[name="inst_dr"]').prop('checked', false);
 
-            // Clear jquery-validate errors
             if ($form.data('validator')) {
                 $form.validate().resetForm();
             }
@@ -723,6 +766,12 @@
 
         // ─── Fill Form for Edit ────────────────────────────────────────────────────
         function fillForm(d) {
+
+            // ✅ Set readonly on edit-only fields
+            $.each(readonlyOnEdit, function(i, fieldName) {
+                $('[name="' + fieldName + '"]').attr('readonly', true).css('cursor', 'not-allowed');
+            });
+
             $('[name="msl_code"]').val(d.msl_code);
             $('[name="name"]').val(d.name);
             $('[name="specialization"]').val(d.specialization);
@@ -813,14 +862,25 @@
             }
 
             // ✅ DataTable Init
+            // NOTE: The server-side listing() controller must:
+            //   1. Filter doctors by auth()->id() (logged-in MR only)
+            //   2. Call ->addIndexColumn() in DataTables response
+            //   So DT_RowIndex will count from 0 within the MR's own list only.
             if ($.fn.DataTable) {
                 $('#listResults').DataTable({
                     processing: true,
                     serverSide: true,
-                    order: [[0, 'DESC']],
+                    order: [[0, 'ASC']],
                     ajax: '{{ route("portal.doctors.listing") }}',
                     columns: [
-                        { data: 'id',                        searchable: false, orderable: true },
+                        {
+                            // ✅ MR-relative Sr No — uses DT_RowIndex from server
+                            // (addIndexColumn() in controller scoped to MR's own query)
+                            data: 'index',
+                            name: 'index',
+                            searchable: false,
+                            orderable: false
+                        },
                         { data: 'name',                      orderable: true },
                         { data: 'msl_code',                  searchable: false, orderable: true },
                         { data: 'specialization',            orderable: true },
@@ -828,30 +888,24 @@
                         { data: 'everage_lipaglyn_pr_month', orderable: true },
                         { data: 'action',                    searchable: false, orderable: false }
                     ],
-                    // Ye function har baar table load hone par run hoga
-                    // Ye function har baar table load hone par run hoga
                     drawCallback: function(settings) {
-                        // Edit button ko icon me convert karna
                         $('#listResults tbody tr td:last-child').find('button, a').each(function() {
                             var text = $(this).text().trim().toLowerCase();
-                            // 'edit' text ya icon find karke replace karega
-                            if(text === 'edit' || $(this).find('.fa-edit').length > 0) {
+                            if (text === 'edit' || $(this).find('.fa-edit').length > 0) {
                                 $(this).html('<i class="fas fa-edit"></i>')
-                                       // Purani sabhi possible classes (jaise btn-warning yellow ke liye) hata denge
-                                       .removeClass('btn btn-sm btn-primary btn-info btn-warning')
-                                       .addClass('btn-icon btn-edit')
-                                       .attr('title', 'Edit');
+                                    .removeClass('btn btn-sm btn-primary btn-info btn-warning')
+                                    .addClass('btn-icon btn-edit')
+                                    .attr('title', 'Edit');
                             }
                         });
 
-                        // Delete button ko icon me convert karna
                         $('#listResults tbody tr td:last-child').find('button, a').each(function() {
                             var text = $(this).text().trim().toLowerCase();
-                            if(text === 'delete' || $(this).find('.fa-trash').length > 0 || $(this).find('.fa-trash-alt').length > 0) {
+                            if (text === 'delete' || $(this).find('.fa-trash').length > 0 || $(this).find('.fa-trash-alt').length > 0) {
                                 $(this).html('<i class="fas fa-trash-alt"></i>')
-                                       .removeClass('btn btn-sm btn-danger btn-warning')
-                                       .addClass('btn-icon btn-delete')
-                                       .attr('title', 'Delete');
+                                    .removeClass('btn btn-sm btn-danger btn-warning')
+                                    .addClass('btn-icon btn-delete')
+                                    .attr('title', 'Delete');
                             }
                         });
                     }
@@ -867,7 +921,7 @@
                         lipaglyn_rx_br_type:          { required: true },
                         avg_lipaglyn_pr_month:        { required: true, number: true, min: 0, max: 10 },
                         actual_speciality:            { required: true },
-                        Diabetes_patients_day:        { required: true },
+                        Diabetes_patients_day:        { required: true, min: 0 },
                         kol_kbl:                      { required: true },
                         inst_dr:                      { required: true },
                         udca_rx_per_month:            { required: true, min: 0, max: 200, number: true },
@@ -875,10 +929,9 @@
                         other_saro_rm_per_month:      { required: true, min: 0, max: 200, number: true },
                         total_business_value:         { required: true, number: true, min: 0, max: 10 },
                         incremental_lipaglyn_busines: { required: true, number: true, min: 0, max: 10 },
-                        bilypsa_rx_per_month: { required: true, min: 0, max: 200, number: true },
-                        linvas_rx_per_month:  { required: true, min: 0, max: 200, number: true },
-                        vorxar_rx_per_month:  { required: true, min: 0, max: 200, number: true },
-
+                        bilypsa_rx_per_month:         { required: true, min: 0, max: 200, number: true },
+                        linvas_rx_per_month:          { required: true, min: 0, max: 200, number: true },
+                        vorxar_rx_per_month:          { required: true, min: 0, max: 200, number: true },
                     },
                     errorClass: 'error',
                     errorElement: 'label',
@@ -909,7 +962,7 @@
                 return true;
             });
 
-            // ✅ Re-enable buttons if modal closes without submit (e.g. close btn)
+            // ✅ Re-enable buttons if modal closes without submit
             $('#doctorModal').on('hidden.bs.modal', function () {
                 $('input[type=submit], button[type=submit]').prop('disabled', false);
                 if (typeof removeOverlay === 'function') removeOverlay();

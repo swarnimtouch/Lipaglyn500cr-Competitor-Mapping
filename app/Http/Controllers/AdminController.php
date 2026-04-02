@@ -132,6 +132,8 @@ class AdminController extends Controller
                         'id'          => $request->start + $index + 1,
                         'name'        => $e->name,
                         'employee_id' => $e->employee_id ?? '—',
+                        'zone' => $e->zone ?? '—',
+                        'region' => $e->region ?? '',
                         'hq'          => $e->hq,
                         'status'      => $toggleSwitch,
                         'action'      => '
