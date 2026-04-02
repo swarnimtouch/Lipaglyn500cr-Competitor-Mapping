@@ -94,7 +94,10 @@ class AdminController extends Controller
                     ->orWhere('employee_id','like', "%{$search}%")
                     ->orWhere('hq',         'like', "%{$search}%")
                     ->orWhere('type',       'like', "%{$search}%")
-                    ->orWhere('status',     'like', "%{$search}%");
+                    ->orWhere('status',     'like', "%{$search}%")
+                    ->orWhere('zone', 'like', "%{$search}%")   // ✅ add
+                    ->orWhere('region', 'like', "%{$search}%"); // ✅ add
+
             });
         }
 
@@ -131,9 +134,9 @@ class AdminController extends Controller
                     return [
                         'id'          => $request->start + $index + 1,
                         'name'        => $e->name,
-                        'employee_id' => $e->employee_id ?? '—',
                         'zone' => $e->zone ?? '—',
                         'region' => $e->region ?? '',
+                        'employee_id' => $e->employee_id ?? '—',
                         'hq'          => $e->hq,
                         'status'      => $toggleSwitch,
                         'action'      => '
@@ -266,9 +269,11 @@ class AdminController extends Controller
                     ->orWhere('msl_code', 'like', "%{$search}%")
                     ->orWhere('specialization', 'like', "%{$search}%")
                     ->orWhere('lipaglyn_rx_br_type', 'like', "%{$search}%")
+                    ->orWhere(DB::raw('CAST(avg_lipaglyn_pr_month AS CHAR)'), 'like', "%{$search}%") // ✅ number search
                     ->orWhereHas('employee', function ($q2) use ($search) {
                         $q2->where('name', 'like', "%{$search}%")
-                            ->orWhere('employee_id', 'like', "%{$search}%");
+                            ->orWhere('employee_id', 'like', "%{$search}%")
+                            ->orWhere('zone', 'like', "%{$search}%"); // ✅ add
                     });
             });
         }

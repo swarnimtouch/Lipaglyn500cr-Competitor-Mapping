@@ -48,54 +48,56 @@ class DoctorController extends Controller
     {
         $query = MrAllocatedDoctors::where('mr_id', $this->mrId());
 
+        $total = $query->count(); // ✅ Total BEFORE search
+
         // Search
         if ($search = $request->input('search.value')) {
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
                     ->orWhere('specialization', 'like', "%{$search}%")
-                    ->orWhere('lipaglyn_rx_br_type', 'like', "%{$search}%");
+                    ->orWhere('lipaglyn_rx_br_type', 'like', "%{$search}%")
+                    ->orWhere('msl_code', 'like', "%{$search}%"); // ✅ DR UID bhi
             });
         }
 
-        $total    = $query->count();
-        $filtered = $total;
+        $filtered = $query->count(); // ✅ Count AFTER search (yahi missing tha)
 
         // Order
-        $orderCol  = $request->input('order.0.column', 0);
-        $orderDir  = $request->input('order.0.dir', 'desc');
-        $columns   = ['id', 'name', 'msl_code', 'specialization', 'lipaglyn_rx_br_type', 'everage_lipaglyn_pr_month'];
-        $sortCol   = $columns[$orderCol] ?? 'id';
+        $orderCol = $request->input('order.0.column', 0);
+        $orderDir = $request->input('order.0.dir', 'desc');
+        $columns  = ['id', 'name', 'msl_code', 'specialization', 'lipaglyn_rx_br_type', 'everage_lipaglyn_pr_month'];
+        $sortCol  = $columns[$orderCol] ?? 'id';
         $query->orderBy($sortCol, $orderDir);
 
         // Paginate
-        $start  = $request->input('start', 0);
-        $length = $request->input('length', 10);
+        $start   = $request->input('start', 0);
+        $length  = $request->input('length', 10);
         $doctors = $query->skip($start)->take($length)->get();
 
         $data = $doctors->map(function ($d, $index) use ($request) {
             return [
-                'index'                     => $request->start + $index + 1, // ✅ SR NO
-                'id'                        => $d->id, // hidden use
+                'index'                     => $request->start + $index + 1,
+                'id'                        => $d->id,
                 'name'                      => $d->name,
                 'msl_code'                  => $d->msl_code,
                 'specialization'            => $d->specialization,
                 'lipaglyn_rx_br_type'       => $d->lipaglyn_rx_br_type,
                 'everage_lipaglyn_pr_month' => $d->everage_lipaglyn_pr_month ?? $d->avg_lipaglyn_pr_month,
                 'action' => '
-            <button onclick="openEditModal('.$d->id.')" class="btn btn-sm btn-warning">Edit</button>
-            <form action="'.route('portal.doctors.destroy', $d->id).'" method="POST" style="display:inline;"
-                onsubmit="return confirm(\'Delete this doctor?\')">
-                '.csrf_field().'
-                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-            </form>
-        '
+                <button onclick="openEditModal('.$d->id.')" class="btn btn-sm btn-warning">Edit</button>
+                <form action="'.route('portal.doctors.destroy', $d->id).'" method="POST" style="display:inline;"
+                    onsubmit="return confirm(\'Delete this doctor?\')">
+                    '.csrf_field().'
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            '
             ];
         });
 
         return response()->json([
             'draw'            => intval($request->input('draw')),
             'recordsTotal'    => $total,
-            'recordsFiltered' => $filtered,
+            'recordsFiltered' => $filtered, // ✅ Yahi fix hai
             'data'            => $data,
         ]);
     }
