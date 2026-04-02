@@ -30,7 +30,7 @@ Route::prefix('employee')->name('employee.')->group(function () {
 */
 Route::get('import', [EmployeeController::class, 'import']);
 Route::post('/employees/import', [EmployeeController::class, 'importEmployees'])->name('employees.import');
-
+Route::post('/admin/doctors/import', [EmployeeController::class, 'doctorImport'])->name('admin.doctors.import');
 /*
 |--------------------------------------------------------------------------
 | Portal (Employee-facing, after login)

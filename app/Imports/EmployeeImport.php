@@ -7,26 +7,35 @@ use Maatwebsite\Excel\Concerns\ToModel;
 
 class EmployeeImport implements ToModel
 {
+    protected $hashedPassword;
+
+    public function __construct()
+    {
+        // ✅ hash only once (BIG FIX 🚀)
+        $this->hashedPassword = Hash::make('Lipaglyn500cr');
+    }
+
     public function model(array $row)
     {
         // ✅ Skip header
-        if (trim($row[0]) == 'EMPLOYEE CODE') {
+        if (trim($row[0]) == 'EMPLOYEE NAME') {
             return null;
         }
 
-        return Employee::updateOrCreate(
-            ['employee_id' => trim($row[0])],
-            [
-                'name'   => trim($row[1]),
-                'zone'   => !empty($row[2]) ? trim($row[2]) : null,
-                'region' => !empty($row[3]) ? trim($row[3]) : null,
-                'hq'     => !empty($row[5]) ? trim($row[5]) : null,
+        // ✅ Skip empty row
+        if (empty($row[0])) {
+            return null;
+        }
 
-                'type'   => 'MR', // default
-                'chair_id' => null,
+        return new Employee([
+            'name'        => trim($row[0]),
+            'zone'        => trim($row[1]),
+            'employee_id' => trim($row[2]),
+            'region'      => trim($row[3]),
+            'hq'          => trim($row[5]),
 
-                'password' => Hash::make('Lipaglyn500cr'),
-            ]
-        );
+            // ✅ reuse hashed password
+            'password'    => $this->hashedPassword,
+        ]);
     }
 }

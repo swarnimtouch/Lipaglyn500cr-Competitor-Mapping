@@ -29,6 +29,19 @@
             Upload Excel
         </button>
     </form>
+    <form action="{{ route('admin.doctors.import') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+
+        <div class="form-group mb-3">
+            <label>Select Excel File</label>
+            <input type="file" name="file" class="form-control" required>
+        </div>
+
+        <button class="btn btn-primary">
+            Upload & Import
+        </button>
+
+    </form>
 
 
 

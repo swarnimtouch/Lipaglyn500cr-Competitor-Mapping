@@ -372,23 +372,22 @@ class AdminController extends Controller
                 $join->on('employees.chair_id', '=', 'mr_allocated_doctors.mr_id')
                     ->orOn('employees.employee_id', '=', 'mr_allocated_doctors.mr_id');
             })
-            ->whereNull('mr_allocated_doctors.deleted_at') // ✅ sirf non-deleted doctors
+            ->whereNull('mr_allocated_doctors.deleted_at')
             ->select(
                 'employees.zone',
-                DB::raw("COALESCE(employees.hq, 'No HQ') as hq"),
+                DB::raw("COALESCE(employees.region, 'No Region') as region"),
+
                 DB::raw('COUNT(DISTINCT employees.id) as user_count'),
 
+                // 🔥 UPDATED ACTIVE
                 DB::raw("
-                COUNT(
-                    DISTINCT CASE
-                        WHEN (
-                            mr_allocated_doctors.updated_at > '2026-04-01 00:00:00'
-                            OR IFNULL(mr_allocated_doctors.avg_lipaglyn_pr_month,0) > 0
-                        )
-                        THEN employees.id
-                    END
-                ) as active_user_count
-            "),
+            COUNT(
+                DISTINCT CASE
+                    WHEN mr_allocated_doctors.is_active = 1
+                    THEN employees.id
+                END
+            ) as active_user_count
+        "),
 
                 DB::raw('COUNT(CASE WHEN (IFNULL(mr_allocated_doctors.avg_lipaglyn_pr_month,0) + IFNULL(mr_allocated_doctors.udca_rx_per_month,0)) > 0 THEN 1 END) as lipaglyn_udca_count'),
 
@@ -408,8 +407,7 @@ class AdminController extends Controller
 
                 DB::raw('SUM(IFNULL(mr_allocated_doctors.incremental_lipaglyn_busines,0) + IFNULL(mr_allocated_doctors.total_business_value,0)) as incremental_lipaglyn_busines_sum1')
             )
-            ->groupBy('employees.zone', DB::raw("COALESCE(employees.hq, 'No HQ')"));
-
+            ->groupBy('employees.zone', 'employees.region');
         // Zone filter
         if ($request->has('zone') && is_array($request->zone)) {
             $zones_selected = array_filter($request->zone, fn($z) => $z !== 'all');
@@ -457,33 +455,42 @@ class AdminController extends Controller
                 $join->on('employees.chair_id', '=', 'mr_allocated_doctors.mr_id')
                     ->orOn('employees.employee_id', '=', 'mr_allocated_doctors.mr_id');
             })
-            ->whereNull('mr_allocated_doctors.deleted_at') // ✅ sirf non-deleted doctors
+            ->whereNull('mr_allocated_doctors.deleted_at')
             ->select(
                 'employees.zone',
-                DB::raw("COALESCE(employees.hq, 'No HQ') as hq"),
+                DB::raw("COALESCE(employees.region, 'No Region') as region"),
+
                 DB::raw('COUNT(DISTINCT employees.id) as user_count'),
+
+                // 🔥 UPDATED ACTIVE
                 DB::raw("
-                COUNT(
-                    DISTINCT CASE
-                        WHEN (
-                            mr_allocated_doctors.updated_at > '2026-04-01 00:00:00'
-                            OR IFNULL(mr_allocated_doctors.avg_lipaglyn_pr_month,0) > 0
-                        )
-                        THEN employees.id
-                    END
-                ) as active_user_count
-            "),
+            COUNT(
+                DISTINCT CASE
+                    WHEN mr_allocated_doctors.is_active = 1
+                    THEN employees.id
+                END
+            ) as active_user_count
+        "),
+
                 DB::raw('COUNT(CASE WHEN (IFNULL(mr_allocated_doctors.avg_lipaglyn_pr_month,0) + IFNULL(mr_allocated_doctors.udca_rx_per_month,0)) > 0 THEN 1 END) as lipaglyn_udca_count'),
+
                 DB::raw('SUM(IFNULL(mr_allocated_doctors.avg_lipaglyn_pr_month,0)) as total_avg_lipaglyn'),
+
                 DB::raw('COUNT(CASE WHEN IFNULL(mr_allocated_doctors.avg_lipaglyn_pr_month,0) > 0 THEN 1 END) as avg_lipaglyn_count'),
+
                 DB::raw('SUM(IFNULL(mr_allocated_doctors.Diabetes_patients_day,0)) as total_diabetes_patients'),
+
                 DB::raw("COUNT(CASE WHEN mr_allocated_doctors.planned_for_conversition IS NOT NULL AND TRIM(mr_allocated_doctors.planned_for_conversition) != '' THEN 1 END) as planned_for_conversition_count"),
+
                 DB::raw('SUM(IFNULL(mr_allocated_doctors.total_business_value,0)) as total_business_value_sum'),
+
                 DB::raw('COUNT(CASE WHEN mr_allocated_doctors.incremental_lipaglyn_busines IS NOT NULL THEN 1 END) as incremental_lipaglyn_busines_count'),
+
                 DB::raw('SUM(IFNULL(mr_allocated_doctors.incremental_lipaglyn_busines,0)) as incremental_lipaglyn_busines_sum'),
+
                 DB::raw('SUM(IFNULL(mr_allocated_doctors.incremental_lipaglyn_busines,0) + IFNULL(mr_allocated_doctors.total_business_value,0)) as incremental_lipaglyn_busines_sum1')
             )
-            ->groupBy('employees.zone', DB::raw("COALESCE(employees.hq, 'No HQ')"));
+            ->groupBy('employees.zone', 'employees.region');
 
         // Zone filter
         if ($request->has('zone') && is_array($request->zone)) {
@@ -537,7 +544,8 @@ class AdminController extends Controller
             foreach ($regions as $key => $r) {
                 fputcsv($file, [
                     $key + 1,
-                    $r->hq,
+                    $r->region, // ✅ FIXED
+
                     $r->user_count,
                     $r->active_user_count,
                     number_format($r->total_avg_lipaglyn, 2),
