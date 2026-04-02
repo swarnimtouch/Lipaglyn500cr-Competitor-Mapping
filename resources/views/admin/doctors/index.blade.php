@@ -155,6 +155,7 @@
 @endsection
 
 @section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
     <script>
@@ -234,22 +235,33 @@
 
         // ✅ DELETE FUNCTION
         function deleteDoctor(id) {
-            if (!confirm('Are you sure you want to delete this doctor?')) return;
+            Swal.fire({
+                title: 'Are you sure to delete?',
+                text: "This doctor record will be removed permanently!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ef4444',
+                cancelButtonColor: '#cbd5e1',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let url = "{{ route('admin.doctors.delete', ':id') }}";
+                    url = url.replace(':id', id);
 
-            let url = "{{ route('admin.doctors.delete', ':id') }}";
-            url = url.replace(':id', id);
-
-            $.post(url, {
-                _token: '{{ csrf_token() }}'
-            }, function (res) {
-                if (res.success) {
-                    $('#doctorTable').DataTable().ajax.reload(null, false);
-                    alert(res.message);
-                } else {
-                    alert('Error: ' + res.message);
+                    $.post(url, {
+                        _token: '{{ csrf_token() }}'
+                    }, function (res) {
+                        if (res.success) {
+                            $('#doctorTable').DataTable().ajax.reload(null, false);
+                            Swal.fire('Deleted!', res.message, 'success');
+                        } else {
+                            Swal.fire('Error!', res.message, 'error');
+                        }
+                    }).fail(function() {
+                        Swal.fire('Failed!', 'Something went wrong. Please try again.', 'error');
+                    });
                 }
-            }).fail(function() {
-                alert('Something went wrong. Please try again.');
             });
         }
     </script>

@@ -268,6 +268,7 @@
 @endsection
 
 @section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script>
@@ -315,17 +316,30 @@
         window.openEditEmployee = openEditEmployee;
 
         function deleteEmployee(id) {
-            if (!confirm('Are you sure you want to delete this employee?')) return;
+            Swal.fire({
+                title: 'Are you sure to delete?',
+                text: "This action cannot be undone!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ef4444', /* Red color tere theme ke hisab se */
+                cancelButtonColor: '#cbd5e1', /* Gray color cancel ke liye */
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                // Agar user ne Yes pe click kiya
+                if (result.isConfirmed) {
+                    let url = "{{ route('admin.employees.destroy', ':id') }}";
+                    url = url.replace(':id', id);
 
-            let url = "{{ route('admin.employees.destroy', ':id') }}";
-            url = url.replace(':id', id);
-
-            $.post(url, {
-                _token: '{{ csrf_token() }}'
-            }, function (res) {
-                if (res.success) {
-                    $('#empTable').DataTable().ajax.reload(null, false);
-                    alert(res.message);
+                    $.post(url, {
+                        _token: '{{ csrf_token() }}'
+                    }, function (res) {
+                        if (res.success) {
+                            $('#empTable').DataTable().ajax.reload(null, false);
+                            // Ghatiya alert() ki jagah SweetAlert success message
+                            Swal.fire('Deleted!', res.message, 'success');
+                        }
+                    });
                 }
             });
         }
