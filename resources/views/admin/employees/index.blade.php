@@ -42,6 +42,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Zone</th>
+                                <th>Region</th>
                                 <th>Emp ID</th>
                                 <th>HQ</th>
                                 <th>Status</th>
@@ -216,6 +218,8 @@
                     { data: 'id' },
                     { data: 'name' },
                     { data: 'employee_id' },
+                    { data: 'zone' },
+                    { data: 'region' },
                     { data: 'hq' },
                     { data: 'status', orderable: false },
                     { data: 'action', orderable: false, searchable: false }
