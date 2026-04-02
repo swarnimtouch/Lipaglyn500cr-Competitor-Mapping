@@ -15,28 +15,38 @@
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    {{-- Google Font --}}
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    {{-- Google Font: Only DM Sans used for entire webpage as requested --}}
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --brand:        #A11A20;
-            --brand-dark:   #7e1419;
-            --brand-light:  #f9e8e9;
-            --sidebar-w:    250px;
-            --topbar-h:     60px;
-            --bg:           #f4f6fb;
-            --card-bg:      #ffffff;
-            --text:         #2d3148;
-            --text-muted:   #8a8fa8;
-            --border:       #e4e8f0;
-            --shadow:       0 2px 12px rgba(161,26,32,.08);
+            /* Core Colors */
+            --color-a:       #009ea3;
+            --color-b:       #b3569f;
+            --gradient-primary: linear-gradient(135deg, var(--color-a), var(--color-b));
+            
+            /* Layout & Spacing */
+            --sidebar-w:     250px;
+            --topbar-h:      65px;
+            
+            /* Surface Colors */
+            --bg:            #f4f7fe;
+            --card-bg:       #ffffff;
+            --text:          #2b3674;
+            --text-muted:    #8a8fa8;
+            --border:        #e4e8f0;
+            --shadow:        0 8px 24px rgba(0, 158, 163, 0.08);
+            --sidebar-bg:    #0f172a;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'DM Sans', sans-serif; /* Applied everywhere */
+        }
 
         body {
-            font-family: 'DM Sans', sans-serif;
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
@@ -44,54 +54,45 @@
 
         /* ── Sidebar ──────────────────────────────────── */
         #sidebar {
-            position: fixed;
-            top: 0; left: 0;
-            width: var(--sidebar-w);
-            height: 100vh;
-            background: #1a1d2e;
-            display: flex;
-            flex-direction: column;
-            z-index: 1000;
-            transition: transform .3s ease;
-        }
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-w);
+    height: 100vh;
 
-        .sidebar-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0 20px;
-            height: var(--topbar-h);
-            border-bottom: 1px solid rgba(255,255,255,.07);
-        }
+    /* 🔥 Gradient (slightly darker version) */
+    background: linear-gradient(135deg, #003b3d 0%, #47183e 100%);
 
-        .sidebar-brand .brand-icon {
-            width: 34px; height: 34px;
-            background: var(--brand);
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 16px;
-            color: #fff;
-            letter-spacing: -1px;
-        }
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    transition: transform .3s ease;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+}
 
-        .sidebar-brand .brand-name {
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            font-size: 17px;
-            color: #fff;
-            letter-spacing: .3px;
-        }
+       
+        /* Sidebar logo container ki height thodi badhayi hai taaki logo fit ho jaye */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    height: 85px; /* Height badhai gayi hai (Pehle 65px thi) */
+    border-bottom: 1px solid rgba(255,255,255,.05);
+}
 
-        .sidebar-brand .brand-name span {
-            color: var(--brand);
-        }
+/* Logo ki exact size badha di gayi hai */
+.sidebar-brand .brand-logo {
+    max-width: 100%;
+    max-height: 60px; /* Size 45px se 60px kar di gayi hai */
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
 
         .sidebar-nav {
             flex: 1;
             overflow-y: auto;
-            padding: 16px 0;
+            padding: 20px 0;
         }
 
         .sidebar-nav::-webkit-scrollbar { width: 4px; }
@@ -99,93 +100,90 @@
         .sidebar-nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); border-radius: 4px; }
 
         .nav-label {
-            font-size: 10px;
-            font-weight: 600;
+            font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
+            letter-spacing: 1.5px;
             color: rgba(255,255,255,.3);
-            padding: 12px 20px 6px;
+            padding: 12px 24px 8px;
         }
 
         .nav-item a {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 10px 20px;
+            gap: 14px;
+            padding: 12px 24px;
             color: rgba(255,255,255,.6);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 14.5px;
             font-weight: 500;
-            border-left: 3px solid transparent;
-            transition: all .2s;
+            border-left: 4px solid transparent;
+            transition: all .3s ease;
         }
 
         .nav-item a:hover,
         .nav-item a.active {
             color: #fff;
-            background: rgba(255,255,255,.06);
-            border-left-color: var(--brand);
+            background: linear-gradient(90deg, rgba(0, 158, 163, 0.15) 0%, transparent 100%);
+            border-left-color: var(--color-a);
         }
 
         .nav-item a .nav-icon {
-            width: 18px;
+            width: 20px;
             text-align: center;
-            font-size: 15px;
+            font-size: 16px;
             color: rgba(255,255,255,.4);
-            transition: color .2s;
+            transition: color .3s ease;
         }
 
         .nav-item a:hover .nav-icon,
         .nav-item a.active .nav-icon {
-            color: var(--brand);
+            color: var(--color-a);
         }
 
         .sidebar-footer {
-            padding: 16px 20px;
-            border-top: 1px solid rgba(255,255,255,.07);
+            padding: 20px;
+            background: rgba(0,0,0,0.15);
+            border-top: 1px solid rgba(255,255,255,.05);
         }
 
-        .sidebar-footer .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        
 
-        .sidebar-footer .user-avatar {
-            width: 34px; height: 34px;
-            border-radius: 50%;
-            background: var(--brand);
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700;
-            font-size: 13px;
-            color: #fff;
-            text-transform: uppercase;
-        }
+        
 
-        .sidebar-footer .user-name {
-            font-size: 13px;
-            font-weight: 600;
-            color: #fff;
-            line-height: 1.2;
-        }
+        
 
-        .sidebar-footer .user-role {
-            font-size: 11px;
-            color: rgba(255,255,255,.4);
+        
+
+        .sidebar-footer {
+            padding: 20px;
+            background: rgba(0,0,0,0.15);
+            border-top: 1px solid rgba(255,255,255,.05);
         }
 
         .sidebar-footer .logout-btn {
-            margin-left: auto;
-            background: none;
-            border: none;
-            color: rgba(255,255,255,.4);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(255, 86, 86, 0.1);
+            border: 1px solid rgba(255, 86, 86, 0.2);
+            border-radius: 8px;
+            color: #ff6b6b; /* Reddish alert color */
             cursor: pointer;
-            padding: 4px;
+            padding: 10px;
             font-size: 15px;
-            transition: color .2s;
+            font-weight: 600;
+            transition: all .3s ease;
         }
 
-        .sidebar-footer .logout-btn:hover { color: var(--brand); }
+        .sidebar-footer .logout-btn:hover {
+            color: #fff;
+            background: rgba(239, 68, 68, 0.9);
+            border-color: rgba(239, 68, 68, 0.9);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
 
         /* ── Topbar ───────────────────────────────────── */
         #topbar {
@@ -194,7 +192,8 @@
             left: var(--sidebar-w);
             right: 0;
             height: var(--topbar-h);
-            background: var(--card-bg);
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
@@ -214,8 +213,7 @@
         }
 
         .topbar-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--text);
         }
@@ -227,38 +225,120 @@
             gap: 12px;
         }
 
-        .topbar-badge {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 5px 12px;
-            background: var(--brand-light);
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--brand);
-        }
+        /* ── Profile Dropdown UI Elements (Mimicking my_profile.html) ── */
+.avatar-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    margin-right: 6px; /* Arrow icon se halka sa gap rakhne ke liye adjust kiya gaya */
+}
+
+.user-details .user-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.2;
+}
+
+.user-details .user-role {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 150%;
+    right: 0;
+    width: 180px;
+    background: #ffffff;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1050;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Dropdown ke upar wala chhota sa arrow (triangle) */
+.profile-dropdown::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #ffffff;
+}
+
+/* Hover karne me space empty hone par dropdown hide na ho, uske liye invisible bridge */
+.profile-info::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+}
+
+/* Hover Actions: Hover karne par dropdown aayega aur arrow 180 degree ghumega */
+.profile-info:hover .profile-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    top: calc(100% + 15px);
+}
+
+.profile-info:hover .profile-chevron {
+    transform: rotate(180deg);
+}
+
+.profile-chevron {
+    transition: transform 0.3s ease;
+}
+
+.profile-dropdown .dropdown-item {
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+.profile-dropdown .dropdown-item:hover {
+    background-color: #f8f9fc;
+}
 
         /* ── Main Content ─────────────────────────────── */
         #main-content {
             margin-left: var(--sidebar-w);
             margin-top: var(--topbar-h);
-            padding: 24px;
+            padding: 30px;
             min-height: calc(100vh - var(--topbar-h));
         }
 
-        /* ── Cards ────────────────────────────────────── */
+        /* ── Cards & Dashboard UI ─────────────────────── */
         .card {
             background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
+            border: none;
+            border-radius: 16px;
             box-shadow: var(--shadow);
+            margin-bottom: 24px;
         }
 
-        .card-header {
+        .card-header, .section-header {
             background: transparent;
             border-bottom: 1px solid var(--border);
-            padding: 16px 20px;
+            padding: 20px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -266,28 +346,123 @@
             gap: 10px;
         }
 
-        .card-body { padding: 20px; }
+        .card-header h3, .section-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text);
+        }
+
+        .card-body { padding: 24px; }
+
+        /* Dashboard Stat Cards */
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0, 158, 163, 0.12);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .stat-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            background: rgba(0, 158, 163, 0.1);
+            color: var(--color-a);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+        }
+
+        .stat-card[style*="--accent"] .stat-icon {
+            background: rgba(179, 86, 159, 0.1);
+            color: var(--color-b);
+        }
+
+        .stat-card[style*="--accent"]::before {
+            background: var(--color-b);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1;
+        }
 
         /* ── Buttons ──────────────────────────────────── */
         .btn-primary {
-            background: var(--brand) !important;
-            border-color: var(--brand) !important;
+            background: var(--gradient-primary) !important;
+            border: none !important;
             color: #fff !important;
-            font-weight: 500;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s ease, transform 0.2s ease;
         }
 
         .btn-primary:hover {
-            background: var(--brand-dark) !important;
-            border-color: var(--brand-dark) !important;
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(179, 86, 159, 0.3);
         }
 
-        .btn-warning { font-weight: 500; }
+        .btn-outline {
+            border: 2px solid var(--color-a);
+            color: var(--color-a);
+            background: transparent;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--color-a);
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 6px 15px rgba(0, 158, 163, 0.3);
+        }
+
+        .btn-warning { font-weight: 600; border-radius: 8px; }
 
         /* ── Alerts ───────────────────────────────────── */
         .alert {
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
         /* ── Overlay ──────────────────────────────────── */
@@ -295,7 +470,8 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(26,29,46,.5);
+            background: rgba(15,23,42,.6);
+            backdrop-filter: blur(4px);
             z-index: 9998;
             align-items: center;
             justify-content: center;
@@ -304,9 +480,10 @@
         #page-overlay.active { display: flex; }
 
         .spinner-ring {
-            width: 48px; height: 48px;
+            width: 54px; height: 54px;
             border: 4px solid rgba(255,255,255,.2);
-            border-top-color: var(--brand);
+            border-top-color: var(--color-a);
+            border-right-color: var(--color-b);
             border-radius: 50%;
             animation: spin .8s linear infinite;
         }
@@ -324,7 +501,8 @@
                 display: none;
                 position: fixed;
                 inset: 0;
-                background: rgba(0,0,0,.4);
+                background: rgba(0,0,0,.5);
+                backdrop-filter: blur(2px);
                 z-index: 999;
             }
             .sidebar-overlay.active { display: block; }
@@ -334,22 +512,37 @@
         .dataTables_wrapper .dataTables_length select,
         .dataTables_wrapper .dataTables_filter input {
             border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 4px 8px;
-            font-size: 13px;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 14px;
+            color: var(--text);
+            outline: none;
+        }
+        
+        .dataTables_wrapper .dataTables_filter input:focus {
+            border-color: var(--color-a);
+            box-shadow: 0 0 0 3px rgba(0, 158, 163, 0.1);
         }
 
         table.dataTable thead th {
             background: #f8f9fc;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: .5px;
             color: var(--text-muted);
             border-bottom: 2px solid var(--border);
+            padding: 12px 16px;
         }
 
-        table.dataTable tbody tr:hover td { background: var(--brand-light); }
+        table.dataTable tbody tr td {
+            vertical-align: middle;
+            border-bottom: 1px solid var(--border);
+        }
+
+        table.dataTable tbody tr:hover td { 
+            background: rgba(0, 158, 163, 0.03); 
+        }
     </style>
 
     {{-- Page-specific CSS --}}
@@ -360,8 +553,7 @@
 {{-- ── Sidebar ──────────────────────────────────────────── --}}
 <div id="sidebar">
     <div class="sidebar-brand">
-        <div class="brand-icon">L</div>
-        <div class="brand-name">Lipa<span>glyn</span></div>
+        <img src="{{ URL::asset('assets/logo.png') }}" alt="Lipaglyn Logo" class="brand-logo">
     </div>
 
     <nav class="sidebar-nav">
@@ -394,22 +586,13 @@
     </nav>
 
     <div class="sidebar-footer">
-        <div class="user-info">
-            <div class="user-avatar">
-                {{ strtoupper(substr(session('employee_name', 'MR'), 0, 2)) }}
-            </div>
-            <div>
-                <div class="user-name">{{ session('employee_name', 'MR User') }}</div>
-                <div class="user-role">Medical Representative</div>
-            </div>
-            <form method="POST" action="{{ route('employee.logout') }}" style="margin:0;">
-                @csrf
-                <button type="submit" class="logout-btn" title="Logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                </button>
-            </form>
-        </div>
-    </div>
+    <form method="POST" action="{{ route('employee.logout') }}" style="margin:0; width: 100%;">
+        @csrf
+        <button type="submit" class="logout-btn" title="Logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </form>
+</div>
 </div>
 
 {{-- Sidebar overlay (mobile) --}}
@@ -422,11 +605,32 @@
     </button>
     <div class="topbar-title">@yield('title', 'MR Portal')</div>
     <div class="topbar-right">
-        <div class="topbar-badge">
-            <i class="fas fa-circle" style="font-size:7px;"></i>
-            {{ session('employee_name', 'MR') }}
+    <div class="profile-info position-relative d-flex align-items-center cursor-pointer" style="cursor: pointer;">
+    <div class="user-details mr-3 d-none d-md-block text-right">
+        <div class="user-name">{{ session('employee_name', 'MR User') }}</div>
+        <div class="user-role">Medical Representative</div>
+    </div>
+
+    <div class="avatar-circle">
+        {{ strtoupper(substr(session('employee_name', 'MR'), 0, 2)) }}
+    </div>
+    
+    <i class="fas fa-chevron-down text-muted small profile-chevron ml-1"></i>
+
+        <div class="profile-dropdown shadow-lg rounded-3 bg-white">
+            <ul class="list-unstyled mb-0 py-2">
+                <li>
+                    <form method="POST" action="{{ route('employee.logout') }}" style="margin:0;">
+                        @csrf
+                        <button type="submit" class="dropdown-item d-flex align-items-center text-danger px-3 py-2 w-100 border-0 bg-transparent text-left">
+                            <i class="fas fa-sign-out-alt mr-3"></i> Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
         </div>
     </div>
+</div>
 </div>
 
 {{-- ── Main Content ─────────────────────────────────────── --}}
