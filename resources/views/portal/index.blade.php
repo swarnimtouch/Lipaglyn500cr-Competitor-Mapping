@@ -884,8 +884,8 @@
                         { data: 'name',                      orderable: true },
                         { data: 'msl_code',                  searchable: false, orderable: true },
                         { data: 'specialization',            orderable: true },
-                        { data: 'bilypsa_rx_per_month',       orderable: true },
-                        { data: 'sema_rx_prer_month', orderable: true },
+                        { data: 'sema_rx_prer_month',       orderable: true },
+                        { data: 'bilypsa_rx_per_month', orderable: true },
                         // { data: 'lipaglyn_rx_br_type',       orderable: true },
                         // { data: 'everage_lipaglyn_pr_month', orderable: true },
                         { data: 'action',                    searchable: false, orderable: false }

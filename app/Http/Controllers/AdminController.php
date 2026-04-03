@@ -326,6 +326,9 @@ class AdminController extends Controller
                 'name' => $d->name,
                 'msl_code' => $d->msl_code ?? '—',
                 'specialization' => $d->specialization ?? '—',
+                'Diabetes_patients_day' => $d->Diabetes_patients_day ?? '—',
+                'sema_rx_prer_month' => $d->sema_rx_prer_month ?? '—',
+                'udca_rx_per_month' => $d->udca_rx_per_month ?? '—',
 //                'lipaglyn_rx_br_type' => $d->lipaglyn_rx_br_type ?? '—',
 //
 //                'avg_lipaglyn_pr_month' => $d->avg_lipaglyn_pr_month ?? 0,
@@ -379,104 +382,95 @@ class AdminController extends Controller
 
         $zone = $request->input('zone');
 
-        $cacheKey = 'admin_report_zone_' . ($zone && $zone !== 'all' ? $zone : 'all');
+        // 🔥 STEP 1: Pre-aggregate doctor data
+        $doctorStats = DB::table('mr_allocated_doctors')
+            ->whereNull('deleted_at')
+            ->select(
+                'mr_id',
 
-        $regions = \Illuminate\Support\Facades\Cache::remember($cacheKey, now()->addMinutes(60), function () use ($zone) {
+                DB::raw('MAX(is_active) as is_active'),
 
-            $query = DB::table('employees')
-                ->leftJoin('mr_allocated_doctors as mad', function ($join) {
-                    $join->on('employees.employee_id', '=', 'mad.mr_id');
-                })
-                ->whereNull('mad.deleted_at') // ✅ keep this
+                DB::raw('SUM(IFNULL(Diabetes_patients_day,0)) as total_diabetes_patients'),
 
-                ->select(
-                    'employees.zone',
-                    DB::raw("COALESCE(employees.region, 'No Region') as region"),
+                DB::raw('SUM(IFNULL(udca_rx_per_month,0)) as total_udca'),
+                DB::raw('SUM(CASE WHEN is_active = 1 AND IFNULL(udca_rx_per_month,0) > 0 THEN 1 ELSE 0 END) as udca_count'),
 
-                    // ✅ ALL BO's
-                    DB::raw('COUNT(DISTINCT employees.id) as user_count'),
+                DB::raw('SUM(IFNULL(sema_rx_prer_month,0)) as total_sema'),
+                DB::raw('SUM(CASE WHEN is_active = 1 AND IFNULL(sema_rx_prer_month,0) > 0 THEN 1 ELSE 0 END) as sema_count'),
 
-                    // ✅ ONLY ACTIVE BO's
-                    DB::raw('COUNT(DISTINCT CASE WHEN mad.is_active = 1 THEN employees.id END) as active_user_count'),
+                DB::raw('SUM(IFNULL(bilypsa_rx_per_month,0)) as total_bilypsa'),
+                DB::raw('SUM(CASE WHEN is_active = 1 AND IFNULL(bilypsa_rx_per_month,0) > 0 THEN 1 ELSE 0 END) as bilypsa_count'),
 
-                    // Lipaglyn
-                    DB::raw('SUM(IFNULL(mad.avg_lipaglyn_pr_month,0)) as total_avg_lipaglyn'),
-                    DB::raw('SUM(CASE WHEN IFNULL(mad.avg_lipaglyn_pr_month,0) > 0 THEN 1 ELSE 0 END) as avg_lipaglyn_count'),
+                DB::raw('SUM(IFNULL(linvas_rx_per_month,0)) as total_linvas'),
+                DB::raw('SUM(CASE WHEN is_active = 1 AND IFNULL(linvas_rx_per_month,0) > 0 THEN 1 ELSE 0 END) as linvas_count'),
 
-                    // Diabetes
-                    DB::raw('SUM(IFNULL(mad.Diabetes_patients_day,0)) as total_diabetes_patients'),
+                DB::raw('SUM(IFNULL(vorxar_rx_per_month,0)) as total_vorxar'),
+                DB::raw('SUM(CASE WHEN is_active = 1 AND IFNULL(vorxar_rx_per_month,0) > 0 THEN 1 ELSE 0 END) as vorxar_count')
+            )
+            ->groupBy('mr_id');
 
-                    // Planned Conversion
-                    DB::raw("SUM(CASE WHEN mad.planned_for_conversition IS NOT NULL AND TRIM(mad.planned_for_conversition) != '' THEN 1 ELSE 0 END) as planned_for_conversition_count"),
+        // 🔥 STEP 2: Main query
+        $query = DB::table('employees')
+            ->leftJoinSub($doctorStats, 'mad', function ($join) {
+                $join->on('employees.employee_id', '=', 'mad.mr_id');
+            })
+            ->select(
+                'employees.zone', // ✅ ADD THIS
+                DB::raw("COALESCE(employees.region, 'No Region') as region"),
 
-                    // Business
-                    DB::raw('SUM(IFNULL(mad.total_business_value,0)) as total_business_value_sum'),
+                DB::raw('COUNT(DISTINCT employees.id) as user_count'),
+                DB::raw('SUM(CASE WHEN mad.is_active = 1 THEN 1 ELSE 0 END) as active_user_count'),
 
-                    // Incremental
-                    DB::raw('SUM(IFNULL(mad.incremental_lipaglyn_busines,0)) as incremental_lipaglyn_busines_sum'),
-                    DB::raw('SUM(IFNULL(mad.incremental_lipaglyn_busines,0) + IFNULL(mad.total_business_value,0)) as incremental_lipaglyn_busines_sum1'),
+                DB::raw('SUM(IFNULL(mad.total_diabetes_patients,0)) as total_diabetes_patients'),
 
-                    // UDCA (only active doctors ka count chahiye to yaha bhi condition laga)
-                    DB::raw('SUM(IFNULL(mad.udca_rx_per_month,0)) as total_udca'),
-                    DB::raw('SUM(CASE WHEN mad.is_active = 1 AND IFNULL(mad.udca_rx_per_month,0) > 0 THEN 1 ELSE 0 END) as udca_count'),
+                DB::raw('SUM(IFNULL(mad.udca_count,0)) as udca_count'),
+                DB::raw('SUM(IFNULL(mad.total_udca,0)) as total_udca'),
 
-                    // Sema
-                    DB::raw('SUM(IFNULL(mad.sema_rx_prer_month,0)) as total_sema'),
-                    DB::raw('SUM(CASE WHEN mad.is_active = 1 AND IFNULL(mad.sema_rx_prer_month,0) > 0 THEN 1 ELSE 0 END) as sema_count'),
+                DB::raw('SUM(IFNULL(mad.sema_count,0)) as sema_count'),
+                DB::raw('SUM(IFNULL(mad.total_sema,0)) as total_sema'),
 
-                    // Bilypsa
-                    DB::raw('SUM(IFNULL(mad.bilypsa_rx_per_month,0)) as total_bilypsa'),
-                    DB::raw('SUM(CASE WHEN mad.is_active = 1 AND IFNULL(mad.bilypsa_rx_per_month,0) > 0 THEN 1 ELSE 0 END) as bilypsa_count'),
+                DB::raw('SUM(IFNULL(mad.bilypsa_count,0)) as bilypsa_count'),
+                DB::raw('SUM(IFNULL(mad.total_bilypsa,0)) as total_bilypsa'),
 
-                    // Linvas
-                    DB::raw('SUM(IFNULL(mad.linvas_rx_per_month,0)) as total_linvas'),
-                    DB::raw('SUM(CASE WHEN mad.is_active = 1 AND IFNULL(mad.linvas_rx_per_month,0) > 0 THEN 1 ELSE 0 END) as linvas_count'),
+                DB::raw('SUM(IFNULL(mad.linvas_count,0)) as linvas_count'),
+                DB::raw('SUM(IFNULL(mad.total_linvas,0)) as total_linvas'),
 
-                    // Vorxar
-                    DB::raw('SUM(IFNULL(mad.vorxar_rx_per_month,0)) as total_vorxar'),
-                    DB::raw('SUM(CASE WHEN mad.is_active = 1 AND IFNULL(mad.vorxar_rx_per_month,0) > 0 THEN 1 ELSE 0 END) as vorxar_count')
-                )
-                ->groupBy('employees.zone', 'employees.region');
+                DB::raw('SUM(IFNULL(mad.vorxar_count,0)) as vorxar_count'),
+                DB::raw('SUM(IFNULL(mad.total_vorxar,0)) as total_vorxar')
+            )
+            ->groupBy('employees.zone', 'employees.region');
 
-            if ($zone && $zone !== 'all') {
-                $query->where('employees.zone', $zone);
-            }
+        if ($zone && $zone !== 'all') {
+            $query->where('employees.zone', $zone);
+        }
 
-            return $query->get();
-        });
+        $regions = $query->get();
 
-        // Totals
+        // 🔥 Totals
         $totals = [
             'region_count' => $regions->count(),
             'user_count' => $regions->sum('user_count'),
             'active_user_count' => $regions->sum('active_user_count'),
-            'total_avg_lipaglyn' => $regions->sum('total_avg_lipaglyn'),
-            'avg_lipaglyn_count' => $regions->sum('avg_lipaglyn_count'),
             'total_diabetes_patients' => $regions->sum('total_diabetes_patients'),
-            'planned_for_conversition_count' => $regions->sum('planned_for_conversition_count'),
-            'total_business_value_sum' => $regions->sum('total_business_value_sum'),
-            'incremental_lipaglyn_busines_sum' => $regions->sum('incremental_lipaglyn_busines_sum'),
-            'incremental_lipaglyn_busines_sum1' => $regions->sum('incremental_lipaglyn_busines_sum1'),
-            'total_udca' => $regions->sum('total_udca'),
             'udca_count' => $regions->sum('udca_count'),
-            'total_sema' => $regions->sum('total_sema'),
+            'total_udca' => $regions->sum('total_udca'),
             'sema_count' => $regions->sum('sema_count'),
-            'total_bilypsa' => $regions->sum('total_bilypsa'),
+            'total_sema' => $regions->sum('total_sema'),
             'bilypsa_count' => $regions->sum('bilypsa_count'),
-            'total_linvas' => $regions->sum('total_linvas'),
+            'total_bilypsa' => $regions->sum('total_bilypsa'),
             'linvas_count' => $regions->sum('linvas_count'),
-            'total_vorxar' => $regions->sum('total_vorxar'),
+            'total_linvas' => $regions->sum('total_linvas'),
             'vorxar_count' => $regions->sum('vorxar_count'),
+            'total_vorxar' => $regions->sum('total_vorxar'),
         ];
 
-        $zones = Cache::remember('admin_report_zones', now()->addHours(6), function () {
-            return DB::table('employees')
-                ->select('zone')
-                ->whereNotNull('zone')
-                ->distinct()
-                ->orderBy('zone')
-                ->pluck('zone');
-        });
+        // zones simple (no cache)
+        $zones = DB::table('employees')
+            ->select('zone')
+            ->whereNotNull('zone')
+            ->distinct()
+            ->orderBy('zone')
+            ->pluck('zone');
 
         return view('admin.general.report', compact('regions', 'zones', 'totals', 'zone'));
     }

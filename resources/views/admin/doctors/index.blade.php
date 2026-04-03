@@ -136,6 +136,9 @@
                                 <th>Dr. Name</th>
                                 <th>Dr. UID</th>
                                 <th>Speciality</th>
+                                <th>Diabetes Patients Day</th>
+                                <th>UDCA Rx/Month</th>
+                                <th>Sema Rx/Month</th>
 {{--                                <th>Rx Br Type</th>--}}
 {{--                                <th>Avg Lipaglyn</th>--}}
                                 <th>Bilypsa Rx / Month</th>
@@ -184,6 +187,9 @@
                     { data: 'name' },
                     { data: 'msl_code' },
                     { data: 'specialization' },
+                    { data: 'Diabetes_patients_day' },
+                    { data: 'sema_rx_prer_month' },
+                    { data: 'udca_rx_per_month' },
                     // { data: 'lipaglyn_rx_br_type' },
                     // { data: 'avg_lipaglyn_pr_month' },
                     { data: 'bilypsa_rx_per_month' },
