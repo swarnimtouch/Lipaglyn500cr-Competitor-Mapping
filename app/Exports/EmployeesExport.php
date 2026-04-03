@@ -33,9 +33,7 @@ class EmployeesExport implements FromCollection, WithHeadings
             'name',
             'zone',
             'hq',
-            'type',
             'employee_id',
-            'chair_id',
             'created_at'
         )->get();
     }
@@ -46,9 +44,7 @@ class EmployeesExport implements FromCollection, WithHeadings
             'Name',
             'Zone',
             'HQ',
-            'Type',
             'Employee ID',
-            'Chair ID',
             'Created At'
         ];
     }
