@@ -56,7 +56,7 @@ class DoctorsExport implements FromCollection, WithHeadings
 //            'Lipaglyn Type',
 //            'Avg Lipaglyn / Month',
 //            'Actual Speciality',
-            'Diabetes Patients / Day',
+            'Diabetes Patients / Month',
 //            'KOL/KBL',
 //            'Inst Dr',
 //            'Institution Name',

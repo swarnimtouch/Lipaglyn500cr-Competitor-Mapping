@@ -396,10 +396,10 @@
 
                         {{-- Diabetes Patients in a day --}}
                         <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Diabetes Patients in a day <span class="text-danger">*</span></label>
+                            <label class="col-md-4 col-form-label">Diabetes Patients in a Month <span class="text-danger">*</span></label>
                             <div class="col-md-8">
                                 <input type="number" class="form-control" name="Diabetes_patients_day"
-                                       placeholder="Diabetes Patients in a day"
+                                       placeholder="Diabetes Patients in a Month"
                                        min="0"
                                        onkeydown="return !(['-','e','+'].includes(event.key))"
                                        oninput="if(this.value < 0 || this.value === '-') this.value = ''">

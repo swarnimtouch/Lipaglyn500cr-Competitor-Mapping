@@ -136,7 +136,7 @@
                                 <th>Dr. Name</th>
                                 <th>Dr. UID</th>
                                 <th>Speciality</th>
-                                <th>Diabetes Patients Day</th>
+                                <th>Diabetes Patients Month</th>
                                 <th>UDCA Rx/Month</th>
                                 <th>Sema Rx/Month</th>
 {{--                                <th>Rx Br Type</th>--}}

@@ -105,7 +105,7 @@ class AdminDoctorsExport implements FromCollection, WithHeadings
 //            'Lipaglyn Type',
 //            'Avg Lipaglyn',
 //            'Actual Speciality',
-            'Diabetes Patients',
+            'Diabetes Patients / Month',
 //            'KOL/KBL',
 //            'Inst Dr',
 //            'Institution Name',
