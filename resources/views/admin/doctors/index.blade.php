@@ -136,11 +136,11 @@
                                 <th>Dr. Name</th>
                                 <th>Dr. UID</th>
                                 <th>Speciality</th>
-                                <th>Rx Br Type</th>
-                                <th>Avg Lipaglyn</th>
-                                <th>Bilypsa</th>
-                                <th>Linvas</th>
-                                <th>Vorxar</th>
+{{--                                <th>Rx Br Type</th>--}}
+{{--                                <th>Avg Lipaglyn</th>--}}
+                                <th>Bilypsa Rx / Month</th>
+                                <th>Linvas Rx / Month</th>
+                                <th>Vorxar Rx / Month</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -184,8 +184,8 @@
                     { data: 'name' },
                     { data: 'msl_code' },
                     { data: 'specialization' },
-                    { data: 'lipaglyn_rx_br_type' },
-                    { data: 'avg_lipaglyn_pr_month' },
+                    // { data: 'lipaglyn_rx_br_type' },
+                    // { data: 'avg_lipaglyn_pr_month' },
                     { data: 'bilypsa_rx_per_month' },
                     { data: 'linvas_rx_per_month' },
                     { data: 'vorxar_rx_per_month' },

@@ -55,7 +55,8 @@ class DoctorController extends Controller
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
                     ->orWhere('specialization', 'like', "%{$search}%")
-                    ->orWhere('lipaglyn_rx_br_type', 'like', "%{$search}%")
+                    ->orWhere('sema_rx_prer_month', 'like', "%{$search}%")
+                    ->orWhere('bilypsa_rx_per_month', 'like', "%{$search}%")
                     ->orWhere('msl_code', 'like', "%{$search}%"); // ✅ DR UID bhi
             });
         }
@@ -65,7 +66,7 @@ class DoctorController extends Controller
         // Order
         $orderCol = $request->input('order.0.column', 0);
         $orderDir = $request->input('order.0.dir', 'desc');
-        $columns  = ['id', 'name', 'msl_code', 'specialization', 'lipaglyn_rx_br_type', 'everage_lipaglyn_pr_month'];
+        $columns  = ['id', 'name', 'msl_code', 'specialization', 'sema_rx_prer_month', 'bilypsa_rx_per_month'];
         $sortCol  = $columns[$orderCol] ?? 'id';
         $query->orderBy($sortCol, $orderDir);
 
@@ -81,11 +82,11 @@ class DoctorController extends Controller
                 'name'                      => $d->name,
                 'msl_code'                  => $d->msl_code,
                 'specialization'            => $d->specialization,
-                'lipaglyn_rx_br_type'       => $d->lipaglyn_rx_br_type,
-                'everage_lipaglyn_pr_month' => $d->everage_lipaglyn_pr_month ?? $d->avg_lipaglyn_pr_month,
+                'bilypsa_rx_per_month'       => $d->bilypsa_rx_per_month,
+                'sema_rx_prer_month' => $d->sema_rx_prer_month ,
                 'action' => '
                 <button onclick="openEditModal('.$d->id.')" class="btn btn-sm btn-warning">Edit</button>
-                
+
             '
             ];
         });
@@ -165,21 +166,21 @@ class DoctorController extends Controller
         $doctor->name                       = $request->name;
         $doctor->msl_code                   = $request->msl_code;
         $doctor->specialization             = $request->specialization;
-        $doctor->lipaglyn_rx_br_type        = $request->lipaglyn_rx_br_type;
-        $doctor->avg_lipaglyn_pr_month      = $request->avg_lipaglyn_pr_month;
-        $doctor->actual_speciality          = $request->actual_speciality;
+//        $doctor->lipaglyn_rx_br_type        = $request->lipaglyn_rx_br_type;
+//        $doctor->avg_lipaglyn_pr_month      = $request->avg_lipaglyn_pr_month;
+//        $doctor->actual_speciality          = $request->actual_speciality;
         $doctor->Diabetes_patients_day      = $request->Diabetes_patients_day;
-        $doctor->kol_kbl                    = $request->kol_kbl;
-        $doctor->inst_dr                    = $request->inst_dr;
-        $doctor->govt_dropdown              = $request->govt_dropdown === 'new'
-            ? $request->new_institution
-            : $request->govt_dropdown;
+//        $doctor->kol_kbl                    = $request->kol_kbl;
+//        $doctor->inst_dr                    = $request->inst_dr;
+//        $doctor->govt_dropdown              = $request->govt_dropdown === 'new'
+//            ? $request->new_institution
+//            : $request->govt_dropdown;
         $doctor->udca_rx_per_month          = $request->udca_rx_per_month;
         $doctor->sema_rx_prer_month         = $request->sema_rx_prer_month;
-        $doctor->other_saro_rm_per_month    = $request->other_saro_rm_per_month;
-        $doctor->total_business_value       = $request->total_business_value;
-        $doctor->planned_for_conversition   = $request->planned_for_conversition;
-        $doctor->incremental_lipaglyn_busines = $request->incremental_lipaglyn_busines;
+//        $doctor->other_saro_rm_per_month    = $request->other_saro_rm_per_month;
+//        $doctor->total_business_value       = $request->total_business_value;
+//        $doctor->planned_for_conversition   = $request->planned_for_conversition;
+//        $doctor->incremental_lipaglyn_busines = $request->incremental_lipaglyn_busines;
         $doctor->bilypsa_rx_per_month  = $request->bilypsa_rx_per_month;
         $doctor->linvas_rx_per_month   = $request->linvas_rx_per_month;
         $doctor->vorxar_rx_per_month   = $request->vorxar_rx_per_month;

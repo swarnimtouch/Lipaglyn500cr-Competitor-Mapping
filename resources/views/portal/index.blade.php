@@ -237,42 +237,42 @@
             @endif
 
             {{-- Speciality Reference Table (Premium UI) --}}
-            <div class="row mb-4">
-                <div class="col-md-6 mb-3 mb-md-0">
-                    <div class="ref-card">
-                        <div class="ref-card-title teal">
-                            <i class="fas fa-stethoscope"></i> Speciality
-                        </div>
-                        <ul class="ref-list">
-                            <li>MBBS, MD, DM or DNB (Endo)</li>
-                            <li>MBBS, MD, + Certification in Diabetes</li>
-                            <li>MBBS, MD, DM or DNB (Cardio) Performs procedures such as stenting and also consults patients</li>
-                            <li>MBBS, MD, DM or DNB (Cardio) Consults only patients</li>
-                            <li>MBBS, MD, DM or DNB (Nephro)</li>
-                            <li>MBBS, MD, (Medicine)</li>
-                            <li>MBBS (Only)</li>
-                            <li>Any other Apart from above</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="ref-card ref-purple">
-                        <div class="ref-card-title purple">
-                            <i class="fas fa-tags"></i> Tag as
-                        </div>
-                        <ul class="ref-list">
-                            <li>Cons. Endocrinologist</li>
-                            <li>Cons. Diabetologist</li>
-                            <li>Interventional Cardiologist</li>
-                            <li>Cons. Cardiologist</li>
-                            <li>Cons. Nephrologist</li>
-                            <li>Cons. Physician</li>
-                            <li>General Physician</li>
-                            <li>Others</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+{{--            <div class="row mb-4">--}}
+{{--                <div class="col-md-6 mb-3 mb-md-0">--}}
+{{--                    <div class="ref-card">--}}
+{{--                        <div class="ref-card-title teal">--}}
+{{--                            <i class="fas fa-stethoscope"></i> Speciality--}}
+{{--                        </div>--}}
+{{--                        <ul class="ref-list">--}}
+{{--                            <li>MBBS, MD, DM or DNB (Endo)</li>--}}
+{{--                            <li>MBBS, MD, + Certification in Diabetes</li>--}}
+{{--                            <li>MBBS, MD, DM or DNB (Cardio) Performs procedures such as stenting and also consults patients</li>--}}
+{{--                            <li>MBBS, MD, DM or DNB (Cardio) Consults only patients</li>--}}
+{{--                            <li>MBBS, MD, DM or DNB (Nephro)</li>--}}
+{{--                            <li>MBBS, MD, (Medicine)</li>--}}
+{{--                            <li>MBBS (Only)</li>--}}
+{{--                            <li>Any other Apart from above</li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-6">--}}
+{{--                    <div class="ref-card ref-purple">--}}
+{{--                        <div class="ref-card-title purple">--}}
+{{--                            <i class="fas fa-tags"></i> Tag as--}}
+{{--                        </div>--}}
+{{--                        <ul class="ref-list">--}}
+{{--                            <li>Cons. Endocrinologist</li>--}}
+{{--                            <li>Cons. Diabetologist</li>--}}
+{{--                            <li>Interventional Cardiologist</li>--}}
+{{--                            <li>Cons. Cardiologist</li>--}}
+{{--                            <li>Cons. Nephrologist</li>--}}
+{{--                            <li>Cons. Physician</li>--}}
+{{--                            <li>General Physician</li>--}}
+{{--                            <li>Others</li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
@@ -288,8 +288,8 @@
                                 <th>DR. Name</th>
                                 <th>DR. UID</th>
                                 <th>Speciality</th>
-                                <th>Lipaglyn Rx br type</th>
-                                <th>Average Lipaglyn Pr Month</th>
+                                <th>Sema Rx/Month</th>
+                                <th>Bilypsa Rx/Month</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -349,50 +349,50 @@
                         </div>
 
                         {{-- Lipaglyn Rxbr type --}}
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Lipaglyn Rxbr type <span class="text-danger">*</span></label>
-                            <div class="col-md-8">
-                                <select class="form-control" name="lipaglyn_rx_br_type" id="lipaglyn_rx_br_type">
-                                    <option value="">Select Lipaglyn Rxbr type</option>
-                                    <option value="Emerging O.Rxber">Emerging O.Rxber</option>
-                                    <option value="Occasional Rxber">Occasional Rxber</option>
-                                    <option value="Rxber">Rxber</option>
-                                    <option value="Non Rxber">Non Rxber</option>
-                                    <option value="Regular Rxber">Regular Rxber</option>
-                                    <option value="Wall Drs">Wall Drs</option>
-                                </select>
-                            </div>
-                        </div>
+{{--                        <div class="mb-3 row">--}}
+{{--                            <label class="col-md-4 col-form-label">Lipaglyn Rxbr type <span class="text-danger">*</span></label>--}}
+{{--                            <div class="col-md-8">--}}
+{{--                                <select class="form-control" name="lipaglyn_rx_br_type" id="lipaglyn_rx_br_type">--}}
+{{--                                    <option value="">Select Lipaglyn Rxbr type</option>--}}
+{{--                                    <option value="Emerging O.Rxber">Emerging O.Rxber</option>--}}
+{{--                                    <option value="Occasional Rxber">Occasional Rxber</option>--}}
+{{--                                    <option value="Rxber">Rxber</option>--}}
+{{--                                    <option value="Non Rxber">Non Rxber</option>--}}
+{{--                                    <option value="Regular Rxber">Regular Rxber</option>--}}
+{{--                                    <option value="Wall Drs">Wall Drs</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         {{-- Average Lipaglyn Business/Month --}}
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Average Lipaglyn Business/Month <span class="text-danger">*</span></label>
-                            <div class="col-md-8">
-                                <input type="number" class="form-control" name="avg_lipaglyn_pr_month"
-                                       id="avg_lipaglyn_pr_month" placeholder="Avg Lipaglyn Business/Month"
-                                       min="0" max="10" step="0.01"
-                                       onkeydown="return !(['-','e','+'].includes(event.key))"
-                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
-                            </div>
-                        </div>
+{{--                        <div class="mb-3 row">--}}
+{{--                            <label class="col-md-4 col-form-label">Average Lipaglyn Business/Month <span class="text-danger">*</span></label>--}}
+{{--                            <div class="col-md-8">--}}
+{{--                                <input type="number" class="form-control" name="avg_lipaglyn_pr_month"--}}
+{{--                                       id="avg_lipaglyn_pr_month" placeholder="Avg Lipaglyn Business/Month"--}}
+{{--                                       min="0" max="10" step="0.01"--}}
+{{--                                       onkeydown="return !(['-','e','+'].includes(event.key))"--}}
+{{--                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         {{-- Actual Speciality --}}
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Actual Speciality <span class="text-danger">*</span></label>
-                            <div class="col-md-8">
-                                <select class="form-control" name="actual_speciality" id="actual_speciality">
-                                    <option value="">Select Actual Speciality</option>
-                                    <option value="Cons. Endocrinologist">Cons. Endocrinologist</option>
-                                    <option value="Cons. Diabetologist">Cons. Diabetologist</option>
-                                    <option value="Interventional Cardiologist">Interventional Cardiologist</option>
-                                    <option value="Cons. Cardiologist">Cons. Cardiologist</option>
-                                    <option value="Cons. Physician">Cons. Physician</option>
-                                    <option value="General Physician">General Physician</option>
-                                    <option value="Cons. Nephrologist">Cons. Nephrologist</option>
-                                    <option value="Others">Others</option>
-                                </select>
-                            </div>
-                        </div>
+{{--                        <div class="mb-3 row">--}}
+{{--                            <label class="col-md-4 col-form-label">Actual Speciality <span class="text-danger">*</span></label>--}}
+{{--                            <div class="col-md-8">--}}
+{{--                                <select class="form-control" name="actual_speciality" id="actual_speciality">--}}
+{{--                                    <option value="">Select Actual Speciality</option>--}}
+{{--                                    <option value="Cons. Endocrinologist">Cons. Endocrinologist</option>--}}
+{{--                                    <option value="Cons. Diabetologist">Cons. Diabetologist</option>--}}
+{{--                                    <option value="Interventional Cardiologist">Interventional Cardiologist</option>--}}
+{{--                                    <option value="Cons. Cardiologist">Cons. Cardiologist</option>--}}
+{{--                                    <option value="Cons. Physician">Cons. Physician</option>--}}
+{{--                                    <option value="General Physician">General Physician</option>--}}
+{{--                                    <option value="Cons. Nephrologist">Cons. Nephrologist</option>--}}
+{{--                                    <option value="Others">Others</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         {{-- Diabetes Patients in a day --}}
                         <div class="mb-3 row">
@@ -407,173 +407,173 @@
                         </div>
 
                         {{-- KOL / KBL --}}
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">KOL / KBL <span class="text-danger">*</span></label>
-                            <div class="col-md-8 d-flex align-items-center" style="gap:16px; flex-wrap:wrap; padding-top:8px;">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="kol_kbl" id="kol" value="KOL">
-                                    <label class="form-check-label" for="kol">KOL</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="kol_kbl" id="kbl" value="KBL">
-                                    <label class="form-check-label" for="kbl">KBL</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="kol_kbl" id="kol_other" value="OTHER">
-                                    <label class="form-check-label" for="kol_other">OTHER</label>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="mb-3 row">--}}
+{{--                            <label class="col-md-4 col-form-label">KOL / KBL <span class="text-danger">*</span></label>--}}
+{{--                            <div class="col-md-8 d-flex align-items-center" style="gap:16px; flex-wrap:wrap; padding-top:8px;">--}}
+{{--                                <div class="form-check">--}}
+{{--                                    <input class="form-check-input" type="radio" name="kol_kbl" id="kol" value="KOL">--}}
+{{--                                    <label class="form-check-label" for="kol">KOL</label>--}}
+{{--                                </div>--}}
+{{--                                <div class="form-check">--}}
+{{--                                    <input class="form-check-input" type="radio" name="kol_kbl" id="kbl" value="KBL">--}}
+{{--                                    <label class="form-check-label" for="kbl">KBL</label>--}}
+{{--                                </div>--}}
+{{--                                <div class="form-check">--}}
+{{--                                    <input class="form-check-input" type="radio" name="kol_kbl" id="kol_other" value="OTHER">--}}
+{{--                                    <label class="form-check-label" for="kol_other">OTHER</label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         {{-- Inst Dr --}}
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Inst Dr <span class="text-danger">*</span></label>
-                            <div class="col-md-8 d-flex align-items-center" style="gap:12px; flex-wrap:wrap; padding-top:8px;">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="inst_dr" id="cghs" value="CGHS">
-                                    <label class="form-check-label" for="cghs">CGHS</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="inst_dr" id="esi" value="ESI">
-                                    <label class="form-check-label" for="esi">ESI</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="inst_dr" id="other_govt" value="OTHER GOVT">
-                                    <label class="form-check-label" for="other_govt">OTHER GOVT</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="inst_dr" id="non_govt_dr" value="Non Govt Dr">
-                                    <label class="form-check-label" for="non_govt_dr">Non Govt Dr</label>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="mb-3 row">--}}
+{{--                            <label class="col-md-4 col-form-label">Inst Dr <span class="text-danger">*</span></label>--}}
+{{--                            <div class="col-md-8 d-flex align-items-center" style="gap:12px; flex-wrap:wrap; padding-top:8px;">--}}
+{{--                                <div class="form-check">--}}
+{{--                                    <input class="form-check-input" type="radio" name="inst_dr" id="cghs" value="CGHS">--}}
+{{--                                    <label class="form-check-label" for="cghs">CGHS</label>--}}
+{{--                                </div>--}}
+{{--                                <div class="form-check">--}}
+{{--                                    <input class="form-check-input" type="radio" name="inst_dr" id="esi" value="ESI">--}}
+{{--                                    <label class="form-check-label" for="esi">ESI</label>--}}
+{{--                                </div>--}}
+{{--                                <div class="form-check">--}}
+{{--                                    <input class="form-check-input" type="radio" name="inst_dr" id="other_govt" value="OTHER GOVT">--}}
+{{--                                    <label class="form-check-label" for="other_govt">OTHER GOVT</label>--}}
+{{--                                </div>--}}
+{{--                                <div class="form-check">--}}
+{{--                                    <input class="form-check-input" type="radio" name="inst_dr" id="non_govt_dr" value="Non Govt Dr">--}}
+{{--                                    <label class="form-check-label" for="non_govt_dr">Non Govt Dr</label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         {{-- Govt Dropdown (conditional) --}}
-                        <div class="mb-3 row" id="govt_dropdown_wrapper" style="display:none;">
-                            <label class="col-md-4 col-form-label">Select Inst Name</label>
-                            <div class="col-md-8">
-                                <select class="form-control selectpicker" id="govt_dropdown" name="govt_dropdown" data-live-search="true">
-                                    <option value="">Select Inst Name</option>
-                                    <option value="new">New Institution</option>
-                                    <option value="North Western Railway, DELHI">North Western Railway, DELHI</option>
-                                    <option value="Sir Gangaram Hospital - Delhi, DELHI">Sir Gangaram Hospital - Delhi, DELHI</option>
-                                    <option value="Jhilmil ESI, DELHI">Jhilmil ESI, DELHI</option>
-                                    <option value="AMRIT PHARMACY (A DIVISON OF HLL L, HOWRAH)">AMRIT PHARMACY (A DIVISON OF HLL L, HOWRAH)</option>
-                                    <option value="NF Railways, GUWAHATI">NF Railways, GUWAHATI</option>
-                                    <option value="CGHS Bangalore, DELHI">CGHS Bangalore, DELHI</option>
-                                    <option value="NMDC BACHELI, BILASPUR">NMDC BACHELI, BILASPUR</option>
-                                    <option value="HLL - Jharkhand, JUGSALAI">HLL - Jharkhand, JUGSALAI</option>
-                                    <option value="East Central Railways, HAJIPUR">East Central Railways, HAJIPUR</option>
-                                    <option value="BHU VARANASI, Varanasi">BHU VARANASI, Varanasi</option>
-                                    <option value="In-charge (Stores),ESIC Hospital, PATNA">In-charge (Stores),ESIC Hospital, PATNA</option>
-                                    <option value="CGHS Chennai, DELHI">CGHS Chennai, DELHI</option>
-                                    <option value="CRPF Avadi, DELHI">CRPF Avadi, DELHI</option>
-                                    <option value="Deputy Director, Department of Atomic Energy, DELHI">Deputy Director, Department of Atomic Energy, DELHI</option>
-                                    <option value="Assam Rifles Multispeciality Hospital  Manipur , DELHI">Assam Rifles Multispeciality Hospital Manipur, DELHI</option>
-                                    <option value="CGHS Shillong, DELHI">CGHS Shillong, DELHI</option>
-                                    <option value="DIG Capfs CH Patgaon Kamrup, DELHI">DIG Capfs CH Patgaon Kamrup, DELHI</option>
-                                    <option value="HQ DG Assam Rifles Shillong, DELHI">HQ DG Assam Rifles Shillong, DELHI</option>
-                                    <option value="NDRF 1st bn Patgaon, DELHI">NDRF 1st bn Patgaon, DELHI</option>
-                                    <option value="177 BN CRPF, DELHI">177 BN CRPF, DELHI</option>
-                                    <option value="47 BN ITBP, DELHI">47 BN ITBP, DELHI</option>
-                                    <option value="79 BN CRPF, DELHI">79 BN CRPF, DELHI</option>
-                                    <option value="CGHS SHIMLA, DELHI">CGHS SHIMLA, DELHI</option>
-                                    <option value="CGHS Srinagar, DELHI">CGHS Srinagar, DELHI</option>
-                                    <option value="CGHS Wellness Center Amritsar, DELHI">CGHS Wellness Center Amritsar, DELHI</option>
-                                    <option value="Composite Hospital ITBP Chandigarh, DELHI">Composite Hospital ITBP Chandigarh, DELHI</option>
-                                    <option value="Frontier Hospital Leh ITBP, DELHI">Frontier Hospital Leh ITBP, DELHI</option>
-                                    <option value="AIIMS Kalyani, DELHI">AIIMS Kalyani, DELHI</option>
-                                    <option value="BSF Composite Hospital Kadamtala Siliguri WB, DELHI">BSF Composite Hospital Kadamtala Siliguri WB, DELHI</option>
-                                    <option value="CGHS Allahabad, DELHI">CGHS Allahabad, DELHI</option>
-                                    <option value="CGHS Bhubaneswar Odisha, DELHI">CGHS Bhubaneswar Odisha, DELHI</option>
-                                    <option value="CGHS Kolkata, DELHI">CGHS Kolkata, DELHI</option>
-                                    <option value="Central Govt Health Scheme Bhopal, DELHI">Central Govt Health Scheme Bhopal, DELHI</option>
-                                    <option value="Central Govt Health Scheme Jabalpur, DELHI">Central Govt Health Scheme Jabalpur, DELHI</option>
-                                    <option value="Central Govt Health Scheme Pune, DELHI">Central Govt Health Scheme Pune, DELHI</option>
-                                    <option value="Base Hospital ITBP,Tigri Camp, DELHI">Base Hospital ITBP,Tigri Camp, DELHI</option>
-                                    <option value="CGHS,Kanpur, DELHI">CGHS,Kanpur, DELHI</option>
-                                    <option value="CGHS,Meerut, DELHI">CGHS,Meerut, DELHI</option>
-                                    <option value="CGHS,New Delhi, DELHI">CGHS,New Delhi, DELHI</option>
-                                    <option value="HLL - Delhi, DELHI">HLL - Delhi, DELHI</option>
-                                    <option value="HLL- Rohtak, ROHTAK">HLL- Rohtak, ROHTAK</option>
-                                    <option value="Central Railways, MUMBAI">Central Railways, MUMBAI</option>
-                                    <option value="NE Railways, LUCKNOW">NE Railways, LUCKNOW</option>
-                                    <option value="South Eastern Railways, HOWRAH">South Eastern Railways, HOWRAH</option>
-                                    <option value="CLW, HOWRAH">CLW, HOWRAH</option>
-                                    <option value="Eastern Railways - HOWRAH, HOWRAH">Eastern Railways - HOWRAH, HOWRAH</option>
-                                    <option value="Southern Railways, CHENNAI">Southern Railways, CHENNAI</option>
-                                    <option value="South Central Railways, HYDERABAD">South Central Railways, HYDERABAD</option>
-                                    <option value="North Central Railways, LUCKNOW">North Central Railways, LUCKNOW</option>
-                                    <option value="RDSO, LUCKNOW">RDSO, LUCKNOW</option>
-                                    <option value="ESIC Hospital Lucknow, LUCKNOW">ESIC Hospital Lucknow, LUCKNOW</option>
-                                    <option value="ESIC,Employees State Insurance, PUNE">ESIC,Employees State Insurance, PUNE</option>
-                                    <option value="ESIC DEPUTY MEDICAL SUPRITENDENT ES, FARIDABAD">ESIC DEPUTY MEDICAL SUPRITENDENT ES, FARIDABAD</option>
-                                    <option value="ESIC,The Medical Suprintendent, HYDERABAD">ESIC,The Medical Suprintendent, HYDERABAD</option>
-                                    <option value="KGMU, LUCKNOW">KGMU, LUCKNOW</option>
-                                    <option value="WUS - DELHI, DELHI">WUS - DELHI, DELHI</option>
-                                    <option value="SBI - Mumbai, MUMBAI">SBI - Mumbai, MUMBAI</option>
-                                    <option value="DHS WB, KOLKATA">DHS WB, KOLKATA</option>
-                                    <option value="OIL INDIA LIMITED, TINSUKIA">OIL INDIA LIMITED, TINSUKIA</option>
-                                    <option value="TSRTC, HYDERABAD">TSRTC, HYDERABAD</option>
-                                    <option value="HLL - AMRIT PHARMACY Secunderabad, HYDERABAD">HLL - AMRIT PHARMACY Secunderabad, HYDERABAD</option>
-                                    <option value="KARNATAKA STATE CO-OP CONSUMERS, BANGALORE">KARNATAKA STATE CO-OP CONSUMERS, BANGALORE</option>
-                                    <option value="KERALA STATE COOP.CONS.LTD., TRIVANDRUM">KERALA STATE COOP.CONS.LTD., TRIVANDRUM</option>
-                                    <option value="KERALA STATE CO-OP.CONS.FED. LTD., PALAKKAD">KERALA STATE CO-OP.CONS.FED. LTD., PALAKKAD</option>
-                                    <option value="KERALA STATE COOP CON.FED.LTD, COCHIN">KERALA STATE COOP CON.FED.LTD, COCHIN</option>
-                                    <option value="KERALA STATE CO-OPERATIVE CONSUMER', KANNUR">KERALA STATE CO-OPERATIVE CONSUMER', KANNUR</option>
-                                    <option value="KERALA ST.COOP.CONS.FED.LTD., CALICUT">KERALA ST.COOP.CONS.FED.LTD., CALICUT</option>
-                                    <option value="SUPPLYCO REGIONAL MEDICAL WHOLSALE, TRIVANDRUM">SUPPLYCO REGIONAL MEDICAL WHOLSALE, TRIVANDRUM</option>
-                                    <option value="RAMPURHAT HEALTH DISTRICT HOSPITAL, RAMPURHAT">RAMPURHAT HEALTH DISTRICT HOSPITAL, RAMPURHAT</option>
-                                    <option value="AMRIT PHARMACY- SECL MANENDRAGARH, BILASPUR">AMRIT PHARMACY- SECL MANENDRAGARH, BILASPUR</option>
-                                    <option value="HLL - Bhopal, BHOPAL">HLL - Bhopal, BHOPAL</option>
-                                    <option value="BPS Medical Collage, CHANDIGARH">BPS Medical Collage, CHANDIGARH</option>
-                                    <option value="MH Ambala, DELHI">MH Ambala, DELHI</option>
-                                    <option value="CH (SC) Pune, DELHI">CH (SC) Pune, DELHI</option>
-                                    <option value="MH VARANSAI, DELHI">MH VARANSAI, DELHI</option>
-                                    <option value="MH Chennai, DELHI">MH Chennai, DELHI</option>
-                                    <option value="Base Hospital Delhi, DELHI">Base Hospital Delhi, DELHI</option>
-                                    <option value="Mh Gaya, DELHI">Mh Gaya, DELHI</option>
-                                    <option value="MH 151 base, DELHI">MH 151 base, DELHI</option>
-                                    <option value="Command Hospital (Air Force,) Bangalore, DELHI">Command Hospital (Air Force,) Bangalore, DELHI</option>
-                                    <option value="Military Hospital, Chennai, DELHI">Military Hospital, Chennai, DELHI</option>
-                                    <option value="Military Hospital, Ranikhet, DELHI">Military Hospital, Ranikhet, DELHI</option>
-                                    <option value="Military Hospital, Varanasi, DELHI">Military Hospital, Varanasi, DELHI</option>
-                                    <option value="Mh ashwini, DELHI">Mh ashwini, DELHI</option>
-                                    <option value="Commandant, Command Hospital, JALANDHAR">Commandant, Command Hospital, JALANDHAR</option>
-                                    <option value="CGHS Sector 16 Panchkula, DELHI">CGHS Sector 16 Panchkula, DELHI</option>
-                                    <option value="CGHS Sector 29 C Chandigarh, DELHI">CGHS Sector 29 C Chandigarh, DELHI</option>
-                                    <option value="CGHS Wellness Center Ambala, DELHI">CGHS Wellness Center Ambala, DELHI</option>
-                                    <option value="CGHS Wellness Center-1, Jammu, DELHI">CGHS Wellness Center-1, Jammu, DELHI</option>
-                                    <option value="CGHS Patna, DELHI">CGHS Patna, DELHI</option>
-                                    <option value="The Additional Director CGHS Seminary Hills Nagpur Maharastra, DELHI">The Additional Director CGHS Seminary Hills Nagpur Maharastra, DELHI</option>
-                                    <option value="CMS ESI (MB) SCHEME, WEST BENGAL, Kolkata">CMS ESI (MB) SCHEME, WEST BENGAL, Kolkata</option>
-                                    <option value="CGHS Kolkata, KOLKATA">CGHS Kolkata, KOLKATA</option>
-                                    <option value="AMRIT PHARMACY (A DIVISON OF HLL L, PATNA)">AMRIT PHARMACY (A DIVISON OF HLL L, PATNA)</option>
-                                    <option value="AMRIT PHARMACY (A DIVISON OF HLL L, GWALIOR)">AMRIT PHARMACY (A DIVISON OF HLL L, GWALIOR)</option>
-                                    <option value="HLL - Jamshedpur, JUGSALAI">HLL - Jamshedpur, JUGSALAI</option>
-                                    <option value="HLL - Orrisa, ROURKELA">HLL - Orrisa, ROURKELA</option>
-                                    <option value="THE MEDICAL SUPERINTENDENT, ROURKELA">THE MEDICAL SUPERINTENDENT, ROURKELA</option>
-                                    <option value="THE MEDICAL SUPERINTENDENT OF AGMC AND GBP HOSPITAL, AGARTALA">THE MEDICAL SUPERINTENDENT OF AGMC AND GBP HOSPITAL, AGARTALA</option>
-                                    <option value="INDIAN INSTITUTE OF TECHNOLOGY, DELHI">INDIAN INSTITUTE OF TECHNOLOGY, DELHI</option>
-                                    <option value="Aviaition Research Centre, DELHI">Aviaition Research Centre, DELHI</option>
-                                    <option value="CENTRAL MEDICINE STORES-KURNOOL, GUNTUR">CENTRAL MEDICINE STORES-KURNOOL, GUNTUR</option>
-                                    <option value="CENTRAL MEDICINE STORES-VISAKAPATNA, GUNTUR">CENTRAL MEDICINE STORES-VISAKAPATNA, GUNTUR</option>
-                                    <option value="OFFICE OF THE ADMINISTRATIVE MEDICA, GUWAHATI">OFFICE OF THE ADMINISTRATIVE MEDICA, GUWAHATI</option>
-                                    <option value="ESIC,MEDICAL OFFICER (Stores), GUWAHATI">ESIC,MEDICAL OFFICER (Stores), GUWAHATI</option>
-                                    <option value="PO5120625000445, CHENNAI">PO5120625000445, CHENNAI</option>
-                                    <option value="po5130625000172, TIRUNELVELI">po5130625000172, TIRUNELVELI</option>
-                                    <option value="Composite Hospital CRPF Ismailgangj Allahabad, DELHI">Composite Hospital CRPF Ismailgangj Allahabad, DELHI</option>
-                                </select>
-                            </div>
-                        </div>
+{{--                        <div class="mb-3 row" id="govt_dropdown_wrapper" style="display:none;">--}}
+{{--                            <label class="col-md-4 col-form-label">Select Inst Name</label>--}}
+{{--                            <div class="col-md-8">--}}
+{{--                                <select class="form-control selectpicker" id="govt_dropdown" name="govt_dropdown" data-live-search="true">--}}
+{{--                                    <option value="">Select Inst Name</option>--}}
+{{--                                    <option value="new">New Institution</option>--}}
+{{--                                    <option value="North Western Railway, DELHI">North Western Railway, DELHI</option>--}}
+{{--                                    <option value="Sir Gangaram Hospital - Delhi, DELHI">Sir Gangaram Hospital - Delhi, DELHI</option>--}}
+{{--                                    <option value="Jhilmil ESI, DELHI">Jhilmil ESI, DELHI</option>--}}
+{{--                                    <option value="AMRIT PHARMACY (A DIVISON OF HLL L, HOWRAH)">AMRIT PHARMACY (A DIVISON OF HLL L, HOWRAH)</option>--}}
+{{--                                    <option value="NF Railways, GUWAHATI">NF Railways, GUWAHATI</option>--}}
+{{--                                    <option value="CGHS Bangalore, DELHI">CGHS Bangalore, DELHI</option>--}}
+{{--                                    <option value="NMDC BACHELI, BILASPUR">NMDC BACHELI, BILASPUR</option>--}}
+{{--                                    <option value="HLL - Jharkhand, JUGSALAI">HLL - Jharkhand, JUGSALAI</option>--}}
+{{--                                    <option value="East Central Railways, HAJIPUR">East Central Railways, HAJIPUR</option>--}}
+{{--                                    <option value="BHU VARANASI, Varanasi">BHU VARANASI, Varanasi</option>--}}
+{{--                                    <option value="In-charge (Stores),ESIC Hospital, PATNA">In-charge (Stores),ESIC Hospital, PATNA</option>--}}
+{{--                                    <option value="CGHS Chennai, DELHI">CGHS Chennai, DELHI</option>--}}
+{{--                                    <option value="CRPF Avadi, DELHI">CRPF Avadi, DELHI</option>--}}
+{{--                                    <option value="Deputy Director, Department of Atomic Energy, DELHI">Deputy Director, Department of Atomic Energy, DELHI</option>--}}
+{{--                                    <option value="Assam Rifles Multispeciality Hospital  Manipur , DELHI">Assam Rifles Multispeciality Hospital Manipur, DELHI</option>--}}
+{{--                                    <option value="CGHS Shillong, DELHI">CGHS Shillong, DELHI</option>--}}
+{{--                                    <option value="DIG Capfs CH Patgaon Kamrup, DELHI">DIG Capfs CH Patgaon Kamrup, DELHI</option>--}}
+{{--                                    <option value="HQ DG Assam Rifles Shillong, DELHI">HQ DG Assam Rifles Shillong, DELHI</option>--}}
+{{--                                    <option value="NDRF 1st bn Patgaon, DELHI">NDRF 1st bn Patgaon, DELHI</option>--}}
+{{--                                    <option value="177 BN CRPF, DELHI">177 BN CRPF, DELHI</option>--}}
+{{--                                    <option value="47 BN ITBP, DELHI">47 BN ITBP, DELHI</option>--}}
+{{--                                    <option value="79 BN CRPF, DELHI">79 BN CRPF, DELHI</option>--}}
+{{--                                    <option value="CGHS SHIMLA, DELHI">CGHS SHIMLA, DELHI</option>--}}
+{{--                                    <option value="CGHS Srinagar, DELHI">CGHS Srinagar, DELHI</option>--}}
+{{--                                    <option value="CGHS Wellness Center Amritsar, DELHI">CGHS Wellness Center Amritsar, DELHI</option>--}}
+{{--                                    <option value="Composite Hospital ITBP Chandigarh, DELHI">Composite Hospital ITBP Chandigarh, DELHI</option>--}}
+{{--                                    <option value="Frontier Hospital Leh ITBP, DELHI">Frontier Hospital Leh ITBP, DELHI</option>--}}
+{{--                                    <option value="AIIMS Kalyani, DELHI">AIIMS Kalyani, DELHI</option>--}}
+{{--                                    <option value="BSF Composite Hospital Kadamtala Siliguri WB, DELHI">BSF Composite Hospital Kadamtala Siliguri WB, DELHI</option>--}}
+{{--                                    <option value="CGHS Allahabad, DELHI">CGHS Allahabad, DELHI</option>--}}
+{{--                                    <option value="CGHS Bhubaneswar Odisha, DELHI">CGHS Bhubaneswar Odisha, DELHI</option>--}}
+{{--                                    <option value="CGHS Kolkata, DELHI">CGHS Kolkata, DELHI</option>--}}
+{{--                                    <option value="Central Govt Health Scheme Bhopal, DELHI">Central Govt Health Scheme Bhopal, DELHI</option>--}}
+{{--                                    <option value="Central Govt Health Scheme Jabalpur, DELHI">Central Govt Health Scheme Jabalpur, DELHI</option>--}}
+{{--                                    <option value="Central Govt Health Scheme Pune, DELHI">Central Govt Health Scheme Pune, DELHI</option>--}}
+{{--                                    <option value="Base Hospital ITBP,Tigri Camp, DELHI">Base Hospital ITBP,Tigri Camp, DELHI</option>--}}
+{{--                                    <option value="CGHS,Kanpur, DELHI">CGHS,Kanpur, DELHI</option>--}}
+{{--                                    <option value="CGHS,Meerut, DELHI">CGHS,Meerut, DELHI</option>--}}
+{{--                                    <option value="CGHS,New Delhi, DELHI">CGHS,New Delhi, DELHI</option>--}}
+{{--                                    <option value="HLL - Delhi, DELHI">HLL - Delhi, DELHI</option>--}}
+{{--                                    <option value="HLL- Rohtak, ROHTAK">HLL- Rohtak, ROHTAK</option>--}}
+{{--                                    <option value="Central Railways, MUMBAI">Central Railways, MUMBAI</option>--}}
+{{--                                    <option value="NE Railways, LUCKNOW">NE Railways, LUCKNOW</option>--}}
+{{--                                    <option value="South Eastern Railways, HOWRAH">South Eastern Railways, HOWRAH</option>--}}
+{{--                                    <option value="CLW, HOWRAH">CLW, HOWRAH</option>--}}
+{{--                                    <option value="Eastern Railways - HOWRAH, HOWRAH">Eastern Railways - HOWRAH, HOWRAH</option>--}}
+{{--                                    <option value="Southern Railways, CHENNAI">Southern Railways, CHENNAI</option>--}}
+{{--                                    <option value="South Central Railways, HYDERABAD">South Central Railways, HYDERABAD</option>--}}
+{{--                                    <option value="North Central Railways, LUCKNOW">North Central Railways, LUCKNOW</option>--}}
+{{--                                    <option value="RDSO, LUCKNOW">RDSO, LUCKNOW</option>--}}
+{{--                                    <option value="ESIC Hospital Lucknow, LUCKNOW">ESIC Hospital Lucknow, LUCKNOW</option>--}}
+{{--                                    <option value="ESIC,Employees State Insurance, PUNE">ESIC,Employees State Insurance, PUNE</option>--}}
+{{--                                    <option value="ESIC DEPUTY MEDICAL SUPRITENDENT ES, FARIDABAD">ESIC DEPUTY MEDICAL SUPRITENDENT ES, FARIDABAD</option>--}}
+{{--                                    <option value="ESIC,The Medical Suprintendent, HYDERABAD">ESIC,The Medical Suprintendent, HYDERABAD</option>--}}
+{{--                                    <option value="KGMU, LUCKNOW">KGMU, LUCKNOW</option>--}}
+{{--                                    <option value="WUS - DELHI, DELHI">WUS - DELHI, DELHI</option>--}}
+{{--                                    <option value="SBI - Mumbai, MUMBAI">SBI - Mumbai, MUMBAI</option>--}}
+{{--                                    <option value="DHS WB, KOLKATA">DHS WB, KOLKATA</option>--}}
+{{--                                    <option value="OIL INDIA LIMITED, TINSUKIA">OIL INDIA LIMITED, TINSUKIA</option>--}}
+{{--                                    <option value="TSRTC, HYDERABAD">TSRTC, HYDERABAD</option>--}}
+{{--                                    <option value="HLL - AMRIT PHARMACY Secunderabad, HYDERABAD">HLL - AMRIT PHARMACY Secunderabad, HYDERABAD</option>--}}
+{{--                                    <option value="KARNATAKA STATE CO-OP CONSUMERS, BANGALORE">KARNATAKA STATE CO-OP CONSUMERS, BANGALORE</option>--}}
+{{--                                    <option value="KERALA STATE COOP.CONS.LTD., TRIVANDRUM">KERALA STATE COOP.CONS.LTD., TRIVANDRUM</option>--}}
+{{--                                    <option value="KERALA STATE CO-OP.CONS.FED. LTD., PALAKKAD">KERALA STATE CO-OP.CONS.FED. LTD., PALAKKAD</option>--}}
+{{--                                    <option value="KERALA STATE COOP CON.FED.LTD, COCHIN">KERALA STATE COOP CON.FED.LTD, COCHIN</option>--}}
+{{--                                    <option value="KERALA STATE CO-OPERATIVE CONSUMER', KANNUR">KERALA STATE CO-OPERATIVE CONSUMER', KANNUR</option>--}}
+{{--                                    <option value="KERALA ST.COOP.CONS.FED.LTD., CALICUT">KERALA ST.COOP.CONS.FED.LTD., CALICUT</option>--}}
+{{--                                    <option value="SUPPLYCO REGIONAL MEDICAL WHOLSALE, TRIVANDRUM">SUPPLYCO REGIONAL MEDICAL WHOLSALE, TRIVANDRUM</option>--}}
+{{--                                    <option value="RAMPURHAT HEALTH DISTRICT HOSPITAL, RAMPURHAT">RAMPURHAT HEALTH DISTRICT HOSPITAL, RAMPURHAT</option>--}}
+{{--                                    <option value="AMRIT PHARMACY- SECL MANENDRAGARH, BILASPUR">AMRIT PHARMACY- SECL MANENDRAGARH, BILASPUR</option>--}}
+{{--                                    <option value="HLL - Bhopal, BHOPAL">HLL - Bhopal, BHOPAL</option>--}}
+{{--                                    <option value="BPS Medical Collage, CHANDIGARH">BPS Medical Collage, CHANDIGARH</option>--}}
+{{--                                    <option value="MH Ambala, DELHI">MH Ambala, DELHI</option>--}}
+{{--                                    <option value="CH (SC) Pune, DELHI">CH (SC) Pune, DELHI</option>--}}
+{{--                                    <option value="MH VARANSAI, DELHI">MH VARANSAI, DELHI</option>--}}
+{{--                                    <option value="MH Chennai, DELHI">MH Chennai, DELHI</option>--}}
+{{--                                    <option value="Base Hospital Delhi, DELHI">Base Hospital Delhi, DELHI</option>--}}
+{{--                                    <option value="Mh Gaya, DELHI">Mh Gaya, DELHI</option>--}}
+{{--                                    <option value="MH 151 base, DELHI">MH 151 base, DELHI</option>--}}
+{{--                                    <option value="Command Hospital (Air Force,) Bangalore, DELHI">Command Hospital (Air Force,) Bangalore, DELHI</option>--}}
+{{--                                    <option value="Military Hospital, Chennai, DELHI">Military Hospital, Chennai, DELHI</option>--}}
+{{--                                    <option value="Military Hospital, Ranikhet, DELHI">Military Hospital, Ranikhet, DELHI</option>--}}
+{{--                                    <option value="Military Hospital, Varanasi, DELHI">Military Hospital, Varanasi, DELHI</option>--}}
+{{--                                    <option value="Mh ashwini, DELHI">Mh ashwini, DELHI</option>--}}
+{{--                                    <option value="Commandant, Command Hospital, JALANDHAR">Commandant, Command Hospital, JALANDHAR</option>--}}
+{{--                                    <option value="CGHS Sector 16 Panchkula, DELHI">CGHS Sector 16 Panchkula, DELHI</option>--}}
+{{--                                    <option value="CGHS Sector 29 C Chandigarh, DELHI">CGHS Sector 29 C Chandigarh, DELHI</option>--}}
+{{--                                    <option value="CGHS Wellness Center Ambala, DELHI">CGHS Wellness Center Ambala, DELHI</option>--}}
+{{--                                    <option value="CGHS Wellness Center-1, Jammu, DELHI">CGHS Wellness Center-1, Jammu, DELHI</option>--}}
+{{--                                    <option value="CGHS Patna, DELHI">CGHS Patna, DELHI</option>--}}
+{{--                                    <option value="The Additional Director CGHS Seminary Hills Nagpur Maharastra, DELHI">The Additional Director CGHS Seminary Hills Nagpur Maharastra, DELHI</option>--}}
+{{--                                    <option value="CMS ESI (MB) SCHEME, WEST BENGAL, Kolkata">CMS ESI (MB) SCHEME, WEST BENGAL, Kolkata</option>--}}
+{{--                                    <option value="CGHS Kolkata, KOLKATA">CGHS Kolkata, KOLKATA</option>--}}
+{{--                                    <option value="AMRIT PHARMACY (A DIVISON OF HLL L, PATNA)">AMRIT PHARMACY (A DIVISON OF HLL L, PATNA)</option>--}}
+{{--                                    <option value="AMRIT PHARMACY (A DIVISON OF HLL L, GWALIOR)">AMRIT PHARMACY (A DIVISON OF HLL L, GWALIOR)</option>--}}
+{{--                                    <option value="HLL - Jamshedpur, JUGSALAI">HLL - Jamshedpur, JUGSALAI</option>--}}
+{{--                                    <option value="HLL - Orrisa, ROURKELA">HLL - Orrisa, ROURKELA</option>--}}
+{{--                                    <option value="THE MEDICAL SUPERINTENDENT, ROURKELA">THE MEDICAL SUPERINTENDENT, ROURKELA</option>--}}
+{{--                                    <option value="THE MEDICAL SUPERINTENDENT OF AGMC AND GBP HOSPITAL, AGARTALA">THE MEDICAL SUPERINTENDENT OF AGMC AND GBP HOSPITAL, AGARTALA</option>--}}
+{{--                                    <option value="INDIAN INSTITUTE OF TECHNOLOGY, DELHI">INDIAN INSTITUTE OF TECHNOLOGY, DELHI</option>--}}
+{{--                                    <option value="Aviaition Research Centre, DELHI">Aviaition Research Centre, DELHI</option>--}}
+{{--                                    <option value="CENTRAL MEDICINE STORES-KURNOOL, GUNTUR">CENTRAL MEDICINE STORES-KURNOOL, GUNTUR</option>--}}
+{{--                                    <option value="CENTRAL MEDICINE STORES-VISAKAPATNA, GUNTUR">CENTRAL MEDICINE STORES-VISAKAPATNA, GUNTUR</option>--}}
+{{--                                    <option value="OFFICE OF THE ADMINISTRATIVE MEDICA, GUWAHATI">OFFICE OF THE ADMINISTRATIVE MEDICA, GUWAHATI</option>--}}
+{{--                                    <option value="ESIC,MEDICAL OFFICER (Stores), GUWAHATI">ESIC,MEDICAL OFFICER (Stores), GUWAHATI</option>--}}
+{{--                                    <option value="PO5120625000445, CHENNAI">PO5120625000445, CHENNAI</option>--}}
+{{--                                    <option value="po5130625000172, TIRUNELVELI">po5130625000172, TIRUNELVELI</option>--}}
+{{--                                    <option value="Composite Hospital CRPF Ismailgangj Allahabad, DELHI">Composite Hospital CRPF Ismailgangj Allahabad, DELHI</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         {{-- New Institution (conditional) --}}
-                        <div class="mb-3 row" id="new_institution_wrapper" style="display:none;">
-                            <label class="col-md-4 col-form-label">Enter New Institution</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="new_institution" name="new_institution" placeholder="Enter new institution name">
-                            </div>
-                        </div>
+{{--                        <div class="mb-3 row" id="new_institution_wrapper" style="display:none;">--}}
+{{--                            <label class="col-md-4 col-form-label">Enter New Institution</label>--}}
+{{--                            <div class="col-md-8">--}}
+{{--                                <input type="text" class="form-control" id="new_institution" name="new_institution" placeholder="Enter new institution name">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         {{-- UDCA Rx/Month --}}
                         <div class="mb-3 row">
@@ -631,53 +631,53 @@
                         </div>
 
                         {{-- Other Saro Rx/Month --}}
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Other Saro Rx/Month <span class="text-danger">*</span></label>
-                            <div class="col-md-8">
-                                <input type="number" class="form-control" name="other_saro_rm_per_month"
-                                       placeholder="Other Saro Rx/Month" min="0" max="200" step="0.01"
-                                       onkeydown="return !(['-','e','+'].includes(event.key))"
-                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
-                            </div>
-                        </div>
+{{--                        <div class="mb-3 row">--}}
+{{--                            <label class="col-md-4 col-form-label">Other Saro Rx/Month <span class="text-danger">*</span></label>--}}
+{{--                            <div class="col-md-8">--}}
+{{--                                <input type="number" class="form-control" name="other_saro_rm_per_month"--}}
+{{--                                       placeholder="Other Saro Rx/Month" min="0" max="200" step="0.01"--}}
+{{--                                       onkeydown="return !(['-','e','+'].includes(event.key))"--}}
+{{--                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         {{-- Total Business Value --}}
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Total Business of above competitors in value <span class="text-danger">*</span></label>
-                            <div class="col-md-8">
-                                <input type="number" class="form-control" name="total_business_value"
-                                       placeholder="Total Business in value" min="0" max="10" step="0.01"
-                                       onkeydown="return !(['-','e','+'].includes(event.key))"
-                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
-                            </div>
-                        </div>
+{{--                        <div class="mb-3 row">--}}
+{{--                            <label class="col-md-4 col-form-label">Total Business of above competitors in value <span class="text-danger">*</span></label>--}}
+{{--                            <div class="col-md-8">--}}
+{{--                                <input type="number" class="form-control" name="total_business_value"--}}
+{{--                                       placeholder="Total Business in value" min="0" max="10" step="0.01"--}}
+{{--                                       onkeydown="return !(['-','e','+'].includes(event.key))"--}}
+{{--                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         {{-- Planned for Conversion (conditional - Non Rxber) --}}
-                        <div class="mb-3 row" id="planned_for_conversion_wrapper" style="display:none;">
-                            <label class="col-md-4 col-form-label">Planned for Conversion in the Month of</label>
-                            <div class="col-md-8">
-                                <select class="form-control" name="planned_for_conversition" id="planned_for_conversition">
-                                    <option value="">Planned for Conversion in the Month of</option>
-                                    <option value="April'26">April'26</option>
-                                    <option value="May'26">May'26</option>
-                                    <option value="June'26">June'26</option>
-                                    <option value="July'26">July'26</option>
-                                    <option value="August'26">August'26</option>
-                                    <option value="September'26">September'26</option>
-                                </select>
-                            </div>
-                        </div>
+{{--                        <div class="mb-3 row" id="planned_for_conversion_wrapper" style="display:none;">--}}
+{{--                            <label class="col-md-4 col-form-label">Planned for Conversion in the Month of</label>--}}
+{{--                            <div class="col-md-8">--}}
+{{--                                <select class="form-control" name="planned_for_conversition" id="planned_for_conversition">--}}
+{{--                                    <option value="">Planned for Conversion in the Month of</option>--}}
+{{--                                    <option value="April'26">April'26</option>--}}
+{{--                                    <option value="May'26">May'26</option>--}}
+{{--                                    <option value="June'26">June'26</option>--}}
+{{--                                    <option value="July'26">July'26</option>--}}
+{{--                                    <option value="August'26">August'26</option>--}}
+{{--                                    <option value="September'26">September'26</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         {{-- Incremental Lipaglyn Business Value --}}
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Incremental Lipaglyn Business Value <span class="text-danger">*</span></label>
-                            <div class="col-md-8">
-                                <input type="number" class="form-control" name="incremental_lipaglyn_busines"
-                                       placeholder="Incremental Lipaglyn Business Value" min="0" max="10" step="0.01"
-                                       onkeydown="return !(['-','e','+'].includes(event.key))"
-                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
-                            </div>
-                        </div>
+{{--                        <div class="mb-3 row">--}}
+{{--                            <label class="col-md-4 col-form-label">Incremental Lipaglyn Business Value <span class="text-danger">*</span></label>--}}
+{{--                            <div class="col-md-8">--}}
+{{--                                <input type="number" class="form-control" name="incremental_lipaglyn_busines"--}}
+{{--                                       placeholder="Incremental Lipaglyn Business Value" min="0" max="10" step="0.01"--}}
+{{--                                       onkeydown="return !(['-','e','+'].includes(event.key))"--}}
+{{--                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         <div class="row">
                             <div class="wd-sl-modalbtn">
@@ -884,8 +884,10 @@
                         { data: 'name',                      orderable: true },
                         { data: 'msl_code',                  searchable: false, orderable: true },
                         { data: 'specialization',            orderable: true },
-                        { data: 'lipaglyn_rx_br_type',       orderable: true },
-                        { data: 'everage_lipaglyn_pr_month', orderable: true },
+                        { data: 'bilypsa_rx_per_month',       orderable: true },
+                        { data: 'sema_rx_prer_month', orderable: true },
+                        // { data: 'lipaglyn_rx_br_type',       orderable: true },
+                        // { data: 'everage_lipaglyn_pr_month', orderable: true },
                         { data: 'action',                    searchable: false, orderable: false }
                     ],
                     drawCallback: function(settings) {
