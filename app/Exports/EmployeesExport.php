@@ -23,6 +23,8 @@ class EmployeesExport implements FromCollection, WithHeadings
             $query->where(function ($q) {
                 $q->where('name', 'like', "%{$this->search}%")
                     ->orWhere('employee_id', 'like', "%{$this->search}%")
+                    ->orWhere('zone', 'like', "%{$this->search}%")
+                    ->orWhere('region', 'like', "%{$this->search}%")
                     ->orWhere('hq', 'like', "%{$this->search}%")
                     ->orWhere('type', 'like', "%{$this->search}%")
                     ->orWhere('status', 'like', "%{$this->search}%");
@@ -32,9 +34,9 @@ class EmployeesExport implements FromCollection, WithHeadings
         return $query->select(
             'name',
             'zone',
+            'region',
             'hq',
             'employee_id',
-            'created_at'
         )->get();
     }
 
@@ -43,9 +45,9 @@ class EmployeesExport implements FromCollection, WithHeadings
         return [
             'Name',
             'Zone',
+            'Region',
             'HQ',
             'Employee ID',
-            'Created At'
         ];
     }
 }
