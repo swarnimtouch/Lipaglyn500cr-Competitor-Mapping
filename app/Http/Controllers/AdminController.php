@@ -253,7 +253,7 @@ class AdminController extends Controller
 
     public function doctorListing(Request $request)
     {
-        $query = MrAllocatedDoctors::with(['employee:id,name,employee_id,zone'])
+        $query = MrAllocatedDoctors::with(['employee:id,name,employee_id,zone,region'])
             ->whereNull('mr_allocated_doctors.deleted_at');
 
         // ✅ ZONE FILTER
@@ -274,6 +274,7 @@ class AdminController extends Controller
                     ->orWhereHas('employee', function ($q2) use ($search) {
                         $q2->where('name', 'like', "%{$search}%")
                             ->orWhere('employee_id', 'like', "%{$search}%")
+                            ->orWhere('region', 'like', "%{$search}%")
                             ->orWhere('zone', 'like', "%{$search}%"); // ✅ add
                     });
             });
@@ -319,7 +320,7 @@ class AdminController extends Controller
         $data = $doctors->map(function ($d, $index) use ($request) {
             return [
                 'index' => $request->start + $index + 1,
-
+                'emp_region' => $d->employee->region ?? '—',
                 'emp_name' => $d->employee->name ?? '—',
                 'emp_id'   => $d->employee->employee_id ?? '—',
 

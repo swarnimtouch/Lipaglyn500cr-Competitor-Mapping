@@ -35,11 +35,13 @@ class AdminDoctorsExport implements FromCollection, WithHeadings
                     ->orWhere('d.msl_code', 'like', "%{$this->search}%")
                     ->orWhere('d.specialization', 'like', "%{$this->search}%")
                     ->orWhere('e.name', 'like', "%{$this->search}%")
-                    ->orWhere('e.employee_id', 'like', "%{$this->search}%");
+                    ->orWhere('e.region', 'like', "%{$this->search}%")
+                ->orWhere('e.employee_id', 'like', "%{$this->search}%");
             });
         }
 
         $data = $query->select(
+            'e.region as emp_region',
             'e.name as emp_name',
             'e.employee_id as emp_id',
             'd.msl_code',
@@ -67,6 +69,7 @@ class AdminDoctorsExport implements FromCollection, WithHeadings
         return $data->map(function ($d, $index) {
             return [
                 'sr_no' => $index + 1,
+                'emp_region' => $d->emp_region,
                 'emp_name' => $d->emp_name,
                 'emp_id' => $d->emp_id,
                 'msl_code' => $d->msl_code ?? '-',
@@ -97,6 +100,7 @@ class AdminDoctorsExport implements FromCollection, WithHeadings
     {
         return [
             'Sr No',
+            'MR Region',
             'MR Name',
             'MR Employee ID',
             'Doctor Code',
