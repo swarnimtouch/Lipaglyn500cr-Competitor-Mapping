@@ -132,6 +132,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>MR Region</th>
+                                <th>MR HQ</th>
                                 <th>MR Name</th>
                                 <th>MR  ID</th>
                                 <th>Dr. Name</th>
@@ -184,6 +185,7 @@
                 columns: [
                     { data: 'index' }, // ✅ Sr No
                     {data: 'emp_region'},
+                    {data: 'emp_hq'},
                     { data: 'emp_name' },
                     { data: 'emp_id' },
                     { data: 'name' },

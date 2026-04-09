@@ -128,9 +128,13 @@ class EmployeeController extends Controller
             'file' => 'required|mimes:xlsx,xls'
         ]);
 
-        Excel::import(new EmployeeImport, $request->file('file'));
+        $import = new EmployeeImport;
 
-        return back()->with('success', 'Employees Imported Successfully!');
+        Excel::import($import, $request->file('file'));
+
+        return back()->with('success',
+            "Inserted: {$import->insertCount}, Updated: {$import->updateCount}"
+        );
     }
     public function doctorImport(Request $request)
     {
