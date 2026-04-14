@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Exports;
 
 use Illuminate\Support\Facades\DB;
@@ -9,11 +10,13 @@ class AdminDoctorsExport implements FromCollection, WithHeadings
 {
     protected $zone;
     protected $search;
+
     public function __construct($zone = null, $search = null)
     {
         $this->zone = $zone;
         $this->search = $search;
     }
+
     public function collection()
     {
         $query = DB::table('mr_allocated_doctors as d')
@@ -37,7 +40,7 @@ class AdminDoctorsExport implements FromCollection, WithHeadings
                     ->orWhere('e.name', 'like', "%{$this->search}%")
                     ->orWhere('e.region', 'like', "%{$this->search}%")
                     ->orWhere('e.hq', 'like', "%{$this->search}%")
-                ->orWhere('e.employee_id', 'like', "%{$this->search}%");
+                    ->orWhere('e.employee_id', 'like', "%{$this->search}%");
             });
         }
 
@@ -65,6 +68,7 @@ class AdminDoctorsExport implements FromCollection, WithHeadings
             'd.bilypsa_rx_per_month',
             'd.linvas_rx_per_month',
             'd.vorxar_rx_per_month',
+            'd.competitor_activity',
             'd.created_at'
         )->get();
 
@@ -94,6 +98,7 @@ class AdminDoctorsExport implements FromCollection, WithHeadings
                 'bilypsa_rx_per_month' => $d->bilypsa_rx_per_month,
                 'linvas_rx_per_month' => $d->linvas_rx_per_month,
                 'vorxar_rx_per_month' => $d->vorxar_rx_per_month,
+                'competitor_activity' => $d->competitor_activity,
                 'created_at' => $d->created_at,
             ];
         });
@@ -126,6 +131,7 @@ class AdminDoctorsExport implements FromCollection, WithHeadings
             'Bilypsa Rx / Month',
             'Linvas Rx / Month',
             'Vorxar Rx / Month',
+            'Competitor activity',
             'Created At'
         ];
     }

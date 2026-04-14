@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Exports;
 
 use App\Models\MrAllocatedDoctors;
@@ -21,27 +22,28 @@ class DoctorsExport implements FromCollection, WithHeadings
 
         return $data->map(function ($d, $index) {
             return [
-                'sr_no'                     => $index + 1, // ✅ Sr No
-                'msl_code'                  => $d->msl_code,
-                'name'                      => $d->name,
-                'specialization'            => $d->specialization,
+                'sr_no' => $index + 1, // ✅ Sr No
+                'msl_code' => $d->msl_code,
+                'name' => $d->name,
+                'specialization' => $d->specialization,
 //                'lipaglyn_rx_br_type'       => $d->lipaglyn_rx_br_type,
 //                'avg_lipaglyn_pr_month'     => $d->avg_lipaglyn_pr_month,
 //                'actual_speciality'         => $d->actual_speciality,
-                'Diabetes_patients_day'     => $d->Diabetes_patients_day,
+                'Diabetes_patients_day' => $d->Diabetes_patients_day,
 //                'kol_kbl'                   => $d->kol_kbl,
 //                'inst_dr'                   => $d->inst_dr,
 //                'govt_dropdown'             => $d->govt_dropdown,
-                'udca_rx_per_month'         => $d->udca_rx_per_month,
-                'sema_rx_prer_month'        => $d->sema_rx_prer_month,
+                'udca_rx_per_month' => $d->udca_rx_per_month,
+                'sema_rx_prer_month' => $d->sema_rx_prer_month,
 //                'other_saro_rm_per_month'   => $d->other_saro_rm_per_month,
 //                'total_business_value'      => $d->total_business_value,
 //                'planned_for_conversition'  => $d->planned_for_conversition,
 //                'incremental_lipaglyn_busines' => $d->incremental_lipaglyn_busines,
-                'bilypsa_rx_per_month'      => $d->bilypsa_rx_per_month,
-                'linvas_rx_per_month'       => $d->linvas_rx_per_month,
-                'vorxar_rx_per_month'       => $d->vorxar_rx_per_month,
-                'created_at'                => $d->created_at,
+                'bilypsa_rx_per_month' => $d->bilypsa_rx_per_month,
+                'linvas_rx_per_month' => $d->linvas_rx_per_month,
+                'vorxar_rx_per_month' => $d->vorxar_rx_per_month,
+                'competitor_activity' => $d->competitor_activity,
+                'created_at' => $d->created_at,
             ];
         });
     }
@@ -69,6 +71,7 @@ class DoctorsExport implements FromCollection, WithHeadings
             'Bilypsa Rx / Month',
             'Linvas Rx / Month',
             'Vorxar Rx / Month',
+            'Competitor activity',
             'Created At'
         ];
     }

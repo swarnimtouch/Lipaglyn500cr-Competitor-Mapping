@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Portal;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MrAllocatedDoctors;
-use Maatwebsite\Excel\Facades\Excel; // optional — only if you have laravel-excel
+use Maatwebsite\Excel\Facades\Excel;
+
+// optional — only if you have laravel-excel
 use App\Exports\DoctorsExport;
 
 class DoctorController extends Controller
@@ -66,36 +68,36 @@ class DoctorController extends Controller
         // Order
         $orderCol = $request->input('order.0.column', 0);
         $orderDir = $request->input('order.0.dir', 'desc');
-        $columns  = ['id', 'name', 'msl_code', 'specialization', 'sema_rx_prer_month', 'bilypsa_rx_per_month'];
-        $sortCol  = $columns[$orderCol] ?? 'id';
+        $columns = ['id', 'name', 'msl_code', 'specialization', 'sema_rx_prer_month', 'bilypsa_rx_per_month'];
+        $sortCol = $columns[$orderCol] ?? 'id';
         $query->orderBy($sortCol, $orderDir);
 
         // Paginate
-        $start   = $request->input('start', 0);
-        $length  = $request->input('length', 10);
+        $start = $request->input('start', 0);
+        $length = $request->input('length', 10);
         $doctors = $query->skip($start)->take($length)->get();
 
         $data = $doctors->map(function ($d, $index) use ($request) {
             return [
-                'index'                     => $request->start + $index + 1,
-                'id'                        => $d->id,
-                'name'                      => $d->name,
-                'msl_code'                  => $d->msl_code,
-                'specialization'            => $d->specialization,
-                'bilypsa_rx_per_month'       => $d->bilypsa_rx_per_month,
-                'sema_rx_prer_month' => $d->sema_rx_prer_month ,
+                'index' => $request->start + $index + 1,
+                'id' => $d->id,
+                'name' => $d->name,
+                'msl_code' => $d->msl_code,
+                'specialization' => $d->specialization,
+                'bilypsa_rx_per_month' => $d->bilypsa_rx_per_month,
+                'sema_rx_prer_month' => $d->sema_rx_prer_month,
                 'action' => '
-                <button onclick="openEditModal('.$d->id.')" class="btn btn-sm btn-warning">Edit</button>
+                <button onclick="openEditModal(' . $d->id . ')" class="btn btn-sm btn-warning">Edit</button>
 
             '
             ];
         });
 
         return response()->json([
-            'draw'            => intval($request->input('draw')),
-            'recordsTotal'    => $total,
+            'draw' => intval($request->input('draw')),
+            'recordsTotal' => $total,
             'recordsFiltered' => $filtered, // ✅ Yahi fix hai
-            'data'            => $data,
+            'data' => $data,
         ]);
     }
 
@@ -110,8 +112,8 @@ class DoctorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'         => 'required|string|max:100',
-            'msl_code'     => 'nullable|string|max:50',
+            'name' => 'required|string|max:100',
+            'msl_code' => 'nullable|string|max:50',
             'specialization' => 'nullable|string|max:100',
         ]);
 
@@ -128,8 +130,8 @@ class DoctorController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'         => 'required|string|max:100',
-            'msl_code'     => 'nullable|string|max:50',
+            'name' => 'required|string|max:100',
+            'msl_code' => 'nullable|string|max:50',
             'specialization' => 'nullable|string|max:100',
         ]);
 
@@ -155,7 +157,7 @@ class DoctorController extends Controller
     {
         return Excel::download(
             new DoctorsExport($this->mrId()),
-            'doctors_'.date('Y-m-d').'.xlsx'
+            'doctors_' . date('Y-m-d') . '.xlsx'
         );
 
     }
@@ -163,27 +165,29 @@ class DoctorController extends Controller
     // ─── Private: fill model fields from request ──────────────────────────────
     private function fillDoctor(MrAllocatedDoctors $doctor, Request $request)
     {
-        $doctor->name                       = $request->name;
-        $doctor->msl_code                   = $request->msl_code;
-        $doctor->specialization             = $request->specialization;
+        $doctor->name = $request->name;
+        $doctor->msl_code = $request->msl_code;
+        $doctor->specialization = $request->specialization;
 //        $doctor->lipaglyn_rx_br_type        = $request->lipaglyn_rx_br_type;
 //        $doctor->avg_lipaglyn_pr_month      = $request->avg_lipaglyn_pr_month;
 //        $doctor->actual_speciality          = $request->actual_speciality;
-        $doctor->Diabetes_patients_day      = $request->Diabetes_patients_day;
+        $doctor->Diabetes_patients_day = $request->Diabetes_patients_day;
 //        $doctor->kol_kbl                    = $request->kol_kbl;
 //        $doctor->inst_dr                    = $request->inst_dr;
 //        $doctor->govt_dropdown              = $request->govt_dropdown === 'new'
 //            ? $request->new_institution
 //            : $request->govt_dropdown;
-        $doctor->udca_rx_per_month          = $request->udca_rx_per_month;
-        $doctor->sema_rx_prer_month         = $request->sema_rx_prer_month;
+        $doctor->udca_rx_per_month = $request->udca_rx_per_month;
+        $doctor->sema_rx_prer_month = $request->sema_rx_prer_month;
+        $doctor->competitor_activity = $request->competitor_activity;
+
 //        $doctor->other_saro_rm_per_month    = $request->other_saro_rm_per_month;
 //        $doctor->total_business_value       = $request->total_business_value;
 //        $doctor->planned_for_conversition   = $request->planned_for_conversition;
 //        $doctor->incremental_lipaglyn_busines = $request->incremental_lipaglyn_busines;
-        $doctor->bilypsa_rx_per_month  = $request->bilypsa_rx_per_month;
-        $doctor->linvas_rx_per_month   = $request->linvas_rx_per_month;
-        $doctor->vorxar_rx_per_month   = $request->vorxar_rx_per_month;
+        $doctor->bilypsa_rx_per_month = $request->bilypsa_rx_per_month;
+        $doctor->linvas_rx_per_month = $request->linvas_rx_per_month;
+        $doctor->vorxar_rx_per_month = $request->vorxar_rx_per_month;
         $doctor->is_active = 1;
 
     }

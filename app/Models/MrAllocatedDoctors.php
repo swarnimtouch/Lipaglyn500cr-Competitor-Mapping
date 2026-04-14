@@ -24,6 +24,7 @@ class MrAllocatedDoctors extends Model
         'inst_dr',
         'govt_dropdown',
         'udca_rx_per_month',
+        'competitor_activity',
         'sema_rx_prer_month',
         'other_saro_rm_per_month',
         'total_business_value',
@@ -34,6 +35,7 @@ class MrAllocatedDoctors extends Model
         'linvas_rx_per_month',
         'vorxar_rx_per_month',
     ];
+
     public function employee()
     {
         return $this->belongsTo(\App\Models\Employee::class, 'mr_id', 'employee_id');
