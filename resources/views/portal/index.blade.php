@@ -754,7 +754,7 @@
                             <textarea class="form-control" name="competitor_activity"
                                       placeholder="Competitor activity" maxlength="200" rows="3" required
                                       oninput="this.nextElementSibling.textContent = this.value.length + '/200'"></textarea>
-                                {{--                                <small class="text-muted d-block text-end">0/200</small>--}}
+                                <small class="text-muted d-block text-end">0/200</small>
                             </div>
                         </div>
 
