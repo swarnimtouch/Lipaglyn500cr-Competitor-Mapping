@@ -15,9 +15,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Cache;
 class AdminController extends Controller
 {
-    // ──────────────────────────────────────────────────────────────────────────
-    //  AUTH
-    // ──────────────────────────────────────────────────────────────────────────
+    
 
     public function loginForm()
     {
@@ -59,10 +57,7 @@ class AdminController extends Controller
         return null;
     }
 
-    // ──────────────────────────────────────────────────────────────────────────
-    //  DASHBOARD
-    // ──────────────────────────────────────────────────────────────────────────
-
+   
     public function dashboard()
     {
         if ($r = $this->authCheck()) return $r;
@@ -74,9 +69,7 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('totalEmployees', 'activeEmployees', 'totalDoctors'));
     }
 
-    // ══════════════════════════════════════════════════════════════════════════
-    //  EMPLOYEES
-    // ══════════════════════════════════════════════════════════════════════════
+    
 
     public function employeeIndex()
     {
@@ -234,9 +227,7 @@ class AdminController extends Controller
             'employees.xlsx'
         );
     }
-    // ══════════════════════════════════════════════════════════════════════════
-    //  DOCTORS
-    // ══════════════════════════════════════════════════════════════════════════
+    
 
     public function doctorIndex()
     {
@@ -375,9 +366,7 @@ class AdminController extends Controller
             'all_doctors.xlsx'
         );
     }
-    // ══════════════════════════════════════════════════════════════════════════
-    //  REPORT
-    // ══════════════════════════════════════════════════════════════════════════
+
 
     public function Admin_report(Request $request)
     {
@@ -385,7 +374,6 @@ class AdminController extends Controller
 
         $zone = $request->input('zone');
 
-        // 🔥 STEP 1: Pre-aggregate doctor data
         $doctorStats = DB::table('mr_allocated_doctors')
             ->whereNull('deleted_at')
             ->select(
@@ -412,13 +400,12 @@ class AdminController extends Controller
             )
             ->groupBy('mr_id');
 
-        // 🔥 STEP 2: Main query
         $query = DB::table('employees')
             ->leftJoinSub($doctorStats, 'mad', function ($join) {
                 $join->on('employees.employee_id', '=', 'mad.mr_id');
             })
             ->select(
-                'employees.zone', // ✅ ADD THIS
+                'employees.zone', 
                 DB::raw("COALESCE(employees.region, 'No Region') as region"),
 
                 DB::raw('COUNT(DISTINCT employees.id) as user_count'),
@@ -449,7 +436,6 @@ class AdminController extends Controller
 
         $regions = $query->get();
 
-        // 🔥 Totals
         $totals = [
             'region_count' => $regions->count(),
             'user_count' => $regions->sum('user_count'),
@@ -478,7 +464,6 @@ class AdminController extends Controller
         return view('admin.general.report', compact('regions', 'zones', 'totals', 'zone'));
     }
 
-// ─────────────────────────────────────────────────────────────────────
 
     public function exportReport(Request $request)
     {
