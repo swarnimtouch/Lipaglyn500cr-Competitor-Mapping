@@ -137,11 +137,10 @@ class EmployeeController extends Controller
         );
     }
     public function doctorImport(Request $request)
-    {
+    {	
         $request->validate([
             'file' => 'required|mimes:xlsx,xls'
         ]);
-
         try {
             Excel::queueImport(new DoctorImport, $request->file('file'));
             return back()->with('success', 'Doctors Imported Successfully!');
