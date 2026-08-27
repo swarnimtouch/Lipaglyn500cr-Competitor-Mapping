@@ -139,14 +139,14 @@ class EmployeeController extends Controller
 
     public function doctorImport(Request $request)
     {
+        $file = $request->file('doctor_file');
+
         \Log::info('Doctor Import Hit', [
-            'has_file'     => $request->hasFile('doctor_file'),
-            'all_files'    => $request->files->all(),
-            'file_details' => $request->file('doctor_file') ? [
-                'name' => $request->file('doctor_file')->getClientOriginalName(),
-                'mime' => $request->file('doctor_file')->getClientMimeType(),
-                'ext'  => $request->file('doctor_file')->getClientOriginalExtension(),
-            ] : 'NO FILE RECEIVED',
+            'has_file'   => $request->hasFile('doctor_file'),
+            'is_valid'   => $file ? $file->isValid() : null,
+            'error_code' => $file ? $file->getError() : null,
+            'error_msg'  => $file ? $file->getErrorMessage() : null,
+            'size'       => $file ? $file->getSize() : null,
         ]);
 
         $request->validateWithBag('doctorImport', [
