@@ -25,8 +25,8 @@ class DoctorImport implements ToModel, WithChunkReading, ShouldQueue
             'name'          => trim($row[3]),
             'specialization'=> trim($row[4]),
             'qualification' => trim($row[5]),
-//            'state'         => trim($row[6]),
-//            'city'          => trim($row[7]),
+            'state'         => trim($row[6]),
+            'city'          => trim($row[7]),
         ]);
     }
 
