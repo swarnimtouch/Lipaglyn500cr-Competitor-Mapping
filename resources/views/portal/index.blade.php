@@ -397,6 +397,7 @@
                                 <th>DR. Name</th>
                                 <th>DR. UID</th>
                                 <th>Speciality</th>
+                                <th>QUALIFICATION</th>
                                 <th>Sema Rx/Month</th>
                                 <th>Bilypsa Rx/Month</th>
                                 <th>Action</th>
@@ -620,17 +621,19 @@
                         <div class="mb-3 row">
                             <label class="col-md-4 col-form-label">
                                 Lipaglyn Indication
-                                <span
-                                    class="text-danger">*</span>
+                                <span class="text-danger">*</span>
                             </label>
 
                             <div class="col-md-8">
-                        <textarea class="form-control"
-                                  name="lipaglyn_indication"
-                                  id="lipaglyn_indication"
-                                  rows="3"
-                                  maxlength="1000"
-                                  placeholder="Enter discussion / indication"></textarea>
+                                <select class="form-control"
+                                        name="lipaglyn_indication"
+                                        id="lipaglyn_indication"
+                                        required>
+                                    <option value="">Select Indication</option>
+                                    <option value="TG">TG</option>
+                                    <option value="MASLD">MASLD</option>
+                                    <option value="Both">Both</option>
+                                </select>
                             </div>
                         </div>
 
@@ -1277,6 +1280,7 @@
                         {data: 'name', orderable: true},
                         {data: 'msl_code', searchable: false, orderable: true},
                         {data: 'specialization', orderable: true},
+                        {data: 'qualification', orderable: true},
                         {data: 'sema_rx_prer_month', orderable: true},
                         {data: 'bilypsa_rx_per_month', orderable: true},
                         // { data: 'lipaglyn_rx_br_type',       orderable: true },

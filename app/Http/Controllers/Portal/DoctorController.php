@@ -57,6 +57,7 @@ class DoctorController extends Controller
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
                     ->orWhere('specialization', 'like', "%{$search}%")
+                    ->orWhere('qualification', 'like', "%{$search}%")
                     ->orWhere('sema_rx_prer_month', 'like', "%{$search}%")
                     ->orWhere('bilypsa_rx_per_month', 'like', "%{$search}%")
                     ->orWhere('msl_code', 'like', "%{$search}%"); // ✅ DR UID bhi
@@ -68,7 +69,7 @@ class DoctorController extends Controller
         // Order
         $orderCol = $request->input('order.0.column', 0);
         $orderDir = $request->input('order.0.dir', 'desc');
-        $columns = ['id', 'name', 'msl_code', 'specialization', 'sema_rx_prer_month', 'bilypsa_rx_per_month'];
+        $columns = ['id', 'name', 'msl_code', 'specialization', 'qualification','sema_rx_prer_month', 'bilypsa_rx_per_month'];
         $sortCol = $columns[$orderCol] ?? 'id';
         $query->orderBy($sortCol, $orderDir);
 
@@ -84,8 +85,9 @@ class DoctorController extends Controller
                 'name' => $d->name,
                 'msl_code' => $d->msl_code,
                 'specialization' => $d->specialization,
-                'bilypsa_rx_per_month' => $d->bilypsa_rx_per_month,
-                'sema_rx_prer_month' => $d->sema_rx_prer_month,
+                'qualification' => $d->qualification,
+                'bilypsa_rx_per_month' => $d->bilypsa_rx_per_month ?? '-',
+                'sema_rx_prer_month' => $d->sema_rx_prer_month ?? '-',
                 'action' => '
                 <button onclick="openEditModal(' . $d->id . ')" class="btn btn-sm btn-warning">Edit</button>
 
