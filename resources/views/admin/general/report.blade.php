@@ -201,6 +201,8 @@
                         <th>UDCA <br> Rx/Month</th>
                         <th>Sema <br> Rxbers</th>
                         <th>Sema <br> Rx/Month</th>
+                        <th>Lipaglyn <br> Rxbers</th>
+                        <th>Lipaglyn <br> Rx/Month</th>
                         <th>Bilypsa <br> Rxbers</th>
                         <th>Bilypsa <br> Rx/Month</th>
                         <th>Linvas <br> Rxbers</th>
@@ -229,6 +231,10 @@
                             <td>{{ $region->sema_count }}</td>
                             <td>{{ number_format($region->total_sema, 2) }}</td>
 
+                            {{-- Lipaglyn --}}
+                            <td>{{ $region->lipaglyn_count }}</td>
+                            <td>{{ number_format($region->total_lipaglyn, 2) }}</td>
+
                             {{-- Bilypsa --}}
                             <td>{{ $region->bilypsa_count }}</td>
                             <td>{{ number_format($region->total_bilypsa, 2) }}</td>
@@ -256,6 +262,8 @@
                         <td>{{ number_format($totals['total_udca'], 2) }}</td>
                         <td>{{ $totals['sema_count'] }}</td>
                         <td>{{ number_format($totals['total_sema'], 2) }}</td>
+                        <td>{{ $totals['lipaglyn_count'] }}</td>
+                        <td>{{ number_format($totals['total_lipaglyn'], 2) }}</td>
                         <td>{{ $totals['bilypsa_count'] }}</td>
                         <td>{{ number_format($totals['total_bilypsa'], 2) }}</td>
                         <td>{{ $totals['linvas_count'] }}</td>

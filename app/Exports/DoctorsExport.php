@@ -22,27 +22,35 @@ class DoctorsExport implements FromCollection, WithHeadings
 
         return $data->map(function ($d, $index) {
             return [
-                'sr_no' => $index + 1, // ✅ Sr No
+
+                // Basic
+                'sr_no' => $index + 1,
                 'msl_code' => $d->msl_code,
                 'name' => $d->name,
                 'specialization' => $d->specialization,
-//                'lipaglyn_rx_br_type'       => $d->lipaglyn_rx_br_type,
-//                'avg_lipaglyn_pr_month'     => $d->avg_lipaglyn_pr_month,
-//                'actual_speciality'         => $d->actual_speciality,
+
+                // New Doctor Profile Fields
+                'qualification' => $d->qualification,
+                'wall_doctor' => $d->wall_doctor,
+                'trade_govt_corporate' => $d->trade_govt_corporate,
+                'national_regional_speaker_exp' => $d->national_regional_speaker_exp,
+                'engaged_as_2026_faculty' => $d->engaged_as_2026_faculty,
+                'lipaglyn_rx_per_month' => $d->lipaglyn_rx_per_month,
+                'lipaglyn_rx_trend' => $d->lipaglyn_rx_trend,
+                'lipaglyn_indication' => $d->lipaglyn_indication,
+                'mobile_number' => $d->mobile_number,
+                'key_dr_birthday' => $d->key_dr_birthday,
+                'hobby' => $d->hobby,
+
+                // Existing Business Fields
                 'Diabetes_patients_day' => $d->Diabetes_patients_day,
-//                'kol_kbl'                   => $d->kol_kbl,
-//                'inst_dr'                   => $d->inst_dr,
-//                'govt_dropdown'             => $d->govt_dropdown,
                 'udca_rx_per_month' => $d->udca_rx_per_month,
                 'sema_rx_prer_month' => $d->sema_rx_prer_month,
-//                'other_saro_rm_per_month'   => $d->other_saro_rm_per_month,
-//                'total_business_value'      => $d->total_business_value,
-//                'planned_for_conversition'  => $d->planned_for_conversition,
-//                'incremental_lipaglyn_busines' => $d->incremental_lipaglyn_busines,
                 'bilypsa_rx_per_month' => $d->bilypsa_rx_per_month,
                 'linvas_rx_per_month' => $d->linvas_rx_per_month,
                 'vorxar_rx_per_month' => $d->vorxar_rx_per_month,
                 'competitor_activity' => $d->competitor_activity,
+
                 'created_at' => $d->created_at,
             ];
         });
@@ -51,27 +59,35 @@ class DoctorsExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
+
+            // Basic
             'ID',
             'Doctor Code',
             'Name',
             'Specialization',
-//            'Lipaglyn Type',
-//            'Avg Lipaglyn / Month',
-//            'Actual Speciality',
+
+            // New Doctor Profile Fields
+            'Qualification',
+            'Wall Doctor',
+            'Trade / Govt / Corporate',
+            'National / Regional Speaker with Exp',
+            'Engaged as 2026 Faculty',
+            'Lipaglyn Rx / Month',
+            'Lipaglyn Rx Trend',
+            'Lipaglyn Indication',
+            'Mobile Number',
+            'Key Dr Birthday',
+            'Hobby',
+
+            // Existing Business Fields
             'Diabetes Patients / Month',
-//            'KOL/KBL',
-//            'Inst Dr',
-//            'Institution Name',
             'UDCA Rx / Month',
             'Sema Rx / Month',
-//            'Other Saro Rx',
-//            'Total Business',
-//            'Planned Conversion',
-//            'Incremental Lipaglyn',
             'Bilypsa Rx / Month',
             'Linvas Rx / Month',
             'Vorxar Rx / Month',
             'Competitor activity',
+
             'Created At'
         ];
     }

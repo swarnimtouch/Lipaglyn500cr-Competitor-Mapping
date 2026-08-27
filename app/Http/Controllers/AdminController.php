@@ -15,7 +15,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Cache;
 class AdminController extends Controller
 {
-    
+
 
     public function loginForm()
     {
@@ -57,7 +57,7 @@ class AdminController extends Controller
         return null;
     }
 
-   
+
     public function dashboard()
     {
         if ($r = $this->authCheck()) return $r;
@@ -69,7 +69,7 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('totalEmployees', 'activeEmployees', 'totalDoctors'));
     }
 
-    
+
 
     public function employeeIndex()
     {
@@ -227,7 +227,7 @@ class AdminController extends Controller
             'employees.xlsx'
         );
     }
-    
+
 
     public function doctorIndex()
     {
@@ -320,6 +320,17 @@ class AdminController extends Controller
                 'name' => $d->name,
                 'msl_code' => $d->msl_code ?? '—',
                 'specialization' => $d->specialization ?? '—',
+                'qualification' => $d->qualification ?? '—',
+                'wall_doctor' => $d->wall_doctor ?? '—',
+                'trade_govt_corporate' => $d->trade_govt_corporate ?? '—',
+                'national_regional_speaker_exp' => $d->national_regional_speaker_exp ?? '—',
+                'engaged_as_2026_faculty' => $d->engaged_as_2026_faculty ?? '—',
+                'lipaglyn_rx_per_month' => $d->lipaglyn_rx_per_month ?? '—',
+                'lipaglyn_rx_trend' => $d->lipaglyn_rx_trend ?? '—',
+                'lipaglyn_indication' => $d->lipaglyn_indication ?? '—',
+                'mobile_number' => $d->mobile_number ?? '—',
+                'key_dr_birthday' => $d->key_dr_birthday ?? '—',
+                'hobby' => $d->hobby ?? '—',
                 'Diabetes_patients_day' => $d->Diabetes_patients_day ?? '—',
                 'sema_rx_prer_month' => $d->sema_rx_prer_month ?? '—',
                 'udca_rx_per_month' => $d->udca_rx_per_month ?? '—',
@@ -389,6 +400,9 @@ class AdminController extends Controller
                 DB::raw('SUM(IFNULL(sema_rx_prer_month,0)) as total_sema'),
                 DB::raw('SUM(CASE WHEN is_active = 1 AND IFNULL(sema_rx_prer_month,0) > 0 THEN 1 ELSE 0 END) as sema_count'),
 
+                DB::raw('SUM(IFNULL(lipaglyn_rx_per_month,0)) as total_lipaglyn'),
+                DB::raw('SUM(CASE WHEN is_active = 1 AND IFNULL(lipaglyn_rx_per_month,0) > 0 THEN 1 ELSE 0 END) as lipaglyn_count'),
+
                 DB::raw('SUM(IFNULL(bilypsa_rx_per_month,0)) as total_bilypsa'),
                 DB::raw('SUM(CASE WHEN is_active = 1 AND IFNULL(bilypsa_rx_per_month,0) > 0 THEN 1 ELSE 0 END) as bilypsa_count'),
 
@@ -405,7 +419,7 @@ class AdminController extends Controller
                 $join->on('employees.employee_id', '=', 'mad.mr_id');
             })
             ->select(
-                'employees.zone', 
+                'employees.zone',
                 DB::raw("COALESCE(employees.region, 'No Region') as region"),
 
                 DB::raw('COUNT(DISTINCT employees.id) as user_count'),
@@ -418,6 +432,9 @@ class AdminController extends Controller
 
                 DB::raw('SUM(IFNULL(mad.sema_count,0)) as sema_count'),
                 DB::raw('SUM(IFNULL(mad.total_sema,0)) as total_sema'),
+
+                DB::raw('SUM(IFNULL(mad.lipaglyn_count,0)) as lipaglyn_count'),
+                DB::raw('SUM(IFNULL(mad.total_lipaglyn,0)) as total_lipaglyn'),
 
                 DB::raw('SUM(IFNULL(mad.bilypsa_count,0)) as bilypsa_count'),
                 DB::raw('SUM(IFNULL(mad.total_bilypsa,0)) as total_bilypsa'),
@@ -445,6 +462,8 @@ class AdminController extends Controller
             'total_udca' => $regions->sum('total_udca'),
             'sema_count' => $regions->sum('sema_count'),
             'total_sema' => $regions->sum('total_sema'),
+            'lipaglyn_count' => $regions->sum('lipaglyn_count'),
+            'total_lipaglyn' => $regions->sum('total_lipaglyn'),
             'bilypsa_count' => $regions->sum('bilypsa_count'),
             'total_bilypsa' => $regions->sum('total_bilypsa'),
             'linvas_count' => $regions->sum('linvas_count'),
@@ -488,6 +507,9 @@ class AdminController extends Controller
                 DB::raw('SUM(IFNULL(mad.sema_rx_prer_month,0)) as total_sema'),
                 DB::raw('SUM(CASE WHEN mad.is_active = 1 AND IFNULL(mad.sema_rx_prer_month,0) > 0 THEN 1 ELSE 0 END) as sema_count'),
 
+                DB::raw('SUM(IFNULL(mad.lipaglyn_rx_per_month,0)) as total_lipaglyn'),
+                DB::raw('SUM(CASE WHEN mad.is_active = 1 AND IFNULL(mad.lipaglyn_rx_per_month,0) > 0 THEN 1 ELSE 0 END) as lipaglyn_count'),
+
                 DB::raw('SUM(IFNULL(mad.bilypsa_rx_per_month,0)) as total_bilypsa'),
                 DB::raw('SUM(CASE WHEN mad.is_active = 1 AND IFNULL(mad.bilypsa_rx_per_month,0) > 0 THEN 1 ELSE 0 END) as bilypsa_count'),
 
@@ -530,6 +552,8 @@ class AdminController extends Controller
             'UDCA Rx/Month',
             'Sema Rxbers',
             'Sema Rx/Month',
+            'Lipaglyn Rxbers',
+            'Lipaglyn Rx/Month',
             'Bilypsa Rxbers',
             'Bilypsa Rx/Month',
             'Linvas Rxbers',
@@ -559,6 +583,10 @@ class AdminController extends Controller
                     // Sema
                     $r->sema_count,
                     number_format($r->total_sema, 2),
+
+                    // Lipaglyn
+                    $r->lipaglyn_count,
+                    number_format($r->total_lipaglyn, 2),
 
                     // Bilypsa
                     $r->bilypsa_count,

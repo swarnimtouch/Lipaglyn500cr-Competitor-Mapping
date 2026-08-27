@@ -115,6 +115,28 @@ class DoctorController extends Controller
             'name' => 'required|string|max:100',
             'msl_code' => 'nullable|string|max:50',
             'specialization' => 'nullable|string|max:100',
+
+            'wall_doctor' => 'nullable|in:Yes,No',
+
+            'trade_govt_corporate' => 'nullable|in:Trade,Govt,Corporate',
+
+            'national_regional_speaker_exp' => 'nullable|integer|min:0',
+
+            'engaged_as_2026_faculty' => 'nullable|in:IC,FLC,Conf,ISP',
+
+            'lipaglyn_rx_per_month' => 'nullable|numeric|min:0',
+            'lipaglyn_rx_trend' => 'nullable|numeric|min:0',
+
+            'lipaglyn_indication' => 'nullable|string|max:1000',
+
+            'mobile_number' => [
+                'nullable',
+                'regex:/^[6-9][0-9]{9}$/'
+            ],
+
+            'key_dr_birthday' => 'nullable|date',
+
+            'hobby' => 'nullable|string|max:255',
         ]);
 
         $doctor = new MrAllocatedDoctors();
@@ -133,6 +155,28 @@ class DoctorController extends Controller
             'name' => 'required|string|max:100',
             'msl_code' => 'nullable|string|max:50',
             'specialization' => 'nullable|string|max:100',
+
+            'wall_doctor' => 'nullable|in:Yes,No',
+
+            'trade_govt_corporate' => 'nullable|in:Trade,Govt,Corporate',
+
+            'national_regional_speaker_exp' => 'nullable|integer|min:0',
+
+            'engaged_as_2026_faculty' => 'nullable|in:IC,FLC,Conf,ISP',
+
+            'lipaglyn_rx_per_month' => 'nullable|numeric|min:0',
+            'lipaglyn_rx_trend' => 'nullable|numeric|min:0',
+
+            'lipaglyn_indication' => 'nullable|string|max:1000',
+
+            'mobile_number' => [
+                'nullable',
+                'regex:/^[6-9][0-9]{9}$/'
+            ],
+
+            'key_dr_birthday' => 'nullable|date',
+
+            'hobby' => 'nullable|string|max:255',
         ]);
 
         $doctor = MrAllocatedDoctors::where('mr_id', $this->mrId())->findOrFail($id);
@@ -189,6 +233,35 @@ class DoctorController extends Controller
         $doctor->linvas_rx_per_month = $request->linvas_rx_per_month;
         $doctor->vorxar_rx_per_month = $request->vorxar_rx_per_month;
         $doctor->is_active = 1;
+        $doctor->qualification = $request->qualification;
+
+        $doctor->wall_doctor = $request->wall_doctor;
+
+        $doctor->trade_govt_corporate = $request->trade_govt_corporate;
+
+        $doctor->national_regional_speaker_exp =
+            $request->national_regional_speaker_exp;
+
+        $doctor->engaged_as_2026_faculty =
+            $request->engaged_as_2026_faculty;
+
+        $doctor->lipaglyn_rx_per_month =
+            $request->lipaglyn_rx_per_month;
+
+        $doctor->lipaglyn_rx_trend =
+            $request->lipaglyn_rx_trend;
+
+        $doctor->lipaglyn_indication =
+            $request->lipaglyn_indication;
+
+        $doctor->mobile_number =
+            $request->mobile_number;
+
+        $doctor->key_dr_birthday =
+            $request->key_dr_birthday;
+
+        $doctor->hobby =
+            $request->hobby;
 
     }
 }

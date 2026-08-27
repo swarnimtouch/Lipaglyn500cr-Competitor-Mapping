@@ -138,6 +138,17 @@
                                 <th>Dr. Name</th>
                                 <th>Dr. UID</th>
                                 <th>Speciality</th>
+                                <th>Qualification</th>
+                                <th>Wall Doctor</th>
+                                <th>Trade / Govt / Corporate</th>
+                                <th>National / Regional Speaker Exp</th>
+                                <th>2026 Faculty</th>
+                                <th>Lipaglyn Rx / Month</th>
+                                <th>Lipaglyn Rx Trend</th>
+                                <th>Lipaglyn Indication</th>
+                                <th>Mobile Number</th>
+                                <th>Key Dr Birthday</th>
+                                <th>Hobby</th>
                                 <th>Diabetes Patients Month</th>
                                 <th>UDCA Rx/Month</th>
                                 <th>Sema Rx/Month</th>
@@ -191,6 +202,17 @@
                     { data: 'name' },
                     { data: 'msl_code' },
                     { data: 'specialization' },
+                    { data: 'qualification' },
+                    { data: 'wall_doctor' },
+                    { data: 'trade_govt_corporate' },
+                    { data: 'national_regional_speaker_exp' },
+                    { data: 'engaged_as_2026_faculty' },
+                    { data: 'lipaglyn_rx_per_month' },
+                    { data: 'lipaglyn_rx_trend' },
+                    { data: 'lipaglyn_indication' },
+                    { data: 'mobile_number' },
+                    { data: 'key_dr_birthday' },
+                    { data: 'hobby' },
                     { data: 'Diabetes_patients_day' },
                     { data: 'sema_rx_prer_month' },
                     { data: 'udca_rx_per_month' },

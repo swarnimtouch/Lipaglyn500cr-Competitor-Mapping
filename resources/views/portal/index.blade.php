@@ -459,6 +459,219 @@
                             </div>
                         </div>
 
+                        {{-- Qualification --}}
+                        <div class="mb-3 row">
+                            <label class="col-md-4 col-form-label">
+                                Qualification
+                                <span
+                                    class="text-danger">*</span>
+                            </label>
+                            <div class="col-md-8">
+                                <input type="text"
+                                       class="form-control"
+                                       name="qualification"
+                                       id="qualification"
+                                       placeholder="Qualification"
+                                       readonly>
+                            </div>
+                        </div>
+
+                        {{-- Wall Doctor --}}
+                        <div class="mb-3 row">
+                            <label class="col-md-4 col-form-label">
+                                Wall Doctor
+                                <span
+                                    class="text-danger">*</span>
+                            </label>
+
+                            <div class="col-md-8 d-flex align-items-center"
+                                 style="gap:20px; padding-top:8px;">
+
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                           type="radio"
+                                           name="wall_doctor"
+                                           id="wall_doctor_yes"
+                                           value="Yes">
+
+                                    <label class="form-check-label"
+                                           for="wall_doctor_yes">
+                                        Yes
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                           type="radio"
+                                           name="wall_doctor"
+                                           id="wall_doctor_no"
+                                           value="No">
+
+                                    <label class="form-check-label"
+                                           for="wall_doctor_no">
+                                        No
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        {{-- Trade / Govt / Corporate --}}
+                        <div class="mb-3 row">
+                            <label class="col-md-4 col-form-label">
+                                Trade / Govt / Corporate
+                                <span
+                                    class="text-danger">*</span>
+                            </label>
+
+                            <div class="col-md-8">
+                                <select class="form-control"
+                                        name="trade_govt_corporate"
+                                        id="trade_govt_corporate">
+
+                                    <option value="">Select</option>
+                                    <option value="Trade">Trade</option>
+                                    <option value="Govt">Govt</option>
+                                    <option value="Corporate">Corporate</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        {{-- National / Regional Speaker with Exp --}}
+                        <div class="mb-3 row">
+                            <label class="col-md-4 col-form-label">
+                                National / Regional Speaker with Exp
+                            </label>
+
+                            <div class="col-md-8">
+                                <input type="number"
+                                       class="form-control"
+                                       name="national_regional_speaker_exp"
+                                       id="national_regional_speaker_exp"
+                                       min="0"
+                                       step="1"
+                                       placeholder="Enter experience"
+                                       onkeydown="return !(['-','e','+','.'].includes(event.key))"
+                                       oninput="if(this.value < 0 || this.value === '-') this.value = ''">
+                            </div>
+                        </div>
+                        {{-- Engaged as 2026 Faculty --}}
+                        <div class="mb-3 row">
+                            <label class="col-md-4 col-form-label">
+                                Engaged as 2026 Faculty
+                                <span
+                                    class="text-danger">*</span>
+                            </label>
+
+                            <div class="col-md-8">
+                                <select class="form-control"
+                                        name="engaged_as_2026_faculty"
+                                        id="engaged_as_2026_faculty">
+
+                                    <option value="">Select</option>
+                                    <option value="IC">IC</option>
+                                    <option value="FLC">FLC</option>
+                                    <option value="Conf">Conf</option>
+                                    <option value="ISP">ISP</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        {{-- Lipaglyn Rx / Month --}}
+                        <div class="mb-3 row">
+                            <label class="col-md-4 col-form-label">
+                                Lipaglyn Rx / Month
+                                <span
+                                    class="text-danger">*</span>
+                            </label>
+
+                            <div class="col-md-8">
+                                <input type="number"
+                                       class="form-control"
+                                       name="lipaglyn_rx_per_month"
+                                       id="lipaglyn_rx_per_month"
+                                       min="0"
+                                       step="0.01"
+                                       placeholder="Lipaglyn Rx / Month">
+                            </div>
+                        </div>
+
+                        {{-- Lipaglyn Rx Trend --}}
+                        <div class="mb-3 row">
+                            <label class="col-md-4 col-form-label">
+                                Lipaglyn Rx Trend
+                                <span
+                                    class="text-danger">*</span>
+                            </label>
+
+                            <div class="col-md-8">
+                                <input type="number"
+                                       class="form-control"
+                                       name="lipaglyn_rx_trend"
+                                       id="lipaglyn_rx_trend"
+                                       min="0"
+                                       step="0.01"
+                                       placeholder="Lipaglyn Rx Trend">
+                            </div>
+                        </div>
+
+                        {{-- Lipaglyn Indication --}}
+                        <div class="mb-3 row">
+                            <label class="col-md-4 col-form-label">
+                                Lipaglyn Indication
+                                <span
+                                    class="text-danger">*</span>
+                            </label>
+
+                            <div class="col-md-8">
+                        <textarea class="form-control"
+                                  name="lipaglyn_indication"
+                                  id="lipaglyn_indication"
+                                  rows="3"
+                                  maxlength="1000"
+                                  placeholder="Enter discussion / indication"></textarea>
+                            </div>
+                        </div>
+
+                        {{-- Mobile Number --}}
+                        <div class="mb-3 row">
+                            <label class="col-md-4 col-form-label">
+                                Mobile Number
+                                <span
+                                    class="text-danger">*</span>
+                            </label>
+
+                            <div class="col-md-8">
+                                <input type="text"
+                                       class="form-control"
+                                       name="mobile_number"
+                                       id="mobile_number"
+                                       maxlength="10"
+                                       inputmode="numeric"
+                                       placeholder="Enter 10 digit mobile number"
+                                       oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10);">
+                            </div>
+                        </div>
+
+                        {{-- Key Dr Birthday --}}
+                        <div class="mb-3 row">
+                            <label class="col-md-4 col-form-label">
+                                Key Dr Birthday
+                                <span
+                                    class="text-danger">*</span>
+                            </label>
+
+                            <div class="col-md-8">
+                                <input type="date"
+                                       class="form-control"
+                                       name="key_dr_birthday"
+                                       id="key_dr_birthday">
+                            </div>
+                        </div>
+
+
+
                         {{-- Lipaglyn Rxbr type --}}
                         {{--                        <div class="mb-3 row">--}}
                         {{--                            <label class="col-md-4 col-form-label">Lipaglyn Rxbr type <span class="text-danger">*</span></label>--}}
@@ -836,7 +1049,12 @@
     <script>
 
         // ─── Readonly fields list (Edit mode only) ─────────────────────────────────
-        var readonlyOnEdit = ['msl_code', 'name', 'specialization'];
+        var readonlyOnEdit = [
+            'msl_code',
+            'name',
+            'specialization',
+            'qualification'
+        ];
 
         // ─── Modal Open / Close ────────────────────────────────────────────────────
         function openAddModal() {
@@ -901,6 +1119,38 @@
 
         // ─── Fill Form for Edit ────────────────────────────────────────────────────
         function fillForm(d) {
+            $('[name="qualification"]').val(d.qualification);
+
+            $('input[name="wall_doctor"][value="' + d.wall_doctor + '"]')
+                .prop('checked', true);
+            $('[name="national_regional_speaker_exp"]')
+                .val(d.national_regional_speaker_exp);
+            $('[name="trade_govt_corporate"]')
+                .val(d.trade_govt_corporate);
+
+            $('[name="national_regional_speaker_exp"]')
+                .val(d.national_regional_speaker_exp);
+
+            $('[name="engaged_as_2026_faculty"]')
+                .val(d.engaged_as_2026_faculty);
+
+            $('[name="lipaglyn_rx_per_month"]')
+                .val(d.lipaglyn_rx_per_month);
+
+            $('[name="lipaglyn_rx_trend"]')
+                .val(d.lipaglyn_rx_trend);
+
+            $('[name="lipaglyn_indication"]')
+                .val(d.lipaglyn_indication);
+
+            $('[name="mobile_number"]')
+                .val(d.mobile_number);
+
+            $('[name="key_dr_birthday"]')
+                .val(d.key_dr_birthday);
+
+            $('[name="hobby"]')
+                .val(d.hobby);
 
             // ✅ Set readonly on edit-only fields
             $.each(readonlyOnEdit, function (i, fieldName) {
@@ -948,7 +1198,13 @@
 
         // ─── Document Ready ────────────────────────────────────────────────────────
         $(document).ready(function () {
-
+            $.validator.addMethod(
+                "indianMobile",
+                function (value, element) {
+                    return this.optional(element) || /^[6-9][0-9]{9}$/.test(value);
+                },
+                "Please enter a valid 10 digit Indian mobile number."
+            );
             // ✅ Add button click
             $('#btnAddDoctor').on('click', function () {
                 openAddModal();
@@ -1025,7 +1281,8 @@
                         {data: 'bilypsa_rx_per_month', orderable: true},
                         // { data: 'lipaglyn_rx_br_type',       orderable: true },
                         // { data: 'everage_lipaglyn_pr_month', orderable: true },
-                        {data: 'action', searchable: false, orderable: false}
+                        {data: 'action', searchable: false, orderable: false},
+
                     ],
                     drawCallback: function (settings) {
                         $('#listResults tbody tr td:last-child').find('button, a').each(function () {
@@ -1055,24 +1312,119 @@
             if ($.fn.validate) {
                 $('#doctor_form').validate({
                     rules: {
-                        name: {required: true},
-                        specialization: {required: true},
-                        lipaglyn_rx_br_type: {required: true},
-                        avg_lipaglyn_pr_month: {required: true, number: true, min: 0, max: 10},
-                        actual_speciality: {required: true},
-                        Diabetes_patients_day: {required: true, min: 0},
-                        kol_kbl: {required: true},
-                        inst_dr: {required: true},
-                        udca_rx_per_month: {required: true, min: 0, max: 200, number: true},
-                        sema_rx_prer_month: {required: true, min: 0, max: 200, number: true},
-                        other_saro_rm_per_month: {required: true, min: 0, max: 200, number: true},
-                        total_business_value: {required: true, number: true, min: 0, max: 10},
-                        incremental_lipaglyn_busines: {required: true, number: true, min: 0, max: 10},
-                        bilypsa_rx_per_month: {required: true, min: 0, max: 200, number: true},
-                        linvas_rx_per_month: {required: true, min: 0, max: 200, number: true},
-                        vorxar_rx_per_month: {required: true, min: 0, max: 200, number: true},
-                        competitor_activity: {required: true, maxlength: 200},
+                        name: {
+                            required: true
+                        },
 
+                        specialization: {
+                            required: true
+                        },
+
+                        qualification: {
+                            required: true,
+                            maxlength: 255
+                        },
+
+                        wall_doctor: {
+                            required: true
+                        },
+
+                        trade_govt_corporate: {
+                            required: true
+                        },
+
+                        national_regional_speaker_exp: {
+                            required: true,
+                            digits: true,
+                            min: 0
+                        },
+
+                        engaged_as_2026_faculty: {
+                            required: true
+                        },
+
+                        lipaglyn_rx_per_month: {
+                            required: true,
+                            number: true,
+                            min: 0
+                        },
+
+                        lipaglyn_rx_trend: {
+                            required: true,
+                            number: true,
+                            min: 0
+                        },
+
+                        lipaglyn_indication: {
+                            required: true,
+                            maxlength: 1000
+                        },
+
+                        mobile_number: {
+                            required: true,
+                            indianMobile: true
+                        },
+
+                        key_dr_birthday: {
+                            required: true
+                        },
+
+                        hobby: {
+                            required: true,
+                            maxlength: 255
+                        },
+
+                        // Existing fields
+                        Diabetes_patients_day: {
+                            required: true,
+                            digits: true,
+                            min: 0
+                        },
+
+                        udca_rx_per_month: {
+                            required: true,
+                            number: true,
+                            min: 0,
+                            max: 200
+                        },
+
+                        sema_rx_prer_month: {
+                            required: true,
+                            number: true,
+                            min: 0,
+                            max: 200
+                        },
+
+                        bilypsa_rx_per_month: {
+                            required: true,
+                            number: true,
+                            min: 0,
+                            max: 200
+                        },
+
+                        linvas_rx_per_month: {
+                            required: true,
+                            number: true,
+                            min: 0,
+                            max: 200
+                        },
+
+                        vorxar_rx_per_month: {
+                            required: true,
+                            number: true,
+                            min: 0,
+                            max: 200
+                        },
+
+                        competitor_activity: {
+                            required: true,
+                            maxlength: 200
+                        },
+                        national_regional_speaker_exp: {
+                            required: true,
+                            digits: true,
+                            min: 0
+                        },
                     },
                     errorClass: 'error',
                     errorElement: 'label',
