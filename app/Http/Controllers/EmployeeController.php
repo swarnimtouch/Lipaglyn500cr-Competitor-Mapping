@@ -142,8 +142,12 @@ class EmployeeController extends Controller
             'file' => 'required|mimes:xlsx,xls'
         ]);
 
-        Excel::queueImport(new DoctorImport, $request->file('file'));
-
-        return back()->with('success', 'Doctors Imported Successfully!');
+        try {
+            Excel::queueImport(new DoctorImport, $request->file('file'));
+            return back()->with('success', 'Doctors Imported Successfully!');
+        } catch (\Throwable $e) {
+            \Log::error('Doctor Import Failed: '.$e->getMessage());
+            return back()->with('error', 'Import failed: '.$e->getMessage());
+        }
     }
 }
