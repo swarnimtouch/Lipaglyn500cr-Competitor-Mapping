@@ -330,7 +330,7 @@ class AdminController extends Controller
                 'lipaglyn_indication' => $d->lipaglyn_indication ?? '—',
                 'mobile_number' => $d->mobile_number ?? '—',
                 'key_dr_birthday' => $d->key_dr_birthday ?? '—',
-                'hobby' => $d->hobby ?? '—',
+                'hobby' => $d->competitor_activity ?? '—',
                 'Diabetes_patients_day' => $d->Diabetes_patients_day ?? '—',
                 'sema_rx_prer_month' => $d->sema_rx_prer_month ?? '—',
                 'udca_rx_per_month' => $d->udca_rx_per_month ?? '—',

@@ -31,7 +31,6 @@ class DoctorsExport implements FromCollection, WithHeadings
 
                 // New Doctor Profile Fields
                 'qualification' => $d->qualification,
-                'wall_doctor' => $d->wall_doctor,
                 'trade_govt_corporate' => $d->trade_govt_corporate,
                 'national_regional_speaker_exp' => $d->national_regional_speaker_exp,
                 'engaged_as_2026_faculty' => $d->engaged_as_2026_faculty,
@@ -40,7 +39,6 @@ class DoctorsExport implements FromCollection, WithHeadings
                 'lipaglyn_indication' => $d->lipaglyn_indication,
                 'mobile_number' => $d->mobile_number,
                 'key_dr_birthday' => $d->key_dr_birthday,
-                'hobby' => $d->hobby,
 
                 // Existing Business Fields
                 'Diabetes_patients_day' => $d->Diabetes_patients_day,
@@ -68,7 +66,6 @@ class DoctorsExport implements FromCollection, WithHeadings
 
             // New Doctor Profile Fields
             'Qualification',
-            'Wall Doctor',
             'Trade / Govt / Corporate',
             'National / Regional Speaker with Exp',
             'Engaged as 2026 Faculty',
@@ -77,7 +74,6 @@ class DoctorsExport implements FromCollection, WithHeadings
             'Lipaglyn Indication',
             'Mobile Number',
             'Key Dr Birthday',
-            'Hobby',
 
             // Existing Business Fields
             'Diabetes Patients / Month',
@@ -86,7 +82,7 @@ class DoctorsExport implements FromCollection, WithHeadings
             'Bilypsa Rx / Month',
             'Linvas Rx / Month',
             'Vorxar Rx / Month',
-            'Competitor activity',
+            'Hobby (mention any 1 strong hobby)',
 
             'Created At'
         ];

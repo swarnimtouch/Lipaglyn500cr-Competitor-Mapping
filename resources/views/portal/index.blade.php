@@ -477,45 +477,7 @@
                             </div>
                         </div>
 
-                        {{-- Wall Doctor --}}
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">
-                                Wall Doctor
-                                <span
-                                    class="text-danger">*</span>
-                            </label>
 
-                            <div class="col-md-8 d-flex align-items-center"
-                                 style="gap:20px; padding-top:8px;">
-
-                                <div class="form-check">
-                                    <input class="form-check-input"
-                                           type="radio"
-                                           name="wall_doctor"
-                                           id="wall_doctor_yes"
-                                           value="Yes">
-
-                                    <label class="form-check-label"
-                                           for="wall_doctor_yes">
-                                        Yes
-                                    </label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input"
-                                           type="radio"
-                                           name="wall_doctor"
-                                           id="wall_doctor_no"
-                                           value="No">
-
-                                    <label class="form-check-label"
-                                           for="wall_doctor_no">
-                                        No
-                                    </label>
-                                </div>
-
-                            </div>
-                        </div>
 
                         {{-- Trade / Govt / Corporate --}}
                         <div class="mb-3 row">
@@ -641,8 +603,7 @@
                         <div class="mb-3 row">
                             <label class="col-md-4 col-form-label">
                                 Mobile Number
-                                <span
-                                    class="text-danger">*</span>
+
                             </label>
 
                             <div class="col-md-8">
@@ -650,10 +611,9 @@
                                        class="form-control"
                                        name="mobile_number"
                                        id="mobile_number"
-                                       maxlength="10"
                                        inputmode="numeric"
                                        placeholder="Enter 10 digit mobile number"
-                                       oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10);">
+                                       >
                             </div>
                         </div>
 
@@ -661,8 +621,7 @@
                         <div class="mb-3 row">
                             <label class="col-md-4 col-form-label">
                                 Key Dr Birthday
-                                <span
-                                    class="text-danger">*</span>
+
                             </label>
 
                             <div class="col-md-8">
@@ -964,11 +923,10 @@
                         </div>
 
                         <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Competitor activity <span
-                                    class="text-danger">*</span></label>
+                            <label class="col-md-4 col-form-label">Hobby (mention any 1 strong hobby)</label>
                             <div class="col-md-8">
                             <textarea class="form-control" name="competitor_activity"
-                                      placeholder="Competitor activity" maxlength="200" rows="3" required
+                                      placeholder="Hobby (mention any 1 strong hobby)" maxlength="200" rows="3"
                                       oninput="this.nextElementSibling.textContent = this.value.length + '/200'"></textarea>
                                 <small class="text-muted d-block text-end">0/200</small>
                             </div>
@@ -1124,8 +1082,7 @@
         function fillForm(d) {
             $('[name="qualification"]').val(d.qualification);
 
-            $('input[name="wall_doctor"][value="' + d.wall_doctor + '"]')
-                .prop('checked', true);
+
             $('[name="national_regional_speaker_exp"]')
                 .val(d.national_regional_speaker_exp);
             $('[name="trade_govt_corporate"]')
@@ -1267,6 +1224,8 @@
                     processing: true,
                     serverSide: true,
                     order: [[0, 'ASC']],
+                    pageLength: 25,
+                    lengthMenu: [10, 25, 50, 100],
                     ajax: '{{ route("portal.doctors.listing") }}',
                     columns: [
                         {
@@ -1329,19 +1288,13 @@
                             maxlength: 255
                         },
 
-                        wall_doctor: {
-                            required: true
-                        },
+
 
                         trade_govt_corporate: {
                             required: true
                         },
 
-                        national_regional_speaker_exp: {
-                            required: true,
-                            digits: true,
-                            min: 0
-                        },
+
 
                         engaged_as_2026_faculty: {
                             required: true
@@ -1364,14 +1317,9 @@
                             maxlength: 1000
                         },
 
-                        mobile_number: {
-                            required: true,
-                            indianMobile: true
-                        },
 
-                        key_dr_birthday: {
-                            required: true
-                        },
+
+
 
                         hobby: {
                             required: true,
@@ -1420,15 +1368,8 @@
                             max: 200
                         },
 
-                        competitor_activity: {
-                            required: true,
-                            maxlength: 200
-                        },
-                        national_regional_speaker_exp: {
-                            required: true,
-                            digits: true,
-                            min: 0
-                        },
+
+
                     },
                     errorClass: 'error',
                     errorElement: 'label',

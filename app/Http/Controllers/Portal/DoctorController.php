@@ -118,7 +118,6 @@ class DoctorController extends Controller
             'msl_code' => 'nullable|string|max:50',
             'specialization' => 'nullable|string|max:100',
 
-            'wall_doctor' => 'nullable|in:Yes,No',
 
             'trade_govt_corporate' => 'nullable|in:Trade,Govt,Corporate',
 
@@ -158,7 +157,6 @@ class DoctorController extends Controller
             'msl_code' => 'nullable|string|max:50',
             'specialization' => 'nullable|string|max:100',
 
-            'wall_doctor' => 'nullable|in:Yes,No',
 
             'trade_govt_corporate' => 'nullable|in:Trade,Govt,Corporate',
 
@@ -237,7 +235,6 @@ class DoctorController extends Controller
         $doctor->is_active = 1;
         $doctor->qualification = $request->qualification;
 
-        $doctor->wall_doctor = $request->wall_doctor;
 
         $doctor->trade_govt_corporate = $request->trade_govt_corporate;
 

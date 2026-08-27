@@ -139,7 +139,6 @@
                                 <th>Dr. UID</th>
                                 <th>Speciality</th>
                                 <th>Qualification</th>
-                                <th>Wall Doctor</th>
                                 <th>Trade / Govt / Corporate</th>
                                 <th>National / Regional Speaker Exp</th>
                                 <th>2026 Faculty</th>
@@ -148,7 +147,7 @@
                                 <th>Lipaglyn Indication</th>
                                 <th>Mobile Number</th>
                                 <th>Key Dr Birthday</th>
-                                <th>Hobby</th>
+                                <th>Hobby (mention any 1 strong hobby)</th>
                                 <th>Diabetes Patients Month</th>
                                 <th>UDCA Rx/Month</th>
                                 <th>Sema Rx/Month</th>
@@ -203,7 +202,6 @@
                     { data: 'msl_code' },
                     { data: 'specialization' },
                     { data: 'qualification' },
-                    { data: 'wall_doctor' },
                     { data: 'trade_govt_corporate' },
                     { data: 'national_regional_speaker_exp' },
                     { data: 'engaged_as_2026_faculty' },

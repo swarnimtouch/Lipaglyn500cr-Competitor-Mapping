@@ -117,7 +117,6 @@ class AdminDoctorsExport implements FromQuery, WithHeadings, WithChunkReading, W
             $d->qualification ?? '-',
 
             // New Doctor Profile Fields
-            $d->wall_doctor ?? '-',
             $d->trade_govt_corporate ?? '-',
             $d->national_regional_speaker_exp ?? '-',
             $d->engaged_as_2026_faculty ?? '-',
@@ -126,7 +125,6 @@ class AdminDoctorsExport implements FromQuery, WithHeadings, WithChunkReading, W
             $d->lipaglyn_indication ?? '-',
             $d->mobile_number ?? '-',
             $d->key_dr_birthday ?? '-',
-            $d->hobby ?? '-',
 
             // Existing Business Fields
             $d->Diabetes_patients_day ?? '-',
@@ -159,7 +157,6 @@ class AdminDoctorsExport implements FromQuery, WithHeadings, WithChunkReading, W
             'Qualification',
 
             // New Doctor Profile Fields
-            'Wall Doctor',
             'Trade / Govt / Corporate',
             'National / Regional Speaker with Exp',
             'Engaged as 2026 Faculty',
@@ -168,7 +165,6 @@ class AdminDoctorsExport implements FromQuery, WithHeadings, WithChunkReading, W
             'Lipaglyn Indication',
             'Mobile Number',
             'Key Dr Birthday',
-            'Hobby',
 
             // Existing Business Fields
             'Diabetes Patients / Month',
@@ -177,7 +173,7 @@ class AdminDoctorsExport implements FromQuery, WithHeadings, WithChunkReading, W
             'Bilypsa Rx / Month',
             'Linvas Rx / Month',
             'Vorxar Rx / Month',
-            'Competitor Activity',
+            'Hobby (mention any 1 strong hobby)',
 
             // Created
             'Created At',
