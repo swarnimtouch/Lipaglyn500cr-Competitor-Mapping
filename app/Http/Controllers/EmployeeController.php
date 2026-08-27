@@ -125,28 +125,36 @@ class EmployeeController extends Controller
     public function importEmployees(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:xlsx,xls'
-        ]);
+            'employee_file' => 'required|file|mimes:xlsx,xls',
+        ], [], [], /* error bag */)->validateWithBag('employeeImport');
 
         $import = new EmployeeImport;
 
-        Excel::import($import, $request->file('file'));
+        Excel::import($import, $request->file('employee_file'));
 
         return back()->with('success',
             "Inserted: {$import->insertCount}, Updated: {$import->updateCount}"
         );
     }
+
     public function doctorImport(Request $request)
-    {	
-        $request->validate([
-            'file' => 'required|mimes:xlsx,xls'
+    {
+        \Log::info('Doctor Import Hit', [
+            'has_file'     => $request->hasFile('doctor_file'),
+            'all_files'    => $request->files->all(),
+            'file_details' => $request->file('doctor_file') ? [
+                'name' => $request->file('doctor_file')->getClientOriginalName(),
+                'mime' => $request->file('doctor_file')->getClientMimeType(),
+                'ext'  => $request->file('doctor_file')->getClientOriginalExtension(),
+            ] : 'NO FILE RECEIVED',
         ]);
-        try {
-            Excel::queueImport(new DoctorImport, $request->file('file'));
-            return back()->with('success', 'Doctors Imported Successfully!');
-        } catch (\Throwable $e) {
-            \Log::error('Doctor Import Failed: '.$e->getMessage());
-            return back()->with('error', 'Import failed: '.$e->getMessage());
-        }
+
+        $request->validateWithBag('doctorImport', [
+            'doctor_file' => 'required|file|mimes:xlsx,xls',
+        ]);
+
+        Excel::queueImport(new DoctorImport, $request->file('doctor_file'));
+
+        return back()->with('success', 'Doctors Imported Successfully!');
     }
 }

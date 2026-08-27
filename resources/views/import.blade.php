@@ -9,40 +9,48 @@
         </div>
     @endif
 
-    {{-- ✅ Error Message --}}
-    @if($errors->any())
+    {{-- ✅ Employee Import Errors --}}
+    @if($errors->employeeImport->any())
         <div style="background:#f8d7da;color:#721c24;padding:10px;border-radius:5px;margin-bottom:15px;">
-            {{ $errors->first() }}
+            {{ $errors->employeeImport->first() }}
         </div>
     @endif
 
-    {{-- ✅ Upload Form --}}
+    {{-- ✅ Employee Upload Form --}}
     <form action="{{ route('employees.import') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div style="margin-bottom:15px;">
             <label><b>Select Excel File</b></label><br>
-            <input type="file" name="file" required style="margin-top:5px;">
+            <input type="file" name="employee_file" required style="margin-top:5px;">
         </div>
 
         <button type="submit" style="width:100%;padding:10px;background:#007bff;color:#fff;border:none;border-radius:5px;">
             Upload Excel
         </button>
     </form>
+
+    <hr style="margin:25px 0;">
+
+    {{-- ✅ Doctor Import Errors --}}
+    @if($errors->doctorImport->any())
+        <div style="background:#f8d7da;color:#721c24;padding:10px;border-radius:5px;margin-bottom:15px;">
+            {{ $errors->doctorImport->first() }}
+        </div>
+    @endif
+
+    {{-- ✅ Doctor Upload Form --}}
     <form action="{{ route('admin.doctors.import') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group mb-3">
             <label>Select Excel File</label>
-            <input type="file" name="file" class="form-control" required>
+            <input type="file" name="doctor_file" class="form-control" required>
         </div>
 
-        <button class="btn btn-primary">
-            Upload & Import
+        <button type="submit" class="btn btn-primary">
+            Upload &amp; Import
         </button>
-
     </form>
-
-
 
 </div>
