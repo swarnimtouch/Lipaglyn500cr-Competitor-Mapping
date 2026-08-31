@@ -113,37 +113,57 @@ class DoctorController extends Controller
     // ─── Store ───────────────────────────────────────────────────────────────
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:100',
-            'msl_code' => 'nullable|string|max:50',
-            'specialization' => 'nullable|string|max:100',
+        \Log::info('DOCTOR STORE - incoming request', $request->all());
 
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:100',
+                'msl_code' => 'nullable|string|max:50',
+                'specialization' => 'nullable|string|max:100',
+                'qualification' => 'nullable|string|max:255',
 
-            'trade_govt_corporate' => 'nullable|in:Trade,Govt,Corporate',
+                'trade_govt_corporate' => 'nullable|in:Trade,Govt,Corporate',
 
-            'national_regional_speaker_exp' => 'nullable|integer|min:0',
+                'national_regional_speaker_exp' => 'nullable|integer|min:0',
 
-            'engaged_as_2026_faculty' => 'nullable|in:IC,FLC,Conf,ISP',
+                'engaged_as_2026_faculty' => 'nullable|in:IC,FLC,Conf,ISP,Not Engaged',
 
-            'lipaglyn_rx_per_month' => 'nullable|numeric|min:0',
-            'lipaglyn_rx_trend' => 'nullable|numeric|min:0',
+                'lipaglyn_rx_per_month' => 'nullable|numeric|min:0',
+                'lipaglyn_rx_trend' => 'nullable|numeric|min:0',
 
-            'lipaglyn_indication' => 'nullable|string|max:1000',
+                'lipaglyn_indication' => 'nullable|string|max:1000',
 
-            'mobile_number' => [
-                'nullable',
-                'regex:/^[6-9][0-9]{9}$/'
-            ],
+                'mobile_number' => [
+                    'nullable',
+                ],
 
-            'key_dr_birthday' => 'nullable|date',
+                'key_dr_birthday' => 'nullable|date',
 
-            'hobby' => 'nullable|string|max:255',
-        ]);
+                'hobby' => 'nullable|string|max:255',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            \Log::error('DOCTOR STORE - validation failed', $e->errors());
+            throw $e; // still redirect back with errors as normal
+        }
+
+        \Log::info('DOCTOR STORE - validation passed', $validated);
 
         $doctor = new MrAllocatedDoctors();
         $this->fillDoctor($doctor, $request);
         $doctor->mr_id = $this->mrId();
-        $doctor->save();
+
+        try {
+            $doctor->save();
+            \Log::info('DOCTOR STORE - saved successfully', ['id' => $doctor->id]);
+        } catch (\Throwable $e) {
+            \Log::error('DOCTOR STORE - DB save failed', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Save failed: ' . $e->getMessage());
+        }
 
         return redirect()->route('portal.doctors.index')
             ->with('success', 'Doctor saved successfully!');
@@ -152,40 +172,62 @@ class DoctorController extends Controller
     // ─── Update ──────────────────────────────────────────────────────────────
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:100',
-            'msl_code' => 'nullable|string|max:50',
-            'specialization' => 'nullable|string|max:100',
+        \Log::info('DOCTOR UPDATE - incoming request', ['id' => $id, 'data' => $request->all()]);
 
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:100',
+                'msl_code' => 'nullable|string|max:50',
+                'specialization' => 'nullable|string|max:100',
+                'qualification' => 'nullable|string|max:255',
 
-            'trade_govt_corporate' => 'nullable|in:Trade,Govt,Corporate',
+                'trade_govt_corporate' => 'nullable|in:Trade,Govt,Corporate',
 
-            'national_regional_speaker_exp' => 'nullable|integer|min:0',
+                'national_regional_speaker_exp' => 'nullable|integer|min:0',
 
-            'engaged_as_2026_faculty' => 'nullable|in:IC,FLC,Conf,ISP',
+                'engaged_as_2026_faculty' => 'nullable|in:IC,FLC,Conf,ISP,Not Engaged',
 
-            'lipaglyn_rx_per_month' => 'nullable|numeric|min:0',
-            'lipaglyn_rx_trend' => 'nullable|numeric|min:0',
+                'lipaglyn_rx_per_month' => 'nullable|numeric|min:0',
+                'lipaglyn_rx_trend' => 'nullable|numeric|min:0',
 
-            'lipaglyn_indication' => 'nullable|string|max:1000',
+                'lipaglyn_indication' => 'nullable|string|max:1000',
 
-            'mobile_number' => [
-                'nullable',
-                'regex:/^[6-9][0-9]{9}$/'
-            ],
+                'mobile_number' => [
+                    'nullable',
 
-            'key_dr_birthday' => 'nullable|date',
+                ],
 
-            'hobby' => 'nullable|string|max:255',
-        ]);
+                'key_dr_birthday' => 'nullable|date',
+
+                'hobby' => 'nullable|string|max:255',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            \Log::error('DOCTOR UPDATE - validation failed', $e->errors());
+            throw $e;
+        }
+
+        \Log::info('DOCTOR UPDATE - validation passed', $validated);
 
         $doctor = MrAllocatedDoctors::where('mr_id', $this->mrId())->findOrFail($id);
         $this->fillDoctor($doctor, $request);
-        $doctor->save();
+
+        try {
+            $doctor->save();
+            \Log::info('DOCTOR UPDATE - saved successfully', ['id' => $doctor->id]);
+        } catch (\Throwable $e) {
+            \Log::error('DOCTOR UPDATE - DB save failed', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Update failed: ' . $e->getMessage());
+        }
 
         return redirect()->route('portal.doctors.index')
             ->with('success', 'Doctor updated successfully!');
     }
+
 
     // ─── Delete ──────────────────────────────────────────────────────────────
     public function destroy($id)

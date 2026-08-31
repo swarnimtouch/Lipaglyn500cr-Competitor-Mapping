@@ -343,7 +343,6 @@
                     {{ session('success') }}
                 </div>
             @endif
-
             {{-- Speciality Reference Table (Premium UI) --}}
             {{--            <div class="row mb-4">--}}
             {{--                <div class="col-md-6 mb-3 mb-md-0">--}}
@@ -536,6 +535,7 @@
                                     <option value="FLC">FLC</option>
                                     <option value="Conf">Conf</option>
                                     <option value="ISP">ISP</option>
+                                    <option value="Not Engaged">Not Engaged</option>
 
                                 </select>
                             </div>
@@ -1158,13 +1158,7 @@
 
         // ─── Document Ready ────────────────────────────────────────────────────────
         $(document).ready(function () {
-            $.validator.addMethod(
-                "indianMobile",
-                function (value, element) {
-                    return this.optional(element) || /^[6-9][0-9]{9}$/.test(value);
-                },
-                "Please enter a valid 10 digit Indian mobile number."
-            );
+
             // ✅ Add button click
             $('#btnAddDoctor').on('click', function () {
                 openAddModal();
@@ -1284,7 +1278,7 @@
                         },
 
                         qualification: {
-                            required: true,
+                            // required: true,
                             maxlength: 255
                         },
 
