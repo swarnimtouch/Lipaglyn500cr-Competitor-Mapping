@@ -129,7 +129,7 @@ class DoctorController extends Controller
                 'engaged_as_2026_faculty' => 'nullable|in:IC,FLC,Conf,ISP,Not Engaged',
 
                 'lipaglyn_rx_per_month' => 'nullable|numeric|min:0',
-                'lipaglyn_rx_trend' => 'nullable|numeric|min:0',
+                'lipaglyn_rx_trend' => 'nullable|in:1 Month,3 Months,6 Months,12 Months',
 
                 'lipaglyn_indication' => 'nullable|string|max:1000',
 
@@ -188,7 +188,7 @@ class DoctorController extends Controller
                 'engaged_as_2026_faculty' => 'nullable|in:IC,FLC,Conf,ISP,Not Engaged',
 
                 'lipaglyn_rx_per_month' => 'nullable|numeric|min:0',
-                'lipaglyn_rx_trend' => 'nullable|numeric|min:0',
+                'lipaglyn_rx_trend' => 'nullable|in:1 Month,3 Months,6 Months,12 Months',
 
                 'lipaglyn_indication' => 'nullable|string|max:1000',
 

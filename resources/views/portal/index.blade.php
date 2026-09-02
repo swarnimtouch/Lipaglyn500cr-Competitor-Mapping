@@ -564,18 +564,19 @@
                         <div class="mb-3 row">
                             <label class="col-md-4 col-form-label">
                                 Lipaglyn Rx Trend
-                                <span
-                                    class="text-danger">*</span>
+                                <span class="text-danger">*</span>
                             </label>
 
                             <div class="col-md-8">
-                                <input type="number"
-                                       class="form-control"
-                                       name="lipaglyn_rx_trend"
-                                       id="lipaglyn_rx_trend"
-                                       min="0"
-                                       step="0.01"
-                                       placeholder="Lipaglyn Rx Trend">
+                                <select class="form-control"
+                                    name="lipaglyn_rx_trend"
+                                    id="lipaglyn_rx_trend">
+                                <option value="">Select Rx Trend</option>
+                                <option value="1 Month">1 Month</option>
+                                <option value="3 Months">3 Months</option>
+                                <option value="6 Months">6 Months</option>
+                                <option value="12 Months">12 Months</option>
+                            </select>
                             </div>
                         </div>
 
@@ -1302,8 +1303,6 @@
 
                         lipaglyn_rx_trend: {
                             required: true,
-                            number: true,
-                            min: 0
                         },
 
                         lipaglyn_indication: {
